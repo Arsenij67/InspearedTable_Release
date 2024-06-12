@@ -1,0 +1,167 @@
+[
+  {
+
+    "key": "Title",
+    "value": "Выберите то,что нравится!"
+
+
+
+
+  },
+
+
+  {
+    "key": "Content1",
+    "value": "Басни        3000"
+
+
+
+  },
+  {
+
+    "key": "Exit",
+    "value": "Выход"
+
+  },
+  {
+    "key": "Content2",
+    "value": "Шутки          2000"
+
+  },
+  {
+    "key": "Content3",
+    "value": "Мотивации   1500"
+  },
+  {
+    "key": "VK",
+    "value": "Контакт с разработчиком"
+
+  },
+  {
+    "key": "Volume",
+    "value": "Звук"
+
+  },
+
+  {
+    "key": "EnterName",
+    "value": "Введите имя"
+
+
+  },
+
+  {
+    "key": "ButtonPlay",
+    "value": "Играть"
+  },
+  {
+    "key": "Motivation",
+    "value": "Мотивация!"
+  },
+  {
+    "key": "Fabe",
+    "value": "Басня"
+  },
+  {
+    "key": "Joke",
+    "value": "Анекдот"
+  },
+  {
+    "key": "TitleGame",
+    "value": "Вам попалось:"
+  },
+  {
+    "key": "Score",
+    "value": "Счёт:"
+  },
+
+  {
+
+    "key": "Name updated!",
+    "value": "Имя обновлено!"
+
+  },
+  {
+
+    "key": "This name is taken!",
+    "value": "Имя занято!"
+
+  },
+  {
+    "key": "Max Score",
+    "value": "Лучший счет"
+
+
+  },
+  {
+
+    "key": "Fill in the name cell!",
+    "value": "Имя короткое!"
+
+  },
+  {
+    "key": "ExitGame",
+    "value": "Выйти из игры?"
+
+
+  },
+  {
+    "key": "ExitButton",
+    "value": "Выйти из игры"
+
+
+  },
+  {
+    "key": "Yes",
+    "value": "Конечно"
+
+
+  },
+  {
+    "key": "No",
+    "value": "Нет!"
+
+
+  },
+  {
+
+    "key": "No internet connection!",
+    "value": "Нет интернета!"
+
+
+  },
+  {
+
+    "key": "TableName",
+    "value": "Имена"
+
+
+  },
+  {
+
+
+
+    "key": "TableRecord",
+    "value": "Рекорды"
+
+
+
+  },
+
+
+  {
+    "key": "LeaderTitle",
+    "value": "Таблица лидеров"
+
+
+  },
+  {
+    "key": "Settings",
+    "value": "Настройки"
+
+
+  }
+
+
+
+]

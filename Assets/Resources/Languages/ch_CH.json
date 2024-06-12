@@ -1,0 +1,165 @@
+[
+  {
+
+    "key": "Title",
+    "value": "选择你喜欢的！"
+
+
+
+
+  },
+  {
+
+    "key": "Exit",
+    "value": "出口；出口"
+
+  },
+
+  {
+    "key": "Content1",
+    "value": "寓言        3000"
+  },
+  {
+    "key": "Content2",
+    "value": "笑话          2000"
+
+  },
+  {
+    "key": "VK",
+    "value": "开发人员联系"
+
+  },
+
+  {
+    "key": "Volume",
+    "value": "声音"
+
+  },
+  {
+    "key": "Content3",
+    "value": "动机        1500"
+  },
+
+  {
+    "key": "EnterName",
+    "value": "输入名称"
+
+
+  },
+  {
+    "key": "ExitGame",
+    "value": "退出游戏?"
+
+
+  },
+  {
+    "key": "Max Score",
+    "value": "最佳成绩"
+
+
+  },
+  {
+    "key": "ExitButton",
+    "value": "退出游戏"
+
+
+  },
+
+  {
+    "key": "Yes",
+    "value": "是的"
+
+
+  },
+  {
+    "key": "No",
+    "value": "非也。"
+
+
+  },
+
+  {
+    "key": "ButtonPlay",
+    "value": "游戏"
+  },
+  {
+    "key": "Motivation",
+    "value": "动机！"
+  },
+  {
+    "key": "Fabe",
+    "value": "寓言"
+  },
+  {
+    "key": "Joke",
+    "value": "轶事"
+  },
+  {
+    "key": "TitleGame",
+    "value": "你被抓住了:"
+  },
+  {
+    "key": "Score",
+    "value": "帐户:"
+  },
+
+  {
+
+    "key": "Name updated!",
+    "value": "姓名更新！"
+
+  },
+  {
+
+    "key": "This name is taken!",
+    "value": "名字被占用了！"
+
+  },
+  {
+
+    "key": "Fill in the name cell!",
+    "value": "名字很短！"
+
+  },
+  {
+
+    "key": "No internet connection!",
+    "value": "没有互联网连接！"
+
+
+  },
+  {
+
+    "key": "TableName",
+    "value": "名字"
+
+
+  },
+  {
+
+
+
+    "key": "TableRecord",
+    "value": "记录"
+
+
+
+  },
+
+
+  {
+    "key": "LeaderTitle",
+    "value": "排行榜"
+
+
+  },
+  {
+    "key": "Settings",
+    "value": "设置"
+
+
+  }
+
+
+
+]
