@@ -278,9 +278,6 @@ public sealed class Board : MonoBehaviour
 
     ///<summary>уничтожаем одинаковые айтемы</summary>  
     [Obsolete]
-
-    
-
     private void RemoveListeners(Title[,] buttons)
     {
         foreach (var title in buttons)

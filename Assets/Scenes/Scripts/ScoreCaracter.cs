@@ -71,7 +71,7 @@ public sealed class ScoreCaracter : MonoBehaviour
 
             ScoreLocaled = GetComponent<LocaledText>();
             ScoreLocaled.UpdateText();
-            MaxScoreUI.text += " " + _maxscore;
+            MaxScoreUI.text += "\n" + _maxscore;
           
 
            
