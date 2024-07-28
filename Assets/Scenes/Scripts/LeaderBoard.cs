@@ -177,28 +177,14 @@ public class LeaderBoard : MonoBehaviour
     private async Task CreateTextUI(Text TextPrefab,int number,Vector3 offset,GameObject Parent)
     {
 
-     
-       
-
         var Prefab = Instantiate(TextPrefab,Parent.transform.GetChild(0).transform.position - offset,Quaternion.identity).GetComponent<Text>();
 
-        
         Prefab.fontSize = 40;
-
-     
-
 
         Prefab.transform.SetParent(Parent.transform);
         
-        
-
-
         Prefab.transform.DOScale(new Vector3(1, 1, 1), 0.01f);
-
-
- 
-
-    Prefab.color = Color.red;
+        Prefab.color = Color.red;
  
 
     Prefab.text = number.ToString();

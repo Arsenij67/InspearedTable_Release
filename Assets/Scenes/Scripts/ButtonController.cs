@@ -36,7 +36,7 @@ public class ButtonController : MonoBehaviour
 
     private void Awake()
     {
-        Events.MusicClick.AddListener(PlayMusicButon);
+        Events.MusicClick.AddListener(PlayMusicGame);
 
         transform.GetChild(0).GetComponent<AudioSource>().volume = Events.MusicForce;
 
@@ -55,110 +55,40 @@ public class ButtonController : MonoBehaviour
 
         Notification = TextWarning?.transform.parent;
 
-
-
-        ChangeTogleButtons(-1);
+        TryToPlay();
 
 
     }
 
    
-    public void ChangeTogleButtons(int Index)
+    public void TryToPlay() // проверяем доступность к игре
     {
-         if(Index!=-1)
-        GetCountSwithedTogles(Index);
-
-        Events.MusicClick.Invoke(ClipButtonPressed);
-        try
-        {
+        if (ButtonPlay == null) return;
+        print(Fb.MyName);
             if (Events.IndexesActived.Count() < 1 || Fb.MyName.Length <= 4)
             {
+            
                 ButtonPlay.interactable = false;
             }
             else
             {
                 ButtonPlay.interactable = true;
             }
-        }
-
-        catch (Exception ex)
-        {
-
-            ex.ToString();
-        
-        }
        
     }
-    private int GetCountSwithedTogles(int index) 
+    public void ChangeTogleState(int index) // изменение тогла в меню
     {
+                if (!toggles[index].isOn && toggles[index]!=null) Events.IndexesActived.Remove((short)index);
 
-        switch (index)
-        {
-            case 0:
-                if (!toggles[0].isOn && toggles[0]!=null)
-                {
-                    Events.IndexesActived.Remove(0);
-                
-                     
-                }
-                else
-                {
-                    Events.IndexesActived.Add(0);
-                    
-
-                }
-
-                return Events.IndexesActived.Count();
-
-
-            case 1:
-                if (!toggles[1].isOn && toggles[1] != null)
-                {
-                    Events.IndexesActived.Remove(1);
-                    
-                }
-                else
-                {
-                     Events.IndexesActived.Add(1);
-                     
-                }
-                return Events.IndexesActived.Count();
-
-
-
-            case 2:
-
-                if (!toggles[2].isOn && toggles[2] != null)
-                {
-                    Events.IndexesActived.Remove(2);
-                     
-                }
-                else
-                {
-                    Events.IndexesActived.Add(2);
-                     
-
-                }
-                return Events.IndexesActived.Count();
-
-            default:
-                return Events.IndexesActived.Count() ;
-
-
-
-
-
-
-
-        }
-
+                else Events.IndexesActived.Add((short)index);
+                TryToPlay();
+       
     }
     public  async void LoadScene(string scene)
     {
         Events.MusicClick.Invoke(ClipButtonPressed);
 
         AsyncOperation AsyncOperation = SceneManager.LoadSceneAsync(scene);
-
 
         while (AsyncOperation.isDone == false)
         {
@@ -177,13 +107,9 @@ public class ButtonController : MonoBehaviour
             Events.IndexesActived.Clear();
         }
 
-     
-      
- 
-
     }
 
-    private  void PlayMusicButon(AudioClip clip)
+    private  void PlayMusicGame(AudioClip clip)
     {
         AudioSource.clip = clip;
         AudioSource.Play();
@@ -193,7 +119,6 @@ public class ButtonController : MonoBehaviour
     [Obsolete]
     public void InputName()
     {
-
        
         Fb.MyName = InputTextName.text;
 
@@ -205,12 +130,11 @@ public class ButtonController : MonoBehaviour
                 if (Fb.MyName.Length > 4)// добавлена проверка количества символов
                 {
 
-
                     if (fb.CheckData(Fb.MyName) == false)
                     {
                         StartCoroutine(fb.WriteData(Fb.MyName, PlayerPrefs.GetInt("Max")));
 
-                        ChangeTogleButtons(-1);//Меняем состояние кнопки играть
+                        TryToPlay();//Меняем состояние кнопки играть
 
                         fb.RemoveData(PlayerPrefs.GetString("Name"));//удаляем старые данные из базы
 
@@ -231,7 +155,7 @@ public class ButtonController : MonoBehaviour
                 }
 
                 else {
-                    ChangeTogleButtons(-1);
+                    TryToPlay();
 
                     PopupWarning("Fill in the name cell!", Color.red);
                 }
@@ -282,9 +206,6 @@ public static class Events
 
     public static float MusicForce = 0;
 
-   
-
-
     public static List<short> IndexesActived = new List<short>();
 
 
@@ -298,27 +219,17 @@ public static class Events
 
             yield return request.SendWebRequest();
 
-
-
             if (request.isNetworkError == false)
             {
-
 
                 connect(true);
 
                 yield break;
 
-
-
             }
-
-
-
             else connect(false);
 
         }
-
-
 
 
     }

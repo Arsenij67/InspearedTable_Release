@@ -23,8 +23,6 @@ public class LocaledText : MonoBehaviour
 
         localization.OnLanguageChanged += UpdateText;
 
-        Debug.Log(localization.OnLanguageChanged.Method);
-
         if (text == null)
         { 
         text = GetComponent<Text>();
