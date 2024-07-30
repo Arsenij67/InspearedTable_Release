@@ -72,9 +72,9 @@
     <Compile Include="Assets\Scenes\Scripts\LoadingBoard.cs" />
     <Compile Include="Assets\Scenes\Scripts\ItemDataBase.cs" />
     <Compile Include="Assets\Scenes\Scripts\InputContent.cs" />
+    <Compile Include="Assets\Scenes\Scripts\TranslateMode.cs" />
     <Compile Include="Assets\Scenes\Scripts\Board.cs" />
     <Compile Include="Assets\Scenes\Scripts\Fb.cs" />
-    <Compile Include="Assets\Scenes\Scripts\TranslateMode.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -1162,7 +1162,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 219, y: 316}
+  m_AnchoredPosition: {x: 194.5, y: 120}
   m_SizeDelta: {x: 389, y: 298.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &430842798
@@ -1234,6 +1234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Score
+  translateMode: 1
 --- !u!1 &437230082
 GameObject:
   m_ObjectHideFlags: 0
@@ -1245,6 +1246,7 @@ GameObject:
   - component: {fileID: 437230083}
   - component: {fileID: 437230085}
   - component: {fileID: 437230084}
+  - component: {fileID: 437230086}
   m_Layer: 0
   m_Name: Content
   m_TagString: Untagged
@@ -1318,6 +1320,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 437230082}
   m_CullTransparentMesh: 1
+--- !u!114 &437230086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437230082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0d127697fbd29041a6d9d77d6c01862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 
+  translateMode: 1
 --- !u!1 &439431764
 GameObject:
   m_ObjectHideFlags: 0
@@ -1832,6 +1848,18 @@ MonoBehaviour:
       - m_Target: {fileID: 24190138}
         m_TargetAssemblyTypeName: InputContent, Assembly-CSharp
         m_MethodName: ShowContent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 437230086}
+        m_TargetAssemblyTypeName: LocaledText, Assembly-CSharp
+        m_MethodName: UpdateText
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2780,6 +2808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: 
+  translateMode: 0
 --- !u!114 &1147231907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3000,6 +3029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: TitleGame
+  translateMode: 0
 --- !u!1 &1220729179
 GameObject:
   m_ObjectHideFlags: 0
@@ -3815,6 +3845,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970cd3f46967c1e4ca9cc590804a2b70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mailField: {fileID: 0}
+  passField: {fileID: 0}
 --- !u!1 &1668176345
 GameObject:
   m_ObjectHideFlags: 0
@@ -8928,6 +8960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Max Score
+  translateMode: 0
 --- !u!114 &1899845246
 MonoBehaviour:
   m_ObjectHideFlags: 0

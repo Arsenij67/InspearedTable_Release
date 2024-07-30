@@ -299,6 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Yes
+  translateMode: 0
 --- !u!1 &85212260
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,6 +394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: TableRecord
+  translateMode: 0
 --- !u!1 &131679592
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,6 +822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: ExitGame
+  translateMode: 0
 --- !u!1 &253050379
 GameObject:
   m_ObjectHideFlags: 0
@@ -1092,6 +1095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Content2
+  translateMode: 0
 --- !u!1 &289945644 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2554216290283128041, guid: 1c6d53e69a5ff084e820227e906400d8, type: 3}
@@ -1167,6 +1171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Settings
+  translateMode: 0
 --- !u!114 &295569267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1305,6 +1310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Content1
+  translateMode: 0
 --- !u!1 &452447142
 GameObject:
   m_ObjectHideFlags: 0
@@ -2867,6 +2873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: EnterName
+  translateMode: 0
 --- !u!1 &870552109
 GameObject:
   m_ObjectHideFlags: 0
@@ -2978,6 +2985,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Title
+  translateMode: 0
 --- !u!1 &882902998
 GameObject:
   m_ObjectHideFlags: 0
@@ -3183,6 +3191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: ExitButton
+  translateMode: 0
 --- !u!114 &931839365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3620,6 +3629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: LeaderTitle
+  translateMode: 0
 --- !u!1 &1119918640
 GameObject:
   m_ObjectHideFlags: 0
@@ -4041,7 +4051,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ru_RU
+          m_StringArgument: ru
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1283650689
@@ -4699,6 +4709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: No
+  translateMode: 0
 --- !u!1 &1509416165
 GameObject:
   m_ObjectHideFlags: 0
@@ -4792,7 +4803,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: en_EN
+          m_StringArgument: en
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1509416168
@@ -5017,6 +5028,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: ButtonPlay
+  translateMode: 0
 --- !u!1 &1550218442
 GameObject:
   m_ObjectHideFlags: 0
@@ -10436,6 +10448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: TableName
+  translateMode: 0
 --- !u!1 &1662526198
 GameObject:
   m_ObjectHideFlags: 0
@@ -11001,6 +11014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Content3
+  translateMode: 0
 --- !u!224 &1971381165 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8416027599602440204, guid: 36f3ba08a01205047b2e77504c8a80d6, type: 3}
@@ -11113,7 +11127,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ch_CH
+          m_StringArgument: zh
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2013127687
@@ -11367,7 +11381,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Example of text
+  m_Text: Connect to Developer
 --- !u!222 &2094682001
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11389,6 +11403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: VK
+  translateMode: 0
 --- !u!1 &2124635605
 GameObject:
   m_ObjectHideFlags: 0

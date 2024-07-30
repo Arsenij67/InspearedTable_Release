@@ -17,6 +17,8 @@ public class LocalizationManager : MonoBehaviour
     [SerializeField] private TextAsset [] LangFiles = new TextAsset[3];
 
     private Dictionary<string, TextAsset> DictFiles;
+
+ 
     public string CurrentLanguage
 
 
@@ -40,6 +42,7 @@ public class LocalizationManager : MonoBehaviour
         CurrentLanguage = SetDefaultLanguage();
       
         LoadLocalizedText(CurrentLanguage);
+     
 
 
     }
@@ -54,7 +57,7 @@ public class LocalizationManager : MonoBehaviour
         if (PlayerPrefs.HasKey("Language")) return CurrentLanguage;
 
 
-        return "en_EN";
+        return "en";
 
 
     }
