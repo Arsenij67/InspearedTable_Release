@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Firebase.Database;
@@ -17,9 +17,7 @@ public class Fb : MonoBehaviour
 
     const int MaxCount = 10000;
 
-    public  Task<DataSnapshot> Data = null;
-
-    FirebaseAuth FirebaseAuth;
+    private FirebaseAuth FirebaseAuth;
 
     [SerializeField] private InputField mailField, passField;
 
@@ -27,50 +25,75 @@ public class Fb : MonoBehaviour
     private void Awake()
     {
     
-     InitInfo();
+        InitInfo();
         
     }
 
-    public async void InitInfo()
+/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────
+|   Методы
+───────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+
+/// <summary>
+/// Инициирует данные из Firebase
+/// </summary>
+public async void InitInfo()
     {
         DBRef = FirebaseDatabase.GetInstance("https://insptable-default-rtdb.firebaseio.com/").RootReference;
         FirebaseAuth = FirebaseAuth.DefaultInstance;
 
-        await ReadData();
+       dataSnapshot =  await ReadData();
 
         MyName = dataSnapshot.Child(PlayerPrefs.GetString("Name")).Child("Name").Value.ToString();
 
     }
-  
-    public async Task ReadData()
+
+
+/// <summary>
+/// Скачивание данных для таблицы лидеров
+/// </summary>
+public async Task<DataSnapshot> ReadData()
     {
-        Data  = DBRef.Child("Users").OrderByChild("Record").LimitToFirst(MaxCount).GetValueAsync();
+        var Data  = DBRef.Child("Users").OrderByChild("Record").LimitToFirst(MaxCount).GetValueAsync();
 
         await  Data;
-        
     
         if (Data.Exception == null)
         {
-            print("������ ���������");
+            print("Данные загружены");
             
         }
         
 
-        else {
-            print("������! "+ Data.Exception);
+        else 
+        {
+           print("Ошибка! "+ Data.Exception);
              
         }
 
-       dataSnapshot = Data.Result;
-        
+       return Data.Result;
     
     }
 
-    public void RemoveData(string Name) { if (Name != "") DBRef.Child("Users").Child(Name).RemoveValueAsync(); }
 
-    
+/// <summary>
+/// удаление старой информации из таблицы при изменении имени
+/// </summary>
+public void RemoveData(string Name)
+    {
+        if (Name != "")
+        {
+            DBRef.Child("Users").Child(Name).RemoveValueAsync();
+        }
+    }
 
-    public  IEnumerator  WriteData(string name,int rec)
+
+/// <summary>
+/// Записывает информацию об игроке на сервер
+/// </summary>
+/// <param name="name">имя в таблице игроков</param>
+/// <param name="rec">рекорд, поставленный игроком</param>
+/// <returns></returns>
+public  IEnumerator  WriteData(string name,int rec)
     {
 
         User user = new User(name,rec);
@@ -85,13 +108,12 @@ public class Fb : MonoBehaviour
     }
 
 
-
-    /// <summary>
-    ///  ��������� � ���� ���� �� ��� ������� �� ������
-    /// </summary>
-    /// <param name="name"> ��� </param>
-    /// <returns > ��������� �� ��� ��� ���</returns>
-    public bool CheckData(string name)
+/// <summary>
+///  Проверяет в базе есть ли имя которое мы вводим
+/// </summary>
+/// <param name="name"> имя </param>
+/// <returns > сущесвует ли имя или нет</returns>
+public bool CheckData(string name)
     {
         bool IsNameExist = false;
 
@@ -106,8 +128,6 @@ public class Fb : MonoBehaviour
 
                 dataSnapshot = null;
 
-                Data = null;
-
                 return IsNameExist;
 
 
@@ -120,9 +140,15 @@ public class Fb : MonoBehaviour
 
     }
 
-    public IEnumerator ButtonLogIn(string email,string login)
+
+/// <summary>
+/// Вход по логину и паролю
+/// </summary>
+/// <param name="email">почта как логин</param>
+/// <param name="pass">пароль от аккаунта</param>
+public IEnumerator ButtonLogIn(string email,string pass)
     {
-      var logIn =  FirebaseAuth.SignInWithEmailAndPasswordAsync(email, login);
+      var logIn =  FirebaseAuth.SignInWithEmailAndPasswordAsync(email, pass);
 
       yield return new WaitUntil(predicate:()=> logIn.IsCompleted);
 
@@ -133,41 +159,41 @@ public class Fb : MonoBehaviour
 
         else
         {
-            Debug.Log("���� ��������!");
+            Debug.Log("Вход выполнен!");
         
         }
 
-
-
     }
 
-    public void ButtonRegister()
-    {
-        StartCoroutine(Register());
-    }
 
-    IEnumerator Register()
+/// <summary>
+/// Метод для запуска регистрации с кнопки
+/// </summary>
+public void ButtonRegister()
+{
+    StartCoroutine(Register());
+}
+
+
+/// <summary>
+/// регистрация 
+/// </summary>
+private IEnumerator Register()
     {
         Task<AuthResult> auth = FirebaseAuth.CreateUserWithEmailAndPasswordAsync(mailField.text, passField.text);
         
         yield return new WaitUntil(predicate: () => auth.IsCompleted);
-     
     }
 
-    public struct User
-    {
-        public string Name;
-        public int Record;
-        public  User(string name,int record)
 
-        {
+public struct User
+{
+    public string Name;
+    public int Record;
+    public User(string name, int record)
+    {
         Name = name;
         Record = record;
-        
-        
-        }
-
     }
-
-
+}
 }

@@ -26,11 +26,17 @@ public sealed class Settings : MonoBehaviour
 
         MusicSlider.value = Events.MusicForce;
 
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            settingsElements[i]= transform.GetChild(i);
+             
+        }
 
 
     }
+    private const short maxCountChildrens = 20;
 
-    [SerializeField] private Transform[] Settings_Elements;
+    private Transform[] settingsElements = new Transform [maxCountChildrens];
 
     [SerializeField] private AudioClip AudioClickButton;
 
@@ -41,6 +47,8 @@ public sealed class Settings : MonoBehaviour
     [SerializeField] private AudioClip PopupClip;
 
     [SerializeField] private RectTransform WindowExit;
+
+    
 
 
     public async void MoveSettings(float speed = 1.5f)
@@ -63,7 +71,7 @@ public sealed class Settings : MonoBehaviour
             dir = Direction.Out;
 
 
-            foreach (Transform element in Settings_Elements)
+            foreach (Transform element in settingsElements)
             {
                 element.DOScale(Vector3.zero, 0.001f);
             }
@@ -72,7 +80,7 @@ public sealed class Settings : MonoBehaviour
 
             await transform.DOLocalMoveX(0, speed).Play().AsyncWaitForCompletion();
 
-            await UploadSettingsAnim(Settings_Elements);
+            await UploadSettingsAnim(settingsElements);
 
         
         }
@@ -105,13 +113,16 @@ public sealed class Settings : MonoBehaviour
     {
         foreach (Transform element in elements)
         {
-            Events.MusicClick.Invoke(PopupClip);
+            if (element != null)
+            {
+                Events.MusicClick.Invoke(PopupClip);
 
-            Tween SequencePopup = DOTween.Sequence()
-               .Append(element.DOScale(2 * Vector3.one, speed)).
-                Append(element.DOScale(Vector3.one, speed)).Play();
+                Tween SequencePopup = DOTween.Sequence()
+                   .Append(element.DOScale(2 * Vector3.one, speed)).
+                    Append(element.DOScale(Vector3.one, speed)).Play();
 
-            await SequencePopup.AsyncWaitForCompletion();
+                await SequencePopup.AsyncWaitForCompletion();
+            }
         }
 
  
@@ -147,8 +158,6 @@ public sealed class Settings : MonoBehaviour
         else if (descrition.Equals("No"))
         {
 
-           
-
             WindowExit.gameObject.SetActive(false);
 
             foreach (var element in WindowExit.GetChild(0).GetComponentsInChildren<RectTransform>(true))
@@ -162,14 +171,6 @@ public sealed class Settings : MonoBehaviour
         
     }
 
-    public CancellationTokenSource token; 
-
-    Task Thread1 = new Task(() => {
-
-         
-
-
-    });
 
 
 
