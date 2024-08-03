@@ -19,7 +19,6 @@ public class Fb : MonoBehaviour
 
     private FirebaseAuth FirebaseAuth;
 
-    [SerializeField] private InputField mailField, passField;
 
     
     private void Awake()
@@ -167,20 +166,11 @@ public IEnumerator ButtonLogIn(string email,string pass)
 
 
 /// <summary>
-/// Метод для запуска регистрации с кнопки
-/// </summary>
-public void ButtonRegister()
-{
-    StartCoroutine(Register());
-}
-
-
-/// <summary>
 /// регистрация 
 /// </summary>
-private IEnumerator Register()
+private IEnumerator Register(string email, string pass)
     {
-        Task<AuthResult> auth = FirebaseAuth.CreateUserWithEmailAndPasswordAsync(mailField.text, passField.text);
+        Task<AuthResult> auth = FirebaseAuth.CreateUserWithEmailAndPasswordAsync(email, pass);
         
         yield return new WaitUntil(predicate: () => auth.IsCompleted);
     }
