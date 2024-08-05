@@ -14,7 +14,8 @@ public class FbAuthorization : MonoBehaviour
     private FirebaseAuth FirebaseAuth;
     private void Awake()
     {
-        FirebaseAuth = FirebaseAuth.DefaultInstance;
+   
+        
     }
     /// <summary>
     /// Вход по логину и паролю
@@ -51,46 +52,48 @@ public class FbAuthorization : MonoBehaviour
     /// </summary>
     private IEnumerator Register(string email, string pass)
 {
-         
-    // Проверка, все ли данные корректны
-    if (warningLoggerRegistration.isAllDataRight)
-    {
-            Debug.Log(1);
-            // Начинаем процесс регистрации
-            user = FirebaseAuth.CreateUserWithEmailAndPasswordAsync(email, pass);
-            Debug.Log(2);
-        // Ждем завершения задачи регистрации
-        yield return new WaitUntil(() => user.IsCompleted);
 
-        // Проверка на наличие ошибок при регистрации
+        // Проверка, все ли данные корректны
+        //if (warningLoggerRegistration.isAllDataRight)
+        //{
+        FirebaseAuth = FirebaseAuth.DefaultInstance;
+        Debug.Log(1);
+        // Начинаем процесс регистрации
+
+        var r = FirebaseAuth.CreateUserWithEmailAndPasswordAsync(email, pass);
+        // Ждем завершения задачи регистрации
+        yield return new WaitUntil(() =>  r.IsCompleted);
+        Debug.Log(2);
+
+        //Проверка на наличие ошибок при регистрации
         if (user.Exception != null)
         {
             Debug.LogError($"Ошибка регистрации: {user.Exception.Flatten().Message}");
             yield break; // Выход из корутины при ошибке
         }
 
-        // Отправка письма для подтверждения электронной почты
-      
-        var  verificationTask = user.Result.User.SendEmailVerificationAsync();
+        //// Отправка письма для подтверждения электронной почты
 
-        // Ждем завершения задачи отправки письма
-        yield return new WaitUntil(() => verificationTask.IsCompleted);
+        //var  verificationTask = user.Result.User.SendEmailVerificationAsync();
 
-        // Проверка на наличие ошибок при отправке письма
-        if (verificationTask.Exception != null)
-        {
-            Debug.LogError($"Ошибка отправки письма для подтверждения: {verificationTask.Exception.Flatten().Message}");
-            yield break; // Выход из корутины при ошибке
-        }
+        //// Ждем завершения задачи отправки письма
+        //yield return new WaitUntil(() => verificationTask.IsCompleted);
 
-        // Запуск корутины для ожидания подтверждения
-        StartCoroutine(WaitForVerification());
+        //// Проверка на наличие ошибок при отправке письма
+        //if (verificationTask.Exception != null)
+        //{
+        //    Debug.LogError($"Ошибка отправки письма для подтверждения: {verificationTask.Exception.Flatten().Message}");
+        //    yield break; // Выход из корутины при ошибке
+        //}
+
+        //// Запуск корутины для ожидания подтверждения
+        //StartCoroutine(WaitForVerification());
+        //}
+        //else
+        //{
+        //    Debug.LogWarning("Данные для регистрации некорректны.");
+        //}
     }
-    else
-    {
-        Debug.LogWarning("Данные для регистрации некорректны.");
-    }
-}
 
 
     private IEnumerator WaitForVerification()
