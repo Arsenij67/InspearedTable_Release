@@ -56,6 +56,7 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scenes\Scripts\FBAuthorization\FbAuthorization.cs" />
     <Compile Include="Assets\Scenes\Scripts\Title.cs" />
     <Compile Include="Assets\Scenes\Scripts\ButtonSwithLang.cs" />
     <Compile Include="Assets\Scenes\Scripts\LeaderBoard.cs" />
@@ -76,7 +77,7 @@
     <Compile Include="Assets\Scenes\Scripts\Save\SavableGameObject.cs" />
     <Compile Include="Assets\Scenes\Scripts\TranslateMode.cs" />
     <Compile Include="Assets\Scenes\Scripts\Board.cs" />
-    <Compile Include="Assets\Scenes\Scripts\Fb.cs" />
+    <Compile Include="Assets\Scenes\Scripts\FBDatabase\Fb.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

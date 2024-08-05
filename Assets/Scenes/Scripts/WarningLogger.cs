@@ -7,7 +7,6 @@ using System.Xml.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Localization.SmartFormat.Extensions;
 using UnityEngine.UI;
 
 public class WarningLogger : MonoBehaviour
@@ -17,7 +16,7 @@ public class WarningLogger : MonoBehaviour
     protected  Dictionary<string, TMP_Text> warningTextDict;
 
     private bool isFirstPassRight = false, isSecondPassRight= false, isMailRight = false;
-    private bool isAllDataRight  => isFirstPassRight && isSecondPassRight && isMailRight; // свойство, отвечающее за то, все ли данные в поле введены верно
+    internal bool isAllDataRight  => isFirstPassRight && isSecondPassRight && isMailRight; // свойство, отвечающее за то, все ли данные в поле введены верно
 
     internal string pass;
     internal string mail;
@@ -25,6 +24,8 @@ public class WarningLogger : MonoBehaviour
     [SerializeField]private Transform targetPosition = null;
 
     [SerializeField] private InputField ? mailField, passField, secondPassField;
+
+    public Button actionButton;
     private void Awake()
     {
         warningTextDict = warningTextList.Where(selector => selector != null).ToDictionary(k=>k.name.Substring(k.name.Length-4),e=>e);
@@ -127,15 +128,16 @@ public class WarningLogger : MonoBehaviour
 
         if (!string.IsNullOrEmpty(mail)) // если что - то написано
         {
-            if (listDomens.Any(predicate: domen => (mail.Contains(domen))))
+            var res =  listDomens.Where(selector => mail.Contains(selector)).FirstOrDefault();
+            if (!string.IsNullOrEmpty(res) && mail.EndsWith(res))
             {
-                DisplayWarning("Почта введена корректно: ",mailText, new Color(0.3f, 0.64f, 0.3f));
+                DisplayWarning("Почта введена корректно: ", mailText, new Color(0.3f, 0.64f, 0.3f));
                 isMailRight = true;
-              
             }
+
             else
             {
-                DisplayWarning("Почта введена НЕ корректно:",mailText, Color.red);
+                DisplayWarning("Почта введена НЕ корректно:", mailText, Color.red);
             }
 
 
@@ -213,8 +215,6 @@ public class WarningLogger : MonoBehaviour
         }
 
     }
-
-    
 
 
 }

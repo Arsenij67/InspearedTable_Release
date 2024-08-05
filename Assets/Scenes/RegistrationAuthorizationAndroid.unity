@@ -1165,9 +1165,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 \u043B\u0438\u0448\u044C
-    \u043B\u0430\u0442\u0438\u043D\u0441\u043A\u0438\u0435 \u0431\u0443\u043A\u0432\u044B
-    \u0438 \u0446\u0438\u0444\u0440\u044B"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2442,7 +2440,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 806688024}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 970cd3f46967c1e4ca9cc590804a2b70, type: 3}
+  m_Script: {fileID: 11500000, guid: 63023e4f541377d42874439a83819be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   warningLoggerRegistration: {fileID: 924843345}
@@ -3105,6 +3103,7 @@ MonoBehaviour:
   mailField: {fileID: 630799591}
   passField: {fileID: 2083088062}
   secondPassField: {fileID: 78855885}
+  actionButton: {fileID: 1131729238754798119}
 --- !u!1 &1066968224
 GameObject:
   m_ObjectHideFlags: 0
@@ -5347,6 +5346,7 @@ MonoBehaviour:
   mailField: {fileID: 1240447292}
   passField: {fileID: 1066968226}
   secondPassField: {fileID: 0}
+  actionButton: {fileID: 1131729239285787829}
 --- !u!1 &1774117479
 GameObject:
   m_ObjectHideFlags: 0
@@ -6025,7 +6025,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 806688029}
-        m_TargetAssemblyTypeName: Fb, Assembly-CSharp
+        m_TargetAssemblyTypeName: FbAuthorization, Assembly-CSharp
         m_MethodName: Register
         m_Mode: 1
         m_Arguments:
