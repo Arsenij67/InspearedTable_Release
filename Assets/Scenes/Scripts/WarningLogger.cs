@@ -22,12 +22,11 @@ public class WarningLogger : MonoBehaviour
     internal string pass;
     internal string mail;
     public Direction dir = Direction.To;
-    private float targetPositionX = -300;
+    [SerializeField]private Transform targetPosition = null;
 
     [SerializeField] private InputField ? mailField, passField, secondPassField;
     private void Awake()
     {
-        targetPositionX = Mathf.Abs(transform.position.x);
         warningTextDict = warningTextList.Where(selector => selector != null).ToDictionary(k=>k.name.Substring(k.name.Length-4),e=>e);
         // ключи: Mail, ass1, ass2
 
@@ -154,11 +153,14 @@ public class WarningLogger : MonoBehaviour
         field.text = message;
     }
 
-
+/// <summary>
+/// Отвечает за перемещение с анимациями доски
+/// </summary>
     public async void MoveWarningAnimationBoard()
     {
         Transform[] childrens = new Transform[20];
-        for (int i = 0; i < transform.GetChild(0).childCount; i++)
+        int i = 0;
+        for (; i < transform.GetChild(0).childCount; i++)
         {
                 childrens[i] = transform.GetChild(0).GetChild(i);
         }
@@ -185,23 +187,19 @@ public class WarningLogger : MonoBehaviour
             {
                 Tween SequencePopup = DOTween.Sequence()
                      .AppendInterval(timeDelay)
-                     .Append(element.DOMoveX(targetPositionX*(int)dir, speed)).Play();
+                     .Append(element.DOMoveX(targetPosition.position.x*(int)dir, speed)).Play();
               timeDelay+=timeOffset;
             }
 
         }
-    
         ChangeDirection();
         
     }
-
-
     private void ChangeDirection()
     {
         if (dir.Equals(Direction.To))
         {
             dir = Direction.Out;
-            
             return;
         }
 
@@ -209,13 +207,14 @@ public class WarningLogger : MonoBehaviour
         {
 
             dir = Direction.To;
-            targetPositionX = Mathf.Abs(transform.GetChild(0).GetChild(0).position.x);
+            targetPosition.position = new Vector3(Mathf.Abs(targetPosition.position.x), transform.position.y, transform.position.z);
 
             return;
         }
-        
 
     }
+
+    
 
 
 }
