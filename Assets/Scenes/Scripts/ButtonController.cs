@@ -173,19 +173,16 @@ public class ButtonController : MonoBehaviour
        
 
     }
-    public void PopupWarning(string text,Color color,float AnimNotification = 1.5f)
+    public void PopupWarning(string text,Color color,float animNotification = 1.5f)
     {
         
             text = localization.GetLocalizedValue(text);
             localization.OnLanguageChanged.Invoke();
-        
-
-        
 
        Tween SequencePopup = DOTween.Sequence()
-                .Append(Notification.DOLocalMoveX(150f, AnimNotification))
-                .AppendInterval(AnimNotification)
-                .Append(Notification.DOLocalMoveX(2000f, AnimNotification));
+                .Append(Notification.DOLocalMoveX(150f, animNotification))
+                .AppendInterval(animNotification)
+                .Append(Notification.DOLocalMoveX(2000f, animNotification));
 
         TextWarning.text = text;
 
@@ -207,7 +204,6 @@ public static class Events
     public static float MusicForce = 0;
 
     public static List<short> IndexesActived = new List<short>();
-
 
     [Obsolete]
     public static IEnumerator ChechInternetConnection(Action<bool> connect)

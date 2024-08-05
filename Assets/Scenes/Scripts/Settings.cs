@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+  public enum Direction
+    {
+
+        To = 1,
+        Out = -1
+
+    }
 public sealed class Settings : MonoBehaviour
 {
 
-    public enum Direction
-    {
-
-        To,
-        Out
-
-    }
     Direction dir = Direction.To;
 
     private void Start()
@@ -132,6 +132,7 @@ public sealed class Settings : MonoBehaviour
     }
 
 
+    
     public async void ExitGame()
     {
         RectTransform [] ExitMenuChildrens = WindowExit.GetChild(0).GetComponentsInChildren<RectTransform>(true);

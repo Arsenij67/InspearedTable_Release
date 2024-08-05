@@ -7,6 +7,7 @@ using Firebase.Auth;
 using UnityEngine.UI;
 using Firebase;
 
+
 public class Fb : MonoBehaviour
 {
     private DatabaseReference DBRef;
@@ -19,8 +20,9 @@ public class Fb : MonoBehaviour
 
     private FirebaseAuth FirebaseAuth;
 
+    [SerializeField] private WarningLogger warningLoggerRegistration;
+    [SerializeField] private WarningLogger warningLoggerLogIn;
 
-    
     private void Awake()
     {
     
@@ -159,11 +161,17 @@ public IEnumerator ButtonLogIn(string email,string pass)
         else
         {
             Debug.Log("Вход выполнен!");
+            AuthResult res = logIn.Result;
+ 
         
         }
 
     }
 
+    public void Register()
+    {
+        StartCoroutine(Register(warningLoggerRegistration.mail,warningLoggerRegistration.pass));
+    }
 
 /// <summary>
 /// регистрация 
@@ -173,6 +181,8 @@ private IEnumerator Register(string email, string pass)
         Task<AuthResult> auth = FirebaseAuth.CreateUserWithEmailAndPasswordAsync(email, pass);
         
         yield return new WaitUntil(predicate: () => auth.IsCompleted);
+
+        yield return auth.Result.User.SendEmailVerificationAsync();
     }
 
 

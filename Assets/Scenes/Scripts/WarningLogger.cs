@@ -1,6 +1,11 @@
+using DG.Tweening;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Xml.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Localization.SmartFormat.Extensions;
 using UnityEngine.UI;
@@ -11,25 +16,31 @@ public class WarningLogger : MonoBehaviour
 
     protected  Dictionary<string, TMP_Text> warningTextDict;
 
-    [SerializeField] private Fb fb;
-
     private bool isFirstPassRight = false, isSecondPassRight= false, isMailRight = false;
     private bool isAllDataRight  => isFirstPassRight && isSecondPassRight && isMailRight; // свойство, отвечающее за то, все ли данные в поле введены верно
 
+    internal string pass;
+    internal string mail;
+    public Direction dir = Direction.To;
+    private float targetPositionX = -300;
 
     [SerializeField] private InputField ? mailField, passField, secondPassField;
     private void Awake()
     {
-
+        targetPositionX = Mathf.Abs(transform.position.x);
         warningTextDict = warningTextList.Where(selector => selector != null).ToDictionary(k=>k.name.Substring(k.name.Length-4),e=>e);
         // ключи: Mail, ass1, ass2
 
     }
 
+/// <summary>
+/// Проверяет правильность ввода второго пароля и решает какую информацию выводить на экран
+/// </summary>
     public void CheckFirstPass()
     {
-        string pass = passField.text;
+        pass = passField.text;
         const int countLetters = 26;
+        const int minimalCountDigits = 3;
         if (!string.IsNullOrEmpty(pass))
         {
             char [] alphabetBig = Enumerable.Range('A', countLetters).Select(c => (char)c).ToArray();
@@ -44,15 +55,13 @@ public class WarningLogger : MonoBehaviour
             }
             else
             {
-
                 if (pass.All(lit => alphabetLatin.Contains(lit))) // если все символы это цифры и латинские буквы
                 {
 
-
-                    if (digits.Where(pred => pass.Contains(pred)).ToArray().Length < 3)
+         
+                    if (digits.Where(predicate => pass.Contains(predicate)).ToArray().Length < minimalCountDigits)
                     {
-
-                        DisplayWarning("Добавьте минимум три числа "+ digits.Where(pred => pass.Contains(pred)).ToArray().Length, warningTextDict["ass1"], Color.red);
+                        DisplayWarning("Добавьте минимум три разных числа ", warningTextDict["ass1"], Color.red);
                     }
                     else
                     {
@@ -78,7 +87,9 @@ public class WarningLogger : MonoBehaviour
         }
 
     }
-
+/// <summary>
+/// Проверяет правильность ввода  первого пароля и решает какую информацию выводить на экран
+/// </summary>
     public void CheckSecondPass()
     {
         string pass2 = secondPassField.text;
@@ -109,7 +120,7 @@ public class WarningLogger : MonoBehaviour
 /// </summary>
     public void CheckMail()
     {
-        string mail = mailField.text;
+        mail = mailField.text;
 
         string[] listDomens = new string [] { "@gmail.com", "@yahoo.com", "@outlook.com", "@hotmail.com", "@icloud.com", "@mail.ru", "@yandex.ru"};
 
@@ -141,6 +152,69 @@ public class WarningLogger : MonoBehaviour
     { 
         field.color = color;
         field.text = message;
+    }
+
+
+    public async void MoveWarningAnimationBoard()
+    {
+        Transform[] childrens = new Transform[20];
+        for (int i = 0; i < transform.GetChild(0).childCount; i++)
+        {
+                childrens[i] = transform.GetChild(0).GetChild(i);
+        }
+        await MoveWaringAnimationBoard(childrens);
+    }
+    private async Task MoveWaringAnimationBoard(Transform [] elements,float speed = 0.6f)
+    {
+        if (Events.AllTasks != null)
+        {
+            Task[] tasks = Events.AllTasks.ToArray();
+
+            while (!Task.WhenAll(tasks).IsCompleted)
+            { 
+                await Task.Yield();
+            }
+        }
+ 
+        float timeDelay = 0.2f;
+        float timeOffset = 0.2f;
+       
+        foreach (Transform element in elements)
+        {
+            if (element != null)
+            {
+                Tween SequencePopup = DOTween.Sequence()
+                     .AppendInterval(timeDelay)
+                     .Append(element.DOMoveX(targetPositionX*(int)dir, speed)).Play();
+              timeDelay+=timeOffset;
+            }
+
+        }
+    
+        ChangeDirection();
+        
+    }
+
+
+    private void ChangeDirection()
+    {
+        if (dir.Equals(Direction.To))
+        {
+            dir = Direction.Out;
+            
+            return;
+        }
+
+        if (dir.Equals(Direction.Out))
+        {
+
+            dir = Direction.To;
+            targetPositionX = Mathf.Abs(transform.GetChild(0).GetChild(0).position.x);
+
+            return;
+        }
+        
+
     }
 
 
