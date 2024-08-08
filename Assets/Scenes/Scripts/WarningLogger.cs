@@ -43,13 +43,14 @@ public class WarningLogger : DashboardAnimator,IAuthorizationListener
         pass = passField.text;
         const int countLetters = 26;
         const int minimalCountDigits = 3;
+        const int minCountLiterals = 3;
         if (!string.IsNullOrEmpty(pass))
         {
             char [] alphabetBig = Enumerable.Range('A', countLetters).Select(c => (char)c).ToArray();
             char [] alphabetSmall = Enumerable.Range('a', countLetters).Select(c => (char)c).ToArray();
             char[] digits = new char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
-            char[] alphabetLatin = alphabetBig.Union(alphabetSmall).Union(digits).ToArray();
-
+            char[] allSymbols = alphabetBig.Union(alphabetSmall).Union(digits).ToArray();
+            char[] allLiterals = alphabetSmall.Union(alphabetBig).ToArray();
             if (pass.Contains(' '))
             {
                 DisplayWarning("Уберите пробелы", warningTextDict["ass1"], Color.red);
@@ -57,7 +58,7 @@ public class WarningLogger : DashboardAnimator,IAuthorizationListener
             }
             else
             {
-                if (pass.All(lit => alphabetLatin.Contains(lit))) // если все символы это цифры и латинские буквы
+                if (pass.All(lit => allSymbols.Contains(lit))) // если все символы это цифры и латинские буквы
                 {
 
          
@@ -68,8 +69,17 @@ public class WarningLogger : DashboardAnimator,IAuthorizationListener
                     else
                     {
 
-                        DisplayWarning("Пароль корректен", warningTextDict["ass1"], new Color(0.3f, 0.64f, 0.3f));
-                        isFirstPassRight = true;
+                        if (allLiterals.Where(symbol => pass.Contains(symbol)).ToArray().Length >= minCountLiterals)
+                        {
+
+                            DisplayWarning("Пароль корректен", warningTextDict["ass1"], new Color(0.3f, 0.64f, 0.3f));
+                            isFirstPassRight = true;
+                        }
+
+                        else 
+                        {
+                            DisplayWarning("Добавьте минимум три буквы", warningTextDict["ass1"],Color.red);
+                        }
                     }
 
                 }
@@ -177,6 +187,16 @@ public class WarningLogger : DashboardAnimator,IAuthorizationListener
     }
 
     public void OnVerifiedMail()
+    {
+        CloseGrowingLoadingPanel();
+    }
+
+    public void OnRegisterFailed(AggregateException error)
+    {
+        DisplayGrowingLoadingPanel(error.Message);
+    }
+
+    public void CloseLoadingPanel()
     {
         CloseGrowingLoadingPanel();
     }

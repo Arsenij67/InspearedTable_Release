@@ -21,7 +21,7 @@ public class LocaledText : MonoBehaviour
     {
          
 
-        if (localization == null)
+        if (localization == null && translateMode == TranslateMode.LocalTranslate)
         {
 
             localization = GameObject.FindGameObjectWithTag("LocalizationManager").GetComponent<LocalizationManager>();

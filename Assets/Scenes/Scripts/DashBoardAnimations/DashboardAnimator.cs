@@ -61,8 +61,8 @@ public class DashboardAnimator : MonoBehaviour
         dashboardLoading.gameObject.SetActive(true);
         TMP_Text text = dashboardLoading.GetComponentInChildren<TMP_Text>();
         text.text = information;
-        Sequence sequence = DOTween.Sequence().Append(dashboardLoading.DOScale(Vector3.zero,0))
-            .Append(dashboardLoading.DOBlendableScaleBy(Vector3.one, 1)).Play();
+        DOTween.Sequence().Append(dashboardLoading.DOScale(Vector3.zero,0))
+            .Append(dashboardLoading.DOScale(Vector3.one, 1)).Play();
 
     }
 
