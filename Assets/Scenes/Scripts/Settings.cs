@@ -13,7 +13,7 @@ using UnityEngine.UI;
         Out = -1
 
     }
-public sealed class Settings : MonoBehaviour
+public sealed class Settings : DashboardAnimator
 {
 
     Direction dir = Direction.To;
@@ -54,9 +54,7 @@ public sealed class Settings : MonoBehaviour
     public async void MoveSettings(float speed = 1.5f)
     {
 
-        Events.MusicClick.Invoke(AudioClickButton);
-
-
+        PlayBoardMusic();
 
         if (Events.AllTasks != null)
         {
@@ -95,6 +93,11 @@ public sealed class Settings : MonoBehaviour
 
     }
 
+    private void PlayBoardMusic()
+    {
+        Events.MusicClick.Invoke(AudioClickButton);
+
+    }
     public void ChangeMusicForce()
     {
 

@@ -9,28 +9,30 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WarningLogger : MonoBehaviour
+public class WarningLogger : DashboardAnimator,IAuthorizationListener
 {
+    //переменные
+
     [SerializeField] private TMP_Text [] warningTextList;
-
     protected  Dictionary<string, TMP_Text> warningTextDict;
-
     private bool isFirstPassRight = false, isSecondPassRight= false, isMailRight = false;
-    internal bool isAllDataRight  => isFirstPassRight && isSecondPassRight && isMailRight; // свойство, отвечающее за то, все ли данные в поле введены верно
-
     internal string pass;
     internal string mail;
-    public Direction dir = Direction.To;
-    [SerializeField]private Transform targetPosition = null;
-
     [SerializeField] private InputField ? mailField, passField, secondPassField;
-
     public Button actionButton;
+
+    // свойства
+    string IAuthorizationListener.mail => mail;
+
+    string IAuthorizationListener.pass => pass;
+
+    bool IAuthorizationListener.isAllDataRight => isFirstPassRight && isSecondPassRight && isMailRight;    // свойство, отвечающее за то, все ли данные в поле введены верно
+
     private void Awake()
     {
         warningTextDict = warningTextList.Where(selector => selector != null).ToDictionary(k=>k.name.Substring(k.name.Length-4),e=>e);
         // ключи: Mail, ass1, ass2
-
+     
     }
 
 /// <summary>
@@ -166,55 +168,16 @@ public class WarningLogger : MonoBehaviour
         {
                 childrens[i] = transform.GetChild(0).GetChild(i);
         }
-        await MoveWaringAnimationBoard(childrens);
+        await MoveQueuedAnimationBoard(childrens);
     }
-    private async Task MoveWaringAnimationBoard(Transform [] elements,float speed = 0.6f)
+
+    public void OnRegisterMail()
     {
-        if (Events.AllTasks != null)
-        {
-            Task[] tasks = Events.AllTasks.ToArray();
-
-            while (!Task.WhenAll(tasks).IsCompleted)
-            { 
-                await Task.Yield();
-            }
-        }
- 
-        float timeDelay = 0.2f;
-        float timeOffset = 0.2f;
-       
-        foreach (Transform element in elements)
-        {
-            if (element != null)
-            {
-                Tween SequencePopup = DOTween.Sequence()
-                     .AppendInterval(timeDelay)
-                     .Append(element.DOMoveX(targetPosition.position.x*(int)dir, speed)).Play();
-              timeDelay+=timeOffset;
-            }
-
-        }
-        ChangeDirection();
-        
+        DisplayGrowingLoadingPanel("Письмо отправлено на почту. \r\nПодтвердите его, перейдя по ссылке в письме!");
     }
-    private void ChangeDirection()
+
+    public void OnVerifiedMail()
     {
-        if (dir.Equals(Direction.To))
-        {
-            dir = Direction.Out;
-            return;
-        }
-
-        if (dir.Equals(Direction.Out))
-        {
-
-            dir = Direction.To;
-            targetPosition.position = new Vector3(Mathf.Abs(targetPosition.position.x), transform.position.y, transform.position.z);
-
-            return;
-        }
-
+        CloseGrowingLoadingPanel();
     }
-
-
 }

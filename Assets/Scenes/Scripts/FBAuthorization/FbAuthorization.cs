@@ -8,14 +8,21 @@ using UnityEngine;
 
 public class FbAuthorization : MonoBehaviour
 {
-    [SerializeField] private WarningLogger? warningLoggerRegistration;
-    [SerializeField] private WarningLogger? warningLoggerLogIn;
+    [SerializeField] private IAuthorizationListener warningLoggerRegistrationListener;
+    [SerializeField] private IAuthorizationListener warningLoggerLogInListener;
+
 
     private FirebaseAuth FirebaseAuth;
    
     private void Awake()
     {
         FirebaseAuth = FirebaseAuth.DefaultInstance;
+       var obj =  GameObject.FindGameObjectsWithTag("AuthListener");
+        warningLoggerRegistrationListener = obj[0].GetComponent<WarningLogger>();
+        warningLoggerLogInListener = obj[1].GetComponent<WarningLogger>();
+
+        print(obj[0].name);
+        print(obj[1].name);
 
     }
     /// <summary>
@@ -45,18 +52,16 @@ public class FbAuthorization : MonoBehaviour
     }
     public void Register()
     {
-        StartCoroutine(Register(warningLoggerRegistration.mail, warningLoggerRegistration.pass));
+        StartCoroutine(Register(warningLoggerRegistrationListener.mail, warningLoggerRegistrationListener.pass));
     }
 
     /// <summary>
     /// регистрация 
     /// </summary>
-
-
-        private IEnumerator Register(string email, string pass)
+    private IEnumerator Register(string email, string pass)
         {
             // Проверка, все ли данные корректны
-            if (warningLoggerRegistration.isAllDataRight)
+            if (warningLoggerRegistrationListener.isAllDataRight)
             {
                 Debug.Log(1);
                 // Начинаем процесс регистрации
@@ -75,15 +80,17 @@ public class FbAuthorization : MonoBehaviour
 
                 // Отправка письма для подтверждения электронной почты
                 var verificationTask = userCreationTask.Result.User.SendEmailVerificationAsync();
-
-                // Запуск корутины для ожидания подтверждения
-                warningLoggerRegistration.actionButton.interactable = false;
+ 
+    
 
                 // Ждем завершения задачи отправки письма
                 yield return new WaitUntil(() => verificationTask.IsCompleted);
+            //уведомление об отправке письма
+            warningLoggerRegistrationListener.OnRegisterMail();
+              
 
-                // Проверка на наличие ошибок при отправке письма
-                if (verificationTask.Exception != null)
+            // Проверка на наличие ошибок при отправке письма
+            if (verificationTask.Exception != null)
                 {
                     Debug.LogError($"Ошибка отправки письма для подтверждения: {verificationTask.Exception.Flatten().Message}");
                     yield break; // Выход из корутины при ошибке
@@ -113,8 +120,8 @@ public class FbAuthorization : MonoBehaviour
                     // Ждем перед следующей проверкой
                     yield return new WaitForSeconds(2); // Проверяем каждые 2 секунд
                 }
-
-                warningLoggerRegistration.actionButton.interactable = true;
+            //закрываем панель с ожиданием верификации
+            warningLoggerRegistrationListener.OnVerifiedMail();
             }
             else
             {
