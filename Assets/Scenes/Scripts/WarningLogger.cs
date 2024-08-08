@@ -15,7 +15,7 @@ public class WarningLogger : DashboardAnimator,IAuthorizationListener
 
     [SerializeField] private TMP_Text [] warningTextList;
     protected  Dictionary<string, TMP_Text> warningTextDict;
-    private bool isFirstPassRight = false, isSecondPassRight= false, isMailRight = false;
+    [SerializeField]private bool isFirstPassRight = false, isSecondPassRight= false, isMailRight = false;
     internal string pass;
     internal string mail;
     [SerializeField] private InputField ? mailField, passField, secondPassField;
@@ -191,7 +191,7 @@ public class WarningLogger : DashboardAnimator,IAuthorizationListener
         CloseGrowingLoadingPanel();
     }
 
-    public void OnRegisterFailed(AggregateException error)
+    public void OnAuthorizationFailed(AggregateException error)
     {
         DisplayGrowingLoadingPanel(error.Message);
     }
@@ -200,4 +200,11 @@ public class WarningLogger : DashboardAnimator,IAuthorizationListener
     {
         CloseGrowingLoadingPanel();
     }
+
+    public void OnLogInSucceeded()
+    {
+        DisplayGrowingLoadingPanel(string.Format($"Вы успешно зашли в аккаунт!"));
+    }
+
+
 }

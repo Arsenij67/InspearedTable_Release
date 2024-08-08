@@ -34,27 +34,51 @@ public class FbAuthorization : MonoBehaviour
     /// <param name="pass">пароль от аккаунта</param>
     public IEnumerator ButtonLogIn(string email, string pass)
     {
-        var logIn = FirebaseAuth.SignInWithEmailAndPasswordAsync(email, pass);
-
-        yield return new WaitUntil(predicate: () => logIn.IsCompleted);
-
-        if (logIn.Exception != null)
+        StartCoroutine(Events.ChechInternetConnection(connect =>
         {
-            Debug.Log(logIn.Exception.GetBaseException() as FirebaseException);
+            if (connect == false)
+            {
+                warningLoggerLogInListener.OnAuthorizationFailed(new AggregateException("Нет подключения к интернету!"));
+                return;
+            }
+        }));
+
+        // Проверка, все ли данные корректны
+        if (warningLoggerLogInListener.isAllDataRight)
+        {
+            var logIn = FirebaseAuth.SignInWithEmailAndPasswordAsync(email, pass);
+
+            yield return new WaitUntil(predicate: () => logIn.IsCompleted);
+
+            if (logIn.Exception != null)
+            {
+                warningLoggerLogInListener.OnAuthorizationFailed(new AggregateException(logIn.Exception.Flatten().Message));
+                Debug.Log(logIn.Exception.Flatten().Message);
+            }
+
+            else
+            {
+
+                warningLoggerLogInListener.OnLogInSucceeded();
+                AuthResult res = logIn.Result;
+
+            }
         }
 
         else
         {
-            Debug.Log("Вход выполнен!");
-            AuthResult res = logIn.Result;
-
-
+            warningLoggerLogInListener.OnAuthorizationFailed(new AggregateException("Данные введены некорректно!"));
         }
 
     }
     public void Register()
     {
         StartCoroutine(Register(warningLoggerRegistrationListener.mail, warningLoggerRegistrationListener.pass));
+    }
+
+    public void LogIn()
+    {
+        StartCoroutine(ButtonLogIn(warningLoggerLogInListener.mail, warningLoggerLogInListener.pass));
     }
 
     /// <summary>
@@ -66,7 +90,7 @@ public class FbAuthorization : MonoBehaviour
         {
             if (connect == false)
             {
-                warningLoggerRegistrationListener.OnRegisterFailed(new AggregateException("Нет подключения к интернету!"));
+                warningLoggerRegistrationListener.OnAuthorizationFailed(new AggregateException("Нет подключения к интернету!"));
                 return;
             }
         }));
@@ -83,7 +107,7 @@ public class FbAuthorization : MonoBehaviour
                 // Проверка на наличие ошибок при регистрации
                 if (userCreationTask.Exception != null)
                 {
-                    warningLoggerRegistrationListener.OnRegisterFailed(new System.AggregateException($"Ошибка регистрации: {userCreationTask.Exception.Flatten().Message}"));
+                    warningLoggerRegistrationListener.OnAuthorizationFailed(new System.AggregateException($"Ошибка регистрации: {userCreationTask.Exception.Flatten().Message}"));
                     yield break; // Выход из корутины при ошибке
                 }
 
@@ -101,7 +125,7 @@ public class FbAuthorization : MonoBehaviour
             // Проверка на наличие ошибок при отправке письма
             if (verificationTask.Exception != null)
                 {
-                    warningLoggerRegistrationListener.OnRegisterFailed(new System.AggregateException($"Ошибка отправки письма для подтверждения: {verificationTask.Exception.Flatten().Message}"));
+                    warningLoggerRegistrationListener.OnAuthorizationFailed(new System.AggregateException($"Ошибка отправки письма для подтверждения: {verificationTask.Exception.Flatten().Message}"));
                     yield break; // Выход из корутины при ошибке
                 }
 
@@ -116,7 +140,7 @@ public class FbAuthorization : MonoBehaviour
 
                     if (userRecordTask.Exception != null)
                     {
-                        warningLoggerRegistrationListener.OnRegisterFailed(new System.AggregateException($"Ошибка получения информации о пользователе: {userRecordTask.Exception.Flatten().Message}"));
+                        warningLoggerRegistrationListener.OnAuthorizationFailed(new System.AggregateException($"Ошибка получения информации о пользователе: {userRecordTask.Exception.Flatten().Message}"));
                         yield break; // Выход из корутины при ошибке
                     }
 
@@ -134,7 +158,7 @@ public class FbAuthorization : MonoBehaviour
             }
             else
             {
-                warningLoggerRegistrationListener.OnRegisterFailed( new System.AggregateException("Данные для регистрации некорректны."));
+                warningLoggerRegistrationListener.OnAuthorizationFailed( new System.AggregateException("Данные для регистрации некорректны."));
               
             }
         }

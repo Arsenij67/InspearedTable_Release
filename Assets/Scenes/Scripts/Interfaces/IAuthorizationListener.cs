@@ -15,7 +15,9 @@ public interface IAuthorizationListener
 
     public bool isAllDataRight { get; }
 
-    public void OnRegisterFailed(AggregateException error);
+    public void OnAuthorizationFailed(AggregateException error);
+
+    public void OnLogInSucceeded ();
 
 
 }

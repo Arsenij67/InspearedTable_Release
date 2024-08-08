@@ -25,10 +25,11 @@ public class LocaledText : MonoBehaviour
         {
 
             localization = GameObject.FindGameObjectWithTag("LocalizationManager").GetComponent<LocalizationManager>();
+            localization.OnLanguageChanged += UpdateText;
 
         }
 
-        localization.OnLanguageChanged += UpdateText;
+       
 
         if (text == null)
         { 
