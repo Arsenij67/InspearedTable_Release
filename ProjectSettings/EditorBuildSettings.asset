@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/GameAndroid.unity
     guid: 597e8e03c93fe36448839bcea57223aa
   - enabled: 1
-    path: Assets/Scenes/RegistrationAuthorizationAndroid.unity
+    path: Assets/Scenes/Authorization.unity
     guid: 76d286897027ba84898a0e85afd0490c
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 05cf1f0d2cdc1614f852de9af448ec1e, type: 2}
