@@ -194,10 +194,10 @@ public class ButtonController : MonoBehaviour
     
 }
 
- 
+
 public static class Events
 {
-    public static UnityEvent<AudioClip> MusicClick = new  UnityEvent<AudioClip>();
+    public static UnityEvent<AudioClip> MusicClick = new UnityEvent<AudioClip>();
 
     public static List<Task> AllTasks = new List<Task>();
 
@@ -208,29 +208,38 @@ public static class Events
     [Obsolete]
     public static IEnumerator ChechInternetConnection(Action<bool> connect)
     {
+
         foreach (var url in new string[] { "https://inf-ege.sdamgia.ru/problem?id=45241", "https://www.google.ru/", "https://ya.ru/" })
         {
 
             UnityWebRequest request = UnityWebRequest.Get(url);
 
             yield return request.SendWebRequest();
-
-            if (request.isNetworkError == false)
+            try
             {
+                if (request.isNetworkError == false)
+                {
 
-                connect(true);
+                    connect(true);
 
-                yield break;
+                    yield break;
+
+                }
+                else connect(false);
 
             }
-            else connect(false);
+
+
+            catch (Exception)
+            {
+                connect(false);
+            }
+
 
         }
 
 
     }
-
- 
 }
 
  

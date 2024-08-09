@@ -2444,6 +2444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63023e4f541377d42874439a83819be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  localizationManager: {fileID: 1828614191}
 --- !u!1 &848097515
 GameObject:
   m_ObjectHideFlags: 0
@@ -3107,6 +3108,7 @@ MonoBehaviour:
   passField: {fileID: 2083088062}
   secondPassField: {fileID: 78855885}
   actionButton: {fileID: 1131729238754798119}
+  localizationManager: {fileID: 1828614191}
 --- !u!1 &1066968224
 GameObject:
   m_ObjectHideFlags: 0
@@ -5354,6 +5356,7 @@ MonoBehaviour:
   passField: {fileID: 1066968226}
   secondPassField: {fileID: 0}
   actionButton: {fileID: 1131729239285787829}
+  localizationManager: {fileID: 1828614191}
 --- !u!1 &1774117479
 GameObject:
   m_ObjectHideFlags: 0
@@ -5713,10 +5716,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 806688028}
     m_Modifications:
+    - target: {fileID: 43517104, guid: 8690112a8f5f10f4a94c8d02d90fde05, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 655591984, guid: 8690112a8f5f10f4a94c8d02d90fde05, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 924843345}
+    - target: {fileID: 945069409, guid: 8690112a8f5f10f4a94c8d02d90fde05, type: 3}
+      propertyPath: m_fontSize
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 945069409, guid: 8690112a8f5f10f4a94c8d02d90fde05, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 945069409, guid: 8690112a8f5f10f4a94c8d02d90fde05, type: 3}
       propertyPath: m_overflowMode
       value: 3

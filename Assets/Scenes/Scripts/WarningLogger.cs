@@ -20,7 +20,7 @@ public class WarningLogger : DashboardAnimator,IAuthorizationListener
     internal string mail;
     [SerializeField] private InputField ? mailField, passField, secondPassField;
     public Button actionButton;
-
+    [SerializeField] private LocalizationManager localizationManager;
     // свойства
     string IAuthorizationListener.mail => mail;
 
@@ -124,7 +124,7 @@ public class WarningLogger : DashboardAnimator,IAuthorizationListener
         {
             DisplayWarning("Вы не продублировали пароль!", warningTextDict["ass2"], Color.red);
         }
-          
+
     }
 
 /// <summary>
@@ -158,13 +158,13 @@ public class WarningLogger : DashboardAnimator,IAuthorizationListener
         {
             DisplayWarning("Вы не ввели почту!",mailText,Color.red);  
         }
-    
     }
 
     private void DisplayWarning(string message,TMP_Text field,Color color)
     { 
         field.color = color;
         field.text = message;
+        localizationManager?.OnLanguageChanged?.Invoke();
     }
 
 /// <summary>
@@ -183,27 +183,34 @@ public class WarningLogger : DashboardAnimator,IAuthorizationListener
 
     public void OnRegisterMail()
     {
+
         DisplayGrowingLoadingPanel("Письмо отправлено на почту. \r\nПодтвердите его, перейдя по ссылке в письме!");
+        localizationManager.OnLanguageChanged();
     }
 
     public void OnVerifiedMail()
     {
         CloseGrowingLoadingPanel();
+        localizationManager.OnLanguageChanged();
     }
 
     public void OnAuthorizationFailed(AggregateException error)
     {
         DisplayGrowingLoadingPanel(error.Message);
+        localizationManager.OnLanguageChanged();
+        
     }
 
     public void CloseLoadingPanel()
     {
         CloseGrowingLoadingPanel();
+        localizationManager.OnLanguageChanged();
     }
 
     public void OnLogInSucceeded()
     {
         DisplayGrowingLoadingPanel(string.Format($"Вы успешно зашли в аккаунт!"));
+        localizationManager.OnLanguageChanged();
     }
 
 

@@ -5,42 +5,37 @@ using UnityEngine.UI;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
- 
+
+using TMPro;
 using System.Text;
-using Unity.VisualScripting;
-using System.Linq;
 
 public class LocaledText : MonoBehaviour
 {
     [SerializeField] protected string key;
     protected LocalizationManager localization;
-    protected Text text;
+    protected TMP_Text text;
     [SerializeField] protected TranslateMode translateMode;
 
     private void Awake()
     {
-         
+        if (text == null)
+        {
+            text = GetComponent<TMP_Text>();
 
-        if (localization == null && translateMode == TranslateMode.LocalTranslate)
+        }
+
+        if (localization == null)
         {
 
             localization = GameObject.FindGameObjectWithTag("LocalizationManager").GetComponent<LocalizationManager>();
             localization.OnLanguageChanged += UpdateText;
-
+    
+            
         }
+        Debug.Log(name);
 
-       
-
-        if (text == null)
-        { 
-            text = GetComponent<Text>();
-        
-        }
-
-        
     }
 
-  
     public virtual async void UpdateText()
     {
         try
@@ -55,8 +50,15 @@ public class LocaledText : MonoBehaviour
 
             else if (translateMode.Equals(TranslateMode.APITranslate))
             {
-                 
-                TranslateFromAPIAsync(PlayerPrefs.GetString("Language"));
+                Events.ChechInternetConnection
+                   (connect =>
+                   {
+                       if (connect.Equals(true))
+                       {
+                           TranslateFromAPIAsync(PlayerPrefs.GetString("Language"));
+                       }
+                   }
+                   );
             }
         }
         catch (NullReferenceException ex)
@@ -85,6 +87,7 @@ public class LocaledText : MonoBehaviour
             folderId = "b1g5gt63mkqi8qskjsu0" // имя папки
 
         };
+     
 
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Api-Key", apiKey);
 

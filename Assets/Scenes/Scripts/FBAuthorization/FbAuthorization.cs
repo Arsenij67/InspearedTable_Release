@@ -10,8 +10,8 @@ using System;
 
 public class FbAuthorization : MonoBehaviour
 {
-    [SerializeField] private IAuthorizationListener warningLoggerRegistrationListener;
-    [SerializeField] private IAuthorizationListener warningLoggerLogInListener;
+    private IAuthorizationListener warningLoggerRegistrationListener;
+    private IAuthorizationListener warningLoggerLogInListener;
 
 
     private FirebaseAuth FirebaseAuth;
@@ -23,54 +23,8 @@ public class FbAuthorization : MonoBehaviour
         warningLoggerRegistrationListener = obj[0].GetComponent<WarningLogger>();
         warningLoggerLogInListener = obj[1].GetComponent<WarningLogger>();
 
-        print(obj[0].name);
-        print(obj[1].name);
-
     }
-    /// <summary>
-    /// Вход по логину и паролю
-    /// </summary>
-    /// <param name="email">почта как логин</param>
-    /// <param name="pass">пароль от аккаунта</param>
-    public IEnumerator ButtonLogIn(string email, string pass)
-    {
-        StartCoroutine(Events.ChechInternetConnection(connect =>
-        {
-            if (connect == false)
-            {
-                warningLoggerLogInListener.OnAuthorizationFailed(new AggregateException("Нет подключения к интернету!"));
-                return;
-            }
-        }));
-
-        // Проверка, все ли данные корректны
-        if (warningLoggerLogInListener.isAllDataRight)
-        {
-            var logIn = FirebaseAuth.SignInWithEmailAndPasswordAsync(email, pass);
-
-            yield return new WaitUntil(predicate: () => logIn.IsCompleted);
-
-            if (logIn.Exception != null)
-            {
-                warningLoggerLogInListener.OnAuthorizationFailed(new AggregateException(logIn.Exception.Flatten().Message));
-                Debug.Log(logIn.Exception.Flatten().Message);
-            }
-
-            else
-            {
-
-                warningLoggerLogInListener.OnLogInSucceeded();
-                AuthResult res = logIn.Result;
-
-            }
-        }
-
-        else
-        {
-            warningLoggerLogInListener.OnAuthorizationFailed(new AggregateException("Данные введены некорректно!"));
-        }
-
-    }
+ 
     public void Register()
     {
         StartCoroutine(Register(warningLoggerRegistrationListener.mail, warningLoggerRegistrationListener.pass));
@@ -91,6 +45,7 @@ public class FbAuthorization : MonoBehaviour
             if (connect == false)
             {
                 warningLoggerRegistrationListener.OnAuthorizationFailed(new AggregateException("Нет подключения к интернету!"));
+ 
                 return;
             }
         }));
@@ -108,26 +63,16 @@ public class FbAuthorization : MonoBehaviour
                 if (userCreationTask.Exception != null)
                 {
                     warningLoggerRegistrationListener.OnAuthorizationFailed(new System.AggregateException($"Ошибка регистрации: {userCreationTask.Exception.Flatten().Message}"));
+       
                     yield break; // Выход из корутины при ошибке
                 }
 
-                // Отправка письма для подтверждения электронной почты
-                var verificationTask = userCreationTask.Result.User.SendEmailVerificationAsync();
- 
-    
+            // Отправка письма для подтверждения электронной почты
 
-                // Ждем завершения задачи отправки письма
-                yield return new WaitUntil(() => verificationTask.IsCompleted);
-            //уведомление об отправке письма
-                warningLoggerRegistrationListener.OnRegisterMail();
-              
+            StartCoroutine(SendVerificationMail(userCreationTask));
 
             // Проверка на наличие ошибок при отправке письма
-            if (verificationTask.Exception != null)
-                {
-                    warningLoggerRegistrationListener.OnAuthorizationFailed(new System.AggregateException($"Ошибка отправки письма для подтверждения: {verificationTask.Exception.Flatten().Message}"));
-                    yield break; // Выход из корутины при ошибке
-                }
+            
 
                 // Проверка верификации электронной почты
                 bool isVerified = false;
@@ -140,8 +85,9 @@ public class FbAuthorization : MonoBehaviour
 
                     if (userRecordTask.Exception != null)
                     {
-                        warningLoggerRegistrationListener.OnAuthorizationFailed(new System.AggregateException($"Ошибка получения информации о пользователе: {userRecordTask.Exception.Flatten().Message}"));
-                        yield break; // Выход из корутины при ошибке
+                    warningLoggerRegistrationListener.OnAuthorizationFailed(new System.AggregateException($"Ошибка получения информации о пользователе: {userRecordTask.Exception.Flatten().Message}"));
+
+                    yield break; // Выход из корутины при ошибке
                     }
 
                     // Проверяем, подтверждена ли электронная почта
@@ -159,11 +105,87 @@ public class FbAuthorization : MonoBehaviour
             else
             {
                 warningLoggerRegistrationListener.OnAuthorizationFailed( new System.AggregateException("Данные для регистрации некорректны."));
-              
+
             }
+        
         }
 
-    
+    /// <summary>
+    /// Вход по логину и паролю
+    /// </summary>
+    /// <param name="email">почта как логин</param>
+    /// <param name="pass">пароль от аккаунта</param>
+    private IEnumerator ButtonLogIn(string email, string pass)
+    {
+        StartCoroutine(Events.ChechInternetConnection(connect =>
+        {
+            if (connect == false)
+            {
+                warningLoggerLogInListener.OnAuthorizationFailed(new AggregateException("Нет подключения к интернету!"));
+
+                return;
+            }
+        }));
+
+        // Проверка, все ли данные корректны
+        if (warningLoggerLogInListener.isAllDataRight)
+        {
+            var logIn = FirebaseAuth.SignInWithEmailAndPasswordAsync(email, pass);
+
+            yield return new WaitUntil(predicate: () => logIn.IsCompleted);
+
+            if (logIn.Exception != null)
+            {
+                warningLoggerLogInListener.OnAuthorizationFailed(new AggregateException(logIn.Exception.Flatten().Message));
+                Debug.Log(logIn.Exception.Flatten().Message);
+            }
+
+            else
+            {
+                AuthResult res = logIn.Result;
+                if (res.User.IsEmailVerified) // если почта не верифицирована - печатаем предупреждение
+                {
+                    warningLoggerLogInListener.OnLogInSucceeded();
+
+                }
+
+                else
+                {
+                    warningLoggerLogInListener.OnAuthorizationFailed(new AggregateException("Почта не подтверждена!"));
+                    StartCoroutine(SendVerificationMail(logIn));
+                
+                }
+
+            }
+
+        }
+
+        else
+        {
+            warningLoggerLogInListener.OnAuthorizationFailed(new AggregateException("Данные введены некорректно!"));
+            
+        }
+
+       
+
+    }
+
+    private IEnumerator SendVerificationMail(Task<AuthResult> userCreationTask)
+    {
+        var verificationTask = userCreationTask.Result.User.SendEmailVerificationAsync();
+
+        // Ждем завершения задачи отправки письма
+        yield return new WaitUntil(() => verificationTask.IsCompleted);
+        //уведомление об отправке письма
+        if (verificationTask.Exception != null)
+        {
+            warningLoggerRegistrationListener.OnAuthorizationFailed(new System.AggregateException($"Ошибка отправки письма для подтверждения: {verificationTask.Exception.Flatten().Message}"));
+
+            yield break; // Выход из корутины при ошибке
+        }
+        warningLoggerRegistrationListener.OnRegisterMail();
+        
+    }
 
 
 

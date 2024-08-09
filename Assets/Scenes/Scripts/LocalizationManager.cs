@@ -13,7 +13,6 @@ public class LocalizationManager : MonoBehaviour
 
     private static Dictionary<string, string> LocalizedText;
     public  Action OnLanguageChanged;
-
     [SerializeField] private TextAsset [] LangFiles = new TextAsset[3];
 
     private Dictionary<string, TextAsset> DictFiles;
@@ -37,7 +36,7 @@ public class LocalizationManager : MonoBehaviour
         DictFiles = LangFiles.ToDictionary(key => key.name, value => value);
 
 
-        OnLanguageChanged.Invoke();
+        OnLanguageChanged?.Invoke();
 
         CurrentLanguage = SetDefaultLanguage();
       

@@ -60,6 +60,7 @@
     <Compile Include="Assets\Scenes\Scripts\Title.cs" />
     <Compile Include="Assets\Scenes\Scripts\ButtonSwithLang.cs" />
     <Compile Include="Assets\Scenes\Scripts\LeaderBoard.cs" />
+    <Compile Include="Assets\Scenes\Scripts\DashBoardAnimations\DashboardAnimator.cs" />
     <Compile Include="Assets\Scenes\Scripts\ButtonController.cs" />
     <Compile Include="Assets\Scenes\Scripts\Save\SaveData.cs" />
     <Compile Include="Assets\Scenes\Scripts\WarningLogger.cs" />
@@ -72,14 +73,13 @@
     <Compile Include="Assets\Scenes\Scripts\Row.cs" />
     <Compile Include="Assets\Scenes\Scripts\Item.cs" />
     <Compile Include="Assets\Scenes\Scripts\LoadingBoard.cs" />
+    <Compile Include="Assets\Scenes\Scripts\Interfaces\IAuthorizationListener.cs" />
     <Compile Include="Assets\Scenes\Scripts\ItemDataBase.cs" />
     <Compile Include="Assets\Scenes\Scripts\InputContent.cs" />
     <Compile Include="Assets\Scenes\Scripts\Save\SavableGameObject.cs" />
     <Compile Include="Assets\Scenes\Scripts\TranslateMode.cs" />
     <Compile Include="Assets\Scenes\Scripts\Board.cs" />
     <Compile Include="Assets\Scenes\Scripts\FBDatabase\Fb.cs" />
-    <Compile Include="Assets\Scenes\Scripts\DashBoardAnimations\DashboardAnimator.cs" />
-    <Compile Include="Assets\Scenes\Scripts\Interfaces\IAuthorizationListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
