@@ -164,7 +164,6 @@ public class WarningLogger : DashboardAnimator,IAuthorizationListener
     { 
         field.color = color;
         field.text = message;
-        localizationManager?.OnLanguageChanged?.Invoke();
     }
 
 /// <summary>
@@ -185,32 +184,32 @@ public class WarningLogger : DashboardAnimator,IAuthorizationListener
     {
 
         DisplayGrowingLoadingPanel("Письмо отправлено на почту. \r\nПодтвердите его, перейдя по ссылке в письме!");
-        localizationManager.OnLanguageChanged();
+        localizationManager?.OnResponseChanged?.Invoke();
     }
 
     public void OnVerifiedMail()
     {
         CloseGrowingLoadingPanel();
-        localizationManager.OnLanguageChanged();
+        localizationManager?.OnResponseChanged?.Invoke();
     }
 
     public void OnAuthorizationFailed(AggregateException error)
     {
         DisplayGrowingLoadingPanel(error.Message);
-        localizationManager.OnLanguageChanged();
-        
+        localizationManager?.OnResponseChanged?.Invoke();
+
     }
 
     public void CloseLoadingPanel()
     {
         CloseGrowingLoadingPanel();
-        localizationManager.OnLanguageChanged();
+        localizationManager?.OnResponseChanged?.Invoke();
     }
 
     public void OnLogInSucceeded()
     {
         DisplayGrowingLoadingPanel(string.Format($"Вы успешно зашли в аккаунт!"));
-        localizationManager.OnLanguageChanged();
+        localizationManager?.OnResponseChanged?.Invoke();
     }
 
 

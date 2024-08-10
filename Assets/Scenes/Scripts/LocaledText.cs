@@ -29,18 +29,17 @@ public class LocaledText : MonoBehaviour
 
             localization = GameObject.FindGameObjectWithTag("LocalizationManager").GetComponent<LocalizationManager>();
             localization.OnLanguageChanged += UpdateText;
-    
-            
+            localization.OnResponseChanged += UpdateText;
+            Debug.Log(name);
+
         }
-        Debug.Log(name);
+        
 
     }
 
     public virtual async void UpdateText()
     {
-        try
-        {
-            if (gameObject == null) return;
+
             if (translateMode.Equals(TranslateMode.LocalTranslate))
             {
 
@@ -50,7 +49,7 @@ public class LocaledText : MonoBehaviour
 
             else if (translateMode.Equals(TranslateMode.APITranslate))
             {
-                Events.ChechInternetConnection
+               StartCoroutine( Events.ChechInternetConnection
                    (connect =>
                    {
                        if (connect.Equals(true))
@@ -58,14 +57,9 @@ public class LocaledText : MonoBehaviour
                            TranslateFromAPIAsync(PlayerPrefs.GetString("Language"));
                        }
                    }
-                   );
+                   ));
             }
-        }
-        catch (NullReferenceException ex)
-        {
-            print(transform.name);
-        
-        }
+       
 
     }
 

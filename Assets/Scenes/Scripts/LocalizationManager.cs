@@ -13,6 +13,7 @@ public class LocalizationManager : MonoBehaviour
 
     private static Dictionary<string, string> LocalizedText;
     public  Action OnLanguageChanged;
+    public Action OnResponseChanged;
     [SerializeField] private TextAsset [] LangFiles = new TextAsset[3];
 
     private Dictionary<string, TextAsset> DictFiles;
