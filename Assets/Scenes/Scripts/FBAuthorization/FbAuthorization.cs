@@ -15,11 +15,11 @@ public class FbAuthorization : MonoBehaviour
 
 
     private FirebaseAuth FirebaseAuth;
-   
+
     private void Awake()
     {
         FirebaseAuth = FirebaseAuth.DefaultInstance;
-       var obj =  GameObject.FindGameObjectsWithTag("AuthListener");
+        var obj =  GameObject.FindGameObjectsWithTag("AuthListener");
         warningLoggerRegistrationListener = obj[0].GetComponent<WarningLogger>();
         warningLoggerLogInListener = obj[1].GetComponent<WarningLogger>();
 

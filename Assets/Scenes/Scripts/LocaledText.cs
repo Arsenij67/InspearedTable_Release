@@ -16,8 +16,12 @@ public class LocaledText : MonoBehaviour
     protected TMP_Text text;
     [SerializeField] protected TranslateMode translateMode;
 
+  
+
     private void Awake()
     {
+        
+
         if (text == null)
         {
             text = GetComponent<TMP_Text>();
