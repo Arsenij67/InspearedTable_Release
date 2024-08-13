@@ -12,9 +12,7 @@ public class DeviceSaveManager<T>:MonoBehaviour
 {
     protected static DeviceSaveManager<T>  InstanceSaveManager { get; private set; }
     private XElement root = new XElement("root");
-    string path = Path.Combine(Application.dataPath, "Resources\\Languages", "SystemData.xml"); // путь к системным данным
-    private DeviceSaveManager()
-    { }
+    private string path;
     internal static DeviceSaveManager<T> GetInstance()
     {
         if (InstanceSaveManager == null) InstanceSaveManager = new DeviceSaveManager<T>();
@@ -65,6 +63,7 @@ public class DeviceSaveManager<T>:MonoBehaviour
     }
     public string GetElement(string key)
     {
+       path =  Path.Combine(Application.dataPath, "Resources\\Languages", "SystemData.xml"); // путь к системным данным
         if (!File.Exists(path))
         {
             Debug.LogError("Файла по пути не существует");
@@ -75,8 +74,10 @@ public class DeviceSaveManager<T>:MonoBehaviour
             root = XDocument.Parse(sr.ReadToEnd().ToString()).Element("root");
             sr.Close();
         }
-       return root.Attribute(key).Value;
-        
-    
+        if (root.Attribute(key) != null)
+        {
+            return root.Attribute(key).Value;
+        }
+        else return "";
     }
 }

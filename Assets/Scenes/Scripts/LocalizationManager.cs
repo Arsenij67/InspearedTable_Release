@@ -1,33 +1,27 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 using Newtonsoft.Json;
-using System.Runtime.CompilerServices;
-using UnityEngine.Networking;
-using DG.Tweening.Plugins.Core.PathCore;
 using System.Linq;
 
 public class LocalizationManager : MonoBehaviour
 {
-
-    private static Dictionary<string, string> LocalizedText;
-    public  Action OnLanguageChanged;
+    private static Dictionary<string, string> LocalizedText = new Dictionary<string, string>();
+    public Action OnLanguageChanged;
     public Action OnResponseChanged;
     [SerializeField] private TextAsset [] LangFiles = new TextAsset[3];
-
     private Dictionary<string, TextAsset> DictFiles;
-
+    private DeviceSaveManager<string> deviceSaveManager = DeviceSaveManager<string>.GetInstance();
+    private const string starttLanguage = "en";
  
     public string CurrentLanguage
 
-
     {
-        get { return PlayerPrefs.GetString("Language"); }
+        get { return deviceSaveManager.GetElement("Language"); }
 
         set
         { 
-            PlayerPrefs.SetString("Language", value);
+            deviceSaveManager.SaveElement("Language", value);
            
         }
     }
@@ -36,13 +30,12 @@ public class LocalizationManager : MonoBehaviour
     {
         DictFiles = LangFiles.ToDictionary(key => key.name, value => value);
 
-
-        OnLanguageChanged?.Invoke();
-
         CurrentLanguage = SetDefaultLanguage();
       
         LoadLocalizedText(CurrentLanguage);
-     
+
+        OnLanguageChanged?.Invoke();
+
 
 
     }
@@ -51,63 +44,32 @@ public class LocalizationManager : MonoBehaviour
 
     private string SetDefaultLanguage()
     {
-        
-
-
-        if (PlayerPrefs.HasKey("Language")) return CurrentLanguage;
-
-
-        return "en";
-
+        string currentLanguage = deviceSaveManager.GetElement("Language");
+        if (!string.IsNullOrEmpty(currentLanguage)) return CurrentLanguage;
+        return starttLanguage;
 
     }
  
 
     public void LoadLocalizedText(string langName)
-
     {
 
         string deltajson;
-
-     
-
-//#if UNITY_ANDROID && !UNITY_EDITOR
-
-//   filePath = System.IO.Path.Combine(Application.persistentDataPath,langName);
-//        if (!File.Exists(filePath))
-        
-//        {
-//            string fromPath = System.IO.Path.Combine(Application.streamingAssetsPath, langName);
-
-//            WWW reader = new WWW(fromPath);
-//            while (!reader.isDone) { }
-
-//            File.WriteAllBytes(filePath, reader.bytes);
-
-//        }
-
-//#endif
-
         print(langName);
-      
-
-       
-
-
+        LocalizedText.Clear();
         if (DictFiles[langName]!=null)
         {
             deltajson = DictFiles[langName].text;
  
             print("File exist");
-            LocalizedText = new Dictionary<string, string>();
-  
+         
             var loadedData = JsonConvert.DeserializeObject<LocalizationData[]>(deltajson);
           
             for (int i = 0; i < loadedData.Length; i++)
             {
 
                 LocalizedText.Add(loadedData[i].key, loadedData[i].value);
-          
+                print("key: " + loadedData[i].key);
             }
             CurrentLanguage = langName;
             print("File read!");
@@ -122,9 +84,7 @@ public class LocalizationManager : MonoBehaviour
     {
         if (LocalizedText.ContainsKey(key))
         {
-
             return LocalizedText[key];
-
         }
 
         else

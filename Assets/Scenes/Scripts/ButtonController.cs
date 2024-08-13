@@ -92,7 +92,6 @@ public class ButtonController : MonoBehaviour
 
         while (AsyncOperation.isDone == false)
         {
-
             await Task.Yield();
         }
         

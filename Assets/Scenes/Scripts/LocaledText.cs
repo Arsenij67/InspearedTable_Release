@@ -15,8 +15,10 @@ public class LocaledText : MonoBehaviour
     protected LocalizationManager localization;
     protected TMP_Text text;
     [SerializeField] protected TranslateMode translateMode;
+    DeviceSaveManager<string> deviceSaveManager = DeviceSaveManager<string>.GetInstance();
 
-  
+
+
 
     private void Awake()
     {
@@ -43,7 +45,6 @@ public class LocaledText : MonoBehaviour
 
     public virtual async void UpdateText()
     {
-
             if (translateMode.Equals(TranslateMode.LocalTranslate))
             {
 
@@ -58,7 +59,7 @@ public class LocaledText : MonoBehaviour
                    {
                        if (connect.Equals(true))
                        {
-                           TranslateFromAPIAsync(PlayerPrefs.GetString("Language"));
+                           TranslateFromAPIAsync(deviceSaveManager.GetElement("Language"));
                        }
                    }
                    ));

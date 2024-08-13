@@ -47,6 +47,7 @@ public sealed class Board : MonoBehaviour
     [Header("Префаб очков")]
     [SerializeField] private GameObject TextScore;
     [SerializeField] private ParticleSystem ParcileExpload;
+
     public async void Awake()
     {
         Instance = this;
