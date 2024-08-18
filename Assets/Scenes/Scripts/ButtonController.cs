@@ -54,6 +54,7 @@ public class ButtonController : MonoBehaviour
         }
         Notification = TextWarning?.transform.parent;
         TryToPlay();
+        SetDefaultName();
     }
 
    
@@ -134,7 +135,7 @@ public class ButtonController : MonoBehaviour
             {
                 
             
-                fb.RemoveData((string)SaveTypesFactory.deviceSaveManagerInteger.GetElement("Name"));//удаляем старые данные из базы
+                fb.RemoveData(SaveTypesFactory.deviceSaveManagerInteger.GetElement("Name") as string);//удаляем старые данные из базы
                  
                 int maxScore = int.Parse(await fb.GetRecord());
                 SaveTypesFactory.deviceSaveManagerString.SaveElement("Name", name); // сохраним новые 
@@ -183,6 +184,17 @@ public class ButtonController : MonoBehaviour
 
         SequencePopup.Play();
 
+    }
+
+    private void SetDefaultName()
+    {
+        string name = SaveTypesFactory.deviceSaveManagerString.GetElement("Name") as string;
+
+        if (!string.IsNullOrEmpty(name))
+        {
+            InputTextName.text = name;
+
+        }
     }
     
 }

@@ -24,13 +24,11 @@ public class DeviceSaveManager<T>:MonoBehaviour
     }
     private XElement ConvertStringToXML(string key, T value)
     {
-        if (!File.Exists(path))
+        print(!File.Exists(path));
+        if (!File.Exists(path)/*|| File.ReadAllText(path).Length<1*/)
         {
-            FileStream fs = File.Create(path);
-            using (fs)
-                root = new XElement("root");
-            fs.Close();
-          
+            CreateFile(path);
+            root = new XElement("root");
         }
         else
         {
@@ -49,16 +47,10 @@ public class DeviceSaveManager<T>:MonoBehaviour
     }
     public void SaveElement(string key,T value)
     {
-        print("Element save " + key);
+       print("Element save " + key);
        string path = Path.Combine(Application.dataPath, "Resources\\Languages", "SystemData.xml");
        XElement xElement =  ConvertStringToXML(key,value);
        XDocument xDocument = new XDocument(xElement);
-        if (!File.Exists(path))
-        {
-            FileStream fs = File.Create(path);
-            using (fs)
-                fs.Close();
-        }
         StreamWriter sw = new StreamWriter(path);
         using (sw.WriteAsync(xDocument.ToString()))
         {
@@ -71,8 +63,9 @@ public class DeviceSaveManager<T>:MonoBehaviour
         path =  Path.Combine(Application.dataPath, "Resources\\Languages", "SystemData.xml"); // путь к системным данным
         if (!File.Exists(path))
         {
-            Debug.LogError("Файла по пути не существует");
-            return null;
+            Debug.Log("Файла по пути не существует, поэтому создан");
+            SaveElement(key, default(T));
+            return null is T;
         }
         using (StreamReader sr = new StreamReader(path))
         {
@@ -89,5 +82,12 @@ public class DeviceSaveManager<T>:MonoBehaviour
             return root.Attribute(key) is T;
 
         }
+    }
+
+    private void CreateFile(string path)
+    {
+        FileStream fs = File.Create(path);
+        using (fs)
+            fs.Close();
     }
 }

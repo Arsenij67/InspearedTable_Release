@@ -70,11 +70,11 @@ public async Task<DataSnapshot> ReadData()
 /// <summary>
 /// удаление старой информации из таблицы при изменении имени
 /// </summary>
-public void RemoveData(string Name)
+public async void RemoveData(string Name)
     {
         if (Name != "")
         {
-            DBRef.Child("Users").Child(Name).RemoveValueAsync();
+           await DBRef.Child("Users").Child(Name).RemoveValueAsync();
         }
     }
 
