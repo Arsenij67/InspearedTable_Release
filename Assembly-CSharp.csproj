@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scenes\Scripts\FBAuthorization\FbAuthorization.cs" />
+    <Compile Include="Assets\Scenes\Scripts\StandartSaveTypes\SaveTypesFactory.cs" />
     <Compile Include="Assets\Scenes\Scripts\Title.cs" />
     <Compile Include="Assets\Scenes\Scripts\ButtonSwithLang.cs" />
     <Compile Include="Assets\Scenes\Scripts\LeaderBoard.cs" />

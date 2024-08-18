@@ -10,6 +10,10 @@ using Palmmedia.ReportGenerator.Core.Parser.Analysis;
 /// <typeparam name="T"></typeparam>
 public class DeviceSaveManager<T>:MonoBehaviour
 {
+    private DeviceSaveManager()
+    { 
+    
+    }
     protected static DeviceSaveManager<T>  InstanceSaveManager { get; private set; }
     private XElement root = new XElement("root");
     private string path;
@@ -45,6 +49,7 @@ public class DeviceSaveManager<T>:MonoBehaviour
     }
     public void SaveElement(string key,T value)
     {
+        print("Element save " + key);
        string path = Path.Combine(Application.dataPath, "Resources\\Languages", "SystemData.xml");
        XElement xElement =  ConvertStringToXML(key,value);
        XDocument xDocument = new XDocument(xElement);
@@ -61,9 +66,9 @@ public class DeviceSaveManager<T>:MonoBehaviour
         }
         Debug.Log(path);
     }
-    public string GetElement(string key)
+    public object GetElement(string key)
     {
-       path =  Path.Combine(Application.dataPath, "Resources\\Languages", "SystemData.xml"); // путь к системным данным
+        path =  Path.Combine(Application.dataPath, "Resources\\Languages", "SystemData.xml"); // путь к системным данным
         if (!File.Exists(path))
         {
             Debug.LogError("Файла по пути не существует");
@@ -78,6 +83,11 @@ public class DeviceSaveManager<T>:MonoBehaviour
         {
             return root.Attribute(key).Value;
         }
-        else return "";
+        else
+        {
+            SaveElement(key, default(T));
+            return root.Attribute(key) is T;
+
+        }
     }
 }

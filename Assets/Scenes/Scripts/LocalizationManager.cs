@@ -11,17 +11,16 @@ public class LocalizationManager : MonoBehaviour
     public Action OnResponseChanged;
     [SerializeField] private TextAsset [] LangFiles = new TextAsset[3];
     private Dictionary<string, TextAsset> DictFiles;
-    private DeviceSaveManager<string> deviceSaveManager = DeviceSaveManager<string>.GetInstance();
     private const string starttLanguage = "en";
  
     public string CurrentLanguage
 
     {
-        get { return deviceSaveManager.GetElement("Language"); }
+        get { return (string)SaveTypesFactory.deviceSaveManagerString.GetElement("Language"); }
 
         set
         { 
-            deviceSaveManager.SaveElement("Language", value);
+            SaveTypesFactory.deviceSaveManagerString.SaveElement("Language", value);
            
         }
     }
@@ -44,7 +43,7 @@ public class LocalizationManager : MonoBehaviour
 
     private string SetDefaultLanguage()
     {
-        string currentLanguage = deviceSaveManager.GetElement("Language");
+        string currentLanguage = (string)SaveTypesFactory.deviceSaveManagerString.GetElement("Language");
         if (!string.IsNullOrEmpty(currentLanguage)) return CurrentLanguage;
         return starttLanguage;
 

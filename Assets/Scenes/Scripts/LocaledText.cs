@@ -15,7 +15,7 @@ public class LocaledText : MonoBehaviour
     protected LocalizationManager localization;
     protected TMP_Text text;
     [SerializeField] protected TranslateMode translateMode;
-    DeviceSaveManager<string> deviceSaveManager = DeviceSaveManager<string>.GetInstance();
+     
 
 
 
@@ -59,7 +59,7 @@ public class LocaledText : MonoBehaviour
                    {
                        if (connect.Equals(true))
                        {
-                           TranslateFromAPIAsync(deviceSaveManager.GetElement("Language"));
+                           TranslateFromAPIAsync((string)SaveTypesFactory.deviceSaveManagerString.GetElement("Language"));
                        }
                    }
                    ));

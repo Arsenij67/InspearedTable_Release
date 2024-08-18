@@ -12,15 +12,10 @@ public class Fb : MonoBehaviour
 {
     private DatabaseReference DBRef;
 
-    public static string MyName = "";
-
     public DataSnapshot dataSnapshot;
 
     const int MaxCount = 10000;
 
-
-
-   
 
     private void Awake()
     {
@@ -41,8 +36,6 @@ public async void InitInfo()
         DBRef = FirebaseDatabase.GetInstance("https://insptable-default-rtdb.firebaseio.com/").RootReference;
         
        dataSnapshot =  await ReadData();
-
-        MyName = dataSnapshot.Child(PlayerPrefs.GetString("Name")).Child("Name").Value.ToString();
 
     }
 
@@ -101,7 +94,7 @@ public  IEnumerator  WriteData(string name,int rec)
 
         var Data = DBRef.Child("Users").Child(name).SetRawJsonValueAsync(jsonUtility);
 
-        return new WaitUntil(predicate: () => Data.IsCanceled);
+        yield return new WaitUntil(predicate: () => Data.IsCompleted);
 
 
     }
@@ -112,7 +105,7 @@ public  IEnumerator  WriteData(string name,int rec)
 /// </summary>
 /// <param name="name"> имя </param>
 /// <returns > сущесвует ли имя или нет</returns>
-public bool CheckData(string name)
+public bool CheckNameUser(string name)
     {
         bool IsNameExist = false;
 
@@ -125,8 +118,6 @@ public bool CheckData(string name)
                
                 IsNameExist = true;
 
-                dataSnapshot = null;
-
                 return IsNameExist;
 
 
@@ -135,8 +126,19 @@ public bool CheckData(string name)
             
         }
 
-            return IsNameExist;
+    return IsNameExist;
 
+    }
+    public async Task<string> GetRecord()
+    {
+        var resultSnapshot = await ReadData();
+        if (!resultSnapshot.Child("Users").Child((string)SaveTypesFactory.deviceSaveManagerString.GetElement("Name")).Exists) //если имя в базе не существует
+        {
+            return "0";
+        }
+        //если существует имя
+        return resultSnapshot.Child((string)SaveTypesFactory.deviceSaveManagerString.GetElement("Name")).Child("Record").Value.ToString();
+       
     }
 
 

@@ -11,6 +11,7 @@ using UnityEngine.Events;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class ButtonController : MonoBehaviour
 {
@@ -26,46 +27,41 @@ public class ButtonController : MonoBehaviour
 
     public List<Toggle> toggles = new List<Toggle>(3); 
 
-    private static InputField InputTextName;
+    [SerializeField] private TMP_InputField InputTextName;
 
     [SerializeField] private Fb fb;
 
-    [SerializeField] private Text TextWarning;
+    [SerializeField] private TMP_Text TextWarning;
 
     private Transform Notification;
 
+
     private void Awake()
     {
-        Events.MusicClick.AddListener(PlayMusicGame);
+     
+    Events.MusicClick.AddListener(PlayMusicGame);
 
         transform.GetChild(0).GetComponent<AudioSource>().volume = Events.MusicForce;
 
         AudioSource = GetComponent<AudioSource>();
  
-       
 
         if (InputTextName == null)
         {
-        
-            InputTextName = GameObject.FindGameObjectWithTag("Input")?.GetComponent<InputField>();
 
             if(InputTextName!=null)
-            InputTextName.text = PlayerPrefs.GetString("Name");//вывод имени после инициализации
+            InputTextName.text = (string)SaveTypesFactory.deviceSaveManagerString.GetElement("Name");//вывод имени после инициализации
         }
-
         Notification = TextWarning?.transform.parent;
-
         TryToPlay();
-
-
     }
 
    
     public void TryToPlay() // проверяем доступность к игре
     {
         if (ButtonPlay == null) return;
-        print(Fb.MyName);
-            if (Events.IndexesActived.Count() < 1 || Fb.MyName.Length <= 4)
+        
+            if (Events.IndexesActived.Count() < 1 || SaveTypesFactory.deviceSaveManagerString.GetElement("Name").ToString().Length <= 4)
             {
             
                 ButtonPlay.interactable = false;
@@ -115,61 +111,59 @@ public class ButtonController : MonoBehaviour
         
     }
 
-    [Obsolete]
-    public void InputName()
+
+    public async void InputName()
     {
-       
-        Fb.MyName = InputTextName.text;
 
        StartCoroutine( Events.ChechInternetConnection((connection) =>
         {
-            if (connection.Equals(true))
+            if (connection.Equals(false))
             {
+                PopupWarning("No internet connection!", Color.red);
+            } 
+            return;
 
-                if (Fb.MyName.Length > 4)// добавлена проверка количества символов
-                {
+        })); // если есть интернет, то программа выполняется
 
-                    if (fb.CheckData(Fb.MyName) == false)
-                    {
-                        StartCoroutine(fb.WriteData(Fb.MyName, PlayerPrefs.GetInt("Max")));
+        string name = InputTextName.text;
+         
+        if (name.Length > 4)// добавлена проверка количества символов
+        {
 
-                        TryToPlay();//Меняем состояние кнопки играть
+            if (fb.CheckNameUser(name) == false)
+            {
+                
+            
+                fb.RemoveData((string)SaveTypesFactory.deviceSaveManagerInteger.GetElement("Name"));//удаляем старые данные из базы
+                 
+                int maxScore = int.Parse(await fb.GetRecord());
+                SaveTypesFactory.deviceSaveManagerString.SaveElement("Name", name); // сохраним новые 
 
-                        fb.RemoveData(PlayerPrefs.GetString("Name"));//удаляем старые данные из базы
+                StartCoroutine(fb.WriteData(SaveTypesFactory.deviceSaveManagerString.GetElement("Name").ToString(),maxScore));
 
-                        PlayerPrefs.SetString("Name", Fb.MyName); // сохраним новые 
+                TryToPlay();//Меняем состояние кнопки играть
 
-
-                        PopupWarning("Name updated!", Color.green);
-
-                    }
-                    else
-                    {
-
-                        PopupWarning("This name is taken!", Color.red);
-                    }
-
-
-
-                }
-
-                else {
-                    TryToPlay();
-
-                    PopupWarning("Fill in the name cell!", Color.red);
-                }
-
-
+                PopupWarning("Name updated!", Color.green);
 
             }
+            else
+            {
 
-            else PopupWarning("No internet connection!", Color.red);
+                PopupWarning("This name is taken!", Color.red);
+            }
 
 
 
-        }));
+        }
 
-       
+        else
+        {
+            TryToPlay();
+
+            PopupWarning("Fill in the name cell!", Color.red);
+        }
+
+
 
     }
     public void PopupWarning(string text,Color color,float animNotification = 1.5f)
@@ -214,26 +208,15 @@ public static class Events
             UnityWebRequest request = UnityWebRequest.Get(url);
 
             yield return request.SendWebRequest();
-            try
+            if (request.isNetworkError == false)
             {
-                if (request.isNetworkError == false)
-                {
 
-                    connect(true);
+                connect(true);
 
-                    yield break;
-
-                }
-                else connect(false);
+                yield break;
 
             }
-
-
-            catch (Exception)
-            {
-                connect(false);
-            }
-
+            else connect(false);
 
         }
 
