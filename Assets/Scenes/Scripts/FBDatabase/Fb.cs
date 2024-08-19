@@ -31,7 +31,7 @@ public class Fb : MonoBehaviour
 /// <summary>
 /// Инициирует данные из Firebase
 /// </summary>
-public async void InitInfo()
+public async Task InitInfo()
     {
         DBRef = FirebaseDatabase.GetInstance("https://insptable-default-rtdb.firebaseio.com/").RootReference;
         

@@ -32,7 +32,7 @@ public class DashboardAnimator : MonoBehaviour
             {
                 Tween SequencePopup = DOTween.Sequence()
                 .AppendInterval(timeDelay)
-                     .Append(element.DOMoveX(targetPosition.position.x * (int)dir, speed)).Play();
+                .Append(element.DOMoveX(targetPosition.position.x * (int) dir, speed)).Play();
                 timeDelay += timeOffset;
             }
 
@@ -55,7 +55,10 @@ public class DashboardAnimator : MonoBehaviour
             return;
         }
     }
-
+/// <summary>
+/// Появлется окно загрузки
+/// </summary>
+/// <param name="information">предупреждение выводимое перед загрузкой</param>
     protected async void DisplayGrowingLoadingPanel(string information)
     {
         dashboardLoading.gameObject.SetActive(true);

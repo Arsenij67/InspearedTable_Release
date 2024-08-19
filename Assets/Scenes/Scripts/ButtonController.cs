@@ -27,7 +27,7 @@ public class ButtonController : MonoBehaviour
 
     public List<Toggle> toggles = new List<Toggle>(3); 
 
-    [SerializeField] private TMP_InputField InputTextName;
+    public TMP_InputField InputTextName;
 
     [SerializeField] private Fb fb;
 

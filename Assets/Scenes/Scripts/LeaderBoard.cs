@@ -10,30 +10,17 @@ using System;
 using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
 
-public class LeaderBoard : MonoBehaviour
+public class LeaderBoard : DashboardAnimator
 {
     [HideInInspector] public Text TextNames;
-
     [HideInInspector] public Text TextRecords;
-
     [SerializeField] private Fb fb;
-
     [SerializeField] private ButtonController buttonController;
-
-     
-
     [SerializeField] private GameObject PhoneLoading;
-
-    [SerializeField] private LoadingBoard loadingBoard;
-
     [Space(10f)]
     [SerializeField] private GameObject InfoPrefab,content,NumberText;
-
     private Dictionary<string,AudioClip> LeaderBoardClips;// все клипы в словаре
     [SerializeField] private GameObject [] CrownButtons = new GameObject[3];   
-
-
-
     private void Awake()
     {
         LeaderBoardClips = Resources.LoadAll<AudioClip>("Music/").ToDictionary(key => key.name,value => value);
@@ -57,28 +44,22 @@ public class LeaderBoard : MonoBehaviour
         StartCoroutine(Events.ChechInternetConnection(result =>
         {
 
-
             if (result.Equals(false))
             {
                 buttonController.PopupWarning("No internet connection!", Color.red);
-
-         
-
             }
             else// если есть интернет
             {
 
-
                 int dir = 0;
-
 
                 switch (Switcher)
                 {
 
-
                     case GO_Out.Go:
                         Events.AllTasks.Add(PrintBoard());
                         Events.AllTasks.Add(AppearTitles(duration: 0.2f));
+                        buttonController.InputTextName.interactable = false;
                        
                         dir = 0;
                         Switcher = GO_Out.Out;
@@ -88,6 +69,7 @@ public class LeaderBoard : MonoBehaviour
                         Events.AllTasks.Add(DeleteText());
                         dir = 1500;
                         Switcher = GO_Out.Go;
+                        buttonController.InputTextName.interactable = true;
                         break;
 
                     default:
@@ -95,28 +77,25 @@ public class LeaderBoard : MonoBehaviour
 
 
                 }
+               
                 Events.AllTasks.Add(DoMoveBoard(dir,AnimTime:0.2f));
-
-
 
 
             }
 
         }));
 
-
-
+   
 
     }
 
-    private  async Task PrintBoard( )
+    private async Task PrintBoard( )
     {
 
+        await fb.InitInfo();
+        print("Скачано");
 
-        fb.InitInfo();
         DataSnapshot LeaderBoardSnapshot = fb.dataSnapshot;
-
-       
         int i = 1;
 
         int CrownIndex = 0;
