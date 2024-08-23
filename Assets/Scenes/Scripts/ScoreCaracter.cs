@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
-
+[RequireComponent(typeof(LocaledText))]
 public sealed class ScoreCaracter : MonoBehaviour
 {
     public static ScoreCaracter Instance { get; private set; }
@@ -31,12 +31,10 @@ public sealed class ScoreCaracter : MonoBehaviour
 
             _score = value;
 
-             
-
-            TextScoreUI.text = ("Score");
+            TextScoreUI.text = "Score";
             ScoreLocaled = GetComponent<LocaledText>();
             ScoreLocaled.UpdateText();
-            TextScoreUI.text += " "+_score;
+            TextScoreUI.text += ": "+_score;
 
 
 
@@ -65,13 +63,10 @@ public sealed class ScoreCaracter : MonoBehaviour
         set
         {
           
-            PlayerPrefs.SetInt("Max", Mathf.Max(value, PlayerPrefs.GetInt("Max")));
-            _maxscore =  PlayerPrefs.GetInt("Max");
             MaxScoreUI.text = "Max Score";
-
             ScoreLocaled = GetComponent<LocaledText>();
             ScoreLocaled.UpdateText();
-            MaxScoreUI.text += " "+_maxscore;
+            MaxScoreUI.text += ": "+_maxscore;
           
 
            
