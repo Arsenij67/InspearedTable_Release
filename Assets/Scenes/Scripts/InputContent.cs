@@ -1,15 +1,12 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public abstract  class Content: InputContent
 {
  
 
-    public  Text Info { get; set; }
+    public  TMP_Text Info { get; set; }
 
     public string[] contents;
   
@@ -33,7 +30,7 @@ public class Motivation : Content//2
 
         File = (TextAsset)Resources.Load(path: "Content/Motivation"); //загрузка текста из папок 
 
-        Info = GameObject.Find("Content").GetComponent<Text>(); // нахождение компонета Text на сцене
+        Info = GameObject.Find("Content").GetComponent<TMP_Text>(); // нахождение компонета Text на сцене
 
         string file = File.text.ToString(); // преобразование текста в троку
 
@@ -77,10 +74,9 @@ public class Joke : Content//1
     {
         File = (TextAsset)Resources.Load(path: "Content/Jokes");
 
-        Info = GameObject.Find("Content").GetComponent<Text>();
+        Info = GameObject.Find("Content").GetComponent<TMP_Text>();
 
         string file = File.text.ToString();
-
 
 
         contents = file.Split("*"); // массив анекдотов
@@ -119,7 +115,7 @@ public class Story : Content //0
     {
         File = (TextAsset)Resources.Load(path: "Content/Story");
 
-        Info = GameObject.Find("Content").GetComponent<Text>();
+        Info = GameObject.Find("Content").GetComponent<TMP_Text>();
 
         string file = File.text.ToString();
 

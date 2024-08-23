@@ -192,7 +192,10 @@ public class ButtonController : MonoBehaviour
 
         if (!string.IsNullOrEmpty(name))
         {
-            InputTextName.text = name;
+            if (InputTextName)
+            {
+                InputTextName.text = name;
+            }
 
         }
     }

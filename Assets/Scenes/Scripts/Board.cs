@@ -1,12 +1,11 @@
 using DG.Tweening;
 using DG.Tweening.Core.Easing;
 using System;
-using System.Collections;
+using TMPro;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 
@@ -16,7 +15,7 @@ public sealed class Board : MonoBehaviour
     
     public Row[] rows;
 
-    public Text ContentType;
+    public TMP_Text ContentType;
     public Title[,] tiles { get; private set; }
 
     public int With => tiles.GetLength(0);
@@ -189,8 +188,14 @@ public sealed class Board : MonoBehaviour
 
                 var textscore = Instantiate(TextScore, ExploadParicle.transform.position, Quaternion.identity);
 
+                //// создание заднего окошка на элементе
+                //tile.gameObject.AddComponent<Image>
+                //var frame = Instantiate(tile.item.frameSprite, tile.transform);
+
 
                 ExploadParicle.transform.SetParent(tile.transform); 
+
+                //frame.transform.SetParent(tile.transform);
 
 
                 textscore.transform.SetParent(ExploadParicle.transform); 
@@ -399,5 +404,7 @@ public sealed class Board : MonoBehaviour
         }
 
     }
+
+   
 }
 

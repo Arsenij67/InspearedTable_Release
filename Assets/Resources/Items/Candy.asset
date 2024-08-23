@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 569576524a5a05040a79ae2399310ec0, type: 3}
   Value: 40
+  framePrefab: {fileID: 5802418609794986665, guid: 02c5a5d3ed64b1b4ba8c6e2079febc14, type: 3}

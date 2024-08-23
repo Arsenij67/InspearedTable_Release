@@ -9,9 +9,9 @@ public sealed class ScoreCaracter : MonoBehaviour
     public static ScoreCaracter Instance { get; private set; }
 
  
-    [SerializeField] private Text  TextScoreUI;
+    [SerializeField] private TMP_Text  TextScoreUI;
 
-    [SerializeField] private Text MaxScoreUI;
+    [SerializeField] private TMP_Text MaxScoreUI;
 
     private LocaledText ScoreLocaled;
 
@@ -71,7 +71,7 @@ public sealed class ScoreCaracter : MonoBehaviour
 
             ScoreLocaled = GetComponent<LocaledText>();
             ScoreLocaled.UpdateText();
-            MaxScoreUI.text += "\n" + _maxscore;
+            MaxScoreUI.text += " "+_maxscore;
           
 
            

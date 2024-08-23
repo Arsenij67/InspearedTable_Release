@@ -68,7 +68,6 @@ public class LocalizationManager : MonoBehaviour
             {
 
                 LocalizedText.Add(loadedData[i].key, loadedData[i].value);
-                print("key: " + loadedData[i].key);
             }
             CurrentLanguage = langName;
             print("File read!");
