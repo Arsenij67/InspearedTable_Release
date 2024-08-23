@@ -183,26 +183,25 @@ public sealed class Board : MonoBehaviour
 
                 tile.item = ItemDataBase.items[UnityEngine.Random.Range(0, ItemDataBase.items.Length)];
 
-
                 var ExploadParicle = Instantiate(ParcileExpload, tile.transform.position, Quaternion.identity);
 
                 var textscore = Instantiate(TextScore, ExploadParicle.transform.position, Quaternion.identity);
 
-                //// создание заднего окошка на элементе
-                //tile.gameObject.AddComponent<Image>
-                //var frame = Instantiate(tile.item.frameSprite, tile.transform);
+                
 
-
-                ExploadParicle.transform.SetParent(tile.transform); 
-
-                //frame.transform.SetParent(tile.transform);
-
+                ExploadParicle.transform.SetParent(tile.transform);
 
                 textscore.transform.SetParent(ExploadParicle.transform); 
 
                 textscore.transform.SetSiblingIndex(0); 
 
-                textscore.transform.position = ExploadParicle.transform.position; 
+                textscore.transform.position = ExploadParicle.transform.position;
+
+                // создание заднего окошка на элементе
+                var frame = Instantiate(tile.item.framePrefab, tile.transform);
+
+                frame.transform.parent = (tile.transform);
+                //
 
                 tiles[x, y] = rows[y].titles[x];
 
@@ -331,7 +330,7 @@ public sealed class Board : MonoBehaviour
 
                 StartCoroutine(ScoreCaracter.Instance.ChangeScore (tile.item.Value * ConnectedTiles.Count(),50f));
 
-                fb.WriteData(PlayerPrefs.GetString("Name"), ScoreCaracter.Instance.MaxScore);
+                fb.WriteData(SaveTypesFactory.deviceSaveManagerString.GetElement("Name") as string, ScoreCaracter.Instance.MaxScore);
 
 
 
