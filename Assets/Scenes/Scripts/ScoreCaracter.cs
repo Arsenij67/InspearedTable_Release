@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using UnityEngine;
 using System;
 
-[RequireComponent(typeof(LocaledText))]
 public sealed class ScoreCaracter : MonoBehaviour
 {
     public static ScoreCaracter Instance { get; private set; }
@@ -15,7 +14,9 @@ public sealed class ScoreCaracter : MonoBehaviour
 
     [SerializeField] private TMP_Text MaxScoreUI;
 
-    private LocaledText ScoreLocaled;
+    [SerializeField] private LocaledText localedMaxScore;
+
+    [SerializeField] private LocaledText localedScore;
 
     private Fb fb;
 
@@ -26,21 +27,14 @@ public sealed class ScoreCaracter : MonoBehaviour
             
             return _score;
 
-
         }
 
         set
         {
-            if (_score == value) return;
-
             _score = value;
-
             TextScoreUI.text = "Score";
-            ScoreLocaled = GetComponent<LocaledText>();
-            ScoreLocaled.UpdateText();
+            localedScore.UpdateText();
             TextScoreUI.text += ": "+_score;
-
-
 
         }
     
@@ -63,7 +57,6 @@ public sealed class ScoreCaracter : MonoBehaviour
         Instance = this;
         fb = FindObjectOfType<Fb>();
         await fb.InitInfoTask; // ждем конец инициализации
-        print(Convert.ToInt32(fb.dataSnapshot.Child(SaveTypesFactory.deviceSaveManagerString.GetElement("Name") as string).Child("Record").Value));
         MaxScore = Convert.ToInt32(fb.dataSnapshot.Child(SaveTypesFactory.deviceSaveManagerString.GetElement("Name") as string).Child("Record").Value);
     }
     
@@ -75,15 +68,12 @@ public sealed class ScoreCaracter : MonoBehaviour
         {
             _maxscore = value;
             MaxScoreUI.text = "Max Score";
-            ScoreLocaled = GetComponent<LocaledText>();
-            ScoreLocaled.UpdateText();
+            localedMaxScore.UpdateText();
             MaxScoreUI.text += ": "+_maxscore;
           
-
-           
         }
 
-        }
+    }
 
     /// <summary>
     /// Отнимает или прибавляет очки к текущему счёту и обновляет рекорд
