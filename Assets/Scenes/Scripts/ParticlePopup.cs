@@ -66,8 +66,7 @@ public class ParticlePopup : MonoBehaviour
 
         transform.position = new Vector3(transform.position.x,StartPosition,transform.position.z);
     
-    
-    
+   
     
     }// для текста
 }

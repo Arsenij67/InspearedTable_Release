@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
+using System;
+
 [RequireComponent(typeof(LocaledText))]
 public sealed class ScoreCaracter : MonoBehaviour
 {
@@ -14,6 +16,8 @@ public sealed class ScoreCaracter : MonoBehaviour
     [SerializeField] private TMP_Text MaxScoreUI;
 
     private LocaledText ScoreLocaled;
+
+    private Fb fb;
 
     private int _score;
     public int Score {
@@ -54,7 +58,14 @@ public sealed class ScoreCaracter : MonoBehaviour
     {
         
     }
-    private void Awake() => Instance = this;
+    private async void Start()
+    {
+        Instance = this;
+        fb = FindObjectOfType<Fb>();
+        await fb.InitInfoTask; // ждем конец инициализации
+        print(Convert.ToInt32(fb.dataSnapshot.Child(SaveTypesFactory.deviceSaveManagerString.GetElement("Name") as string).Child("Record").Value));
+        MaxScore = Convert.ToInt32(fb.dataSnapshot.Child(SaveTypesFactory.deviceSaveManagerString.GetElement("Name") as string).Child("Record").Value);
+    }
     
     public int MaxScore
     {
@@ -62,7 +73,7 @@ public sealed class ScoreCaracter : MonoBehaviour
 
         set
         {
-          
+            _maxscore = value;
             MaxScoreUI.text = "Max Score";
             ScoreLocaled = GetComponent<LocaledText>();
             ScoreLocaled.UpdateText();
@@ -74,6 +85,12 @@ public sealed class ScoreCaracter : MonoBehaviour
 
         }
 
+    /// <summary>
+    /// Отнимает или прибавляет очки к текущему счёту и обновляет рекорд
+    /// </summary>
+    /// <param name="mark"></param>
+    /// <param name="miliseconds">количество секунд на одну итерацию</param>
+    /// <returns></returns>
     public IEnumerator ChangeScore(int mark,float miliseconds)
     {
         
@@ -105,8 +122,7 @@ public sealed class ScoreCaracter : MonoBehaviour
             }
 
         }
-
-        MaxScore = Score;
+        MaxScore = Mathf.Max(MaxScore,Score);
     }
 
    

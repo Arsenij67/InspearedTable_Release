@@ -14,13 +14,15 @@ public class Fb : MonoBehaviour
 
     public DataSnapshot dataSnapshot;
 
+    internal Task InitInfoTask;
+
     const int MaxCount = 10000;
 
 
     private void Awake()
     {
     
-        InitInfo();
+        InitInfoTask = InitInfo();
         
     }
 
