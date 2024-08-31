@@ -85,16 +85,13 @@ public class FbAuthorization : MonoBehaviour
 
                     if (userRecordTask.Exception != null)
                     {
-                    warningLoggerRegistrationListener.OnAuthorizationFailed(new System.AggregateException($"Ошибка получения информации о пользователе: {userRecordTask.Exception.Flatten().Message}"));
+                        warningLoggerRegistrationListener.OnAuthorizationFailed(new System.AggregateException($"Ошибка получения информации о пользователе: {userRecordTask.Exception.Flatten().Message}"));
 
                     yield break; // Выход из корутины при ошибке
                     }
 
                     // Проверяем, подтверждена ли электронная почта
                     isVerified = userRecordTask.Result.User.IsEmailVerified;
-
-                    // Логируем статус проверки
-                    Debug.Log($"Статус верификации электронной почты: {isVerified}");
 
                     // Ждем перед следующей проверкой
                     yield return new WaitForSeconds(2); // Проверяем каждые 2 секунд
@@ -109,7 +106,6 @@ public class FbAuthorization : MonoBehaviour
             }
         
         }
-
     /// <summary>
     /// Вход по логину и паролю
     /// </summary>
@@ -169,7 +165,6 @@ public class FbAuthorization : MonoBehaviour
        
 
     }
-
     private IEnumerator SendVerificationMail(Task<AuthResult> userCreationTask)
     {
         var verificationTask = userCreationTask.Result.User.SendEmailVerificationAsync();

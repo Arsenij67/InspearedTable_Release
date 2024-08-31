@@ -189,7 +189,7 @@ public class WarningLogger : DashboardAnimator,IAuthorizationListener
 
     public void OnVerifiedMail()
     {
-        CloseGrowingLoadingPanel();
+        CloseGrowingLoadingPanel("Вы успешно зарегистрированы!");
         localizationManager?.OnResponseChanged?.Invoke();
     }
 

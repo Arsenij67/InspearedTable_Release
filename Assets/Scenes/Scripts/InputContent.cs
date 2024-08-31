@@ -209,7 +209,7 @@ public class InputContent : MonoBehaviour
         
             content.ShowContent();
 
-            StartCoroutine(ScoreCaracter.Instance.ChangeScore(-(content.Price), 50));// платим за контент
+            StartCoroutine(ScoreCaracter.Instance.ChangeScoreAndRecord(-(content.Price), 50));// платим за контент
         }
     }
 

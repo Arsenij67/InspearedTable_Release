@@ -59,7 +59,7 @@ public class LeaderBoard : DashboardAnimator
                     case GO_Out.Go:
                         Events.AllTasks.Add(PrintBoard());
                         Events.AllTasks.Add(AppearTitles(duration: 0.2f));
-                        buttonController.InputTextName.interactable = false;
+                        buttonController.inputTextName.interactable = false;
                        
                         dir = 0;
                         Switcher = GO_Out.Out;
@@ -69,7 +69,7 @@ public class LeaderBoard : DashboardAnimator
                         Events.AllTasks.Add(DeleteText());
                         dir = 1500;
                         Switcher = GO_Out.Go;
-                        buttonController.InputTextName.interactable = true;
+                        buttonController.inputTextName.interactable = true;
                         break;
 
                     default:

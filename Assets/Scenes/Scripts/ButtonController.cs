@@ -17,73 +17,80 @@ public class ButtonController : MonoBehaviour
 {
     private AudioSource AudioSource;  
 
-    [SerializeField] private AudioClip ClipButtonPressed;
+    [SerializeField] private AudioClip clipButtonPressed;
 
     [SerializeField] private LocalizationManager localization;
 
-    [SerializeField] private AudioClip SantaLaugth;
+    [SerializeField] private AudioClip santaLaugth;
 
-    public Button ButtonPlay;   
+    public Button buttonPlay;   
 
     public List<Toggle> toggles = new List<Toggle>(3); 
 
-    public TMP_InputField InputTextName;
+    public TMP_InputField inputTextName;
 
     [SerializeField] private Fb fb;
 
-    [SerializeField] private TMP_Text TextWarning;
+    [SerializeField] private TMP_Text textWarning;
 
-    private Transform Notification;
+    private Transform notification;
 
 
     private void Awake()
     {
      
-    Events.MusicClick.AddListener(PlayMusicGame);
+        Events.MusicClick.AddListener(PlayMusicGame);
 
         transform.GetChild(0).GetComponent<AudioSource>().volume = Events.MusicForce;
 
         AudioSource = GetComponent<AudioSource>();
  
 
-        if (InputTextName == null)
+        if (inputTextName == null)
         {
 
-            if(InputTextName!=null)
-            InputTextName.text = (string)SaveTypesFactory.deviceSaveManagerString.GetElement("Name");//вывод имени после инициализации
+            if(inputTextName!=null)
+            inputTextName.text = (string)SaveTypesFactory.deviceSaveManagerString.GetElement("Name");//вывод имени после инициализации
         }
-        Notification = TextWarning?.transform.parent;
-        TryToPlay();
+        notification = textWarning?.transform.parent;
         SetDefaultName();
+        TryToPlay();
+         
     }
 
    
     public void TryToPlay() // проверяем доступность к игре
     {
-        if (ButtonPlay == null) return;
+        if (buttonPlay == null) return;
         
-            if (Events.IndexesActived.Count() < 1 || SaveTypesFactory.deviceSaveManagerString.GetElement("Name").ToString().Length <= 4)
+            if (Events.indexesActived.Count() < 1 || SaveTypesFactory.deviceSaveManagerString.GetElement("Name").ToString().Length <= 4)
             {
             
-                ButtonPlay.interactable = false;
+                buttonPlay.interactable = false;
             }
             else
             {
-                ButtonPlay.interactable = true;
+                buttonPlay.interactable = true;
             }
+        print(Events.indexesActived.Count()+"---");
        
     }
     public void ChangeTogleState(int index) // изменение тогла в меню
     {
-                if (!toggles[index].isOn && toggles[index]!=null) Events.IndexesActived.Remove((short)index);
+        if (toggles[index] != null && !toggles[index].isOn) // если тогл выключен, то удаляем его индекс из списка активных
+        {
+            Events.indexesActived.Remove((short)index);
+        }
 
-                else Events.IndexesActived.Add((short)index);
-                TryToPlay();
-       
+        else if (toggles[index] != null && toggles[index].isOn) 
+        {
+            Events.indexesActived.Add((short)index);
+        }
+        TryToPlay();
     }
     public  async void LoadScene(string scene)
     {
-        Events.MusicClick.Invoke(ClipButtonPressed);
+        Events.MusicClick.Invoke(clipButtonPressed);
 
         AsyncOperation AsyncOperation = SceneManager.LoadSceneAsync(scene);
 
@@ -92,15 +99,14 @@ public class ButtonController : MonoBehaviour
             await Task.Yield();
         }
         
-
-        if (scene.Equals("MainMenu"))
+        if (scene.StartsWith("MainMenu"))
         {
             
-            ButtonPlay = GameObject.FindGameObjectWithTag("ButtonPlay").GetComponent<Button>();
+            buttonPlay = GameObject.FindGameObjectWithTag("ButtonPlay").GetComponent<Button>();
 
-            ButtonPlay.interactable = false;
+            buttonPlay.interactable = false;
 
-            Events.IndexesActived.Clear();
+            Events.indexesActived.Clear();
         }
 
     }
@@ -126,7 +132,7 @@ public class ButtonController : MonoBehaviour
 
         })); // если есть интернет, то программа выполняется
 
-        string name = InputTextName.text;
+        string name = inputTextName.text;
          
         if (name.Length > 4)// добавлена проверка количества символов
         {
@@ -174,13 +180,13 @@ public class ButtonController : MonoBehaviour
             localization.OnLanguageChanged.Invoke();
 
        Tween SequencePopup = DOTween.Sequence()
-                .Append(Notification.DOLocalMoveX(150f, animNotification))
+                .Append(notification.DOLocalMoveX(150f, animNotification))
                 .AppendInterval(animNotification)
-                .Append(Notification.DOLocalMoveX(2000f, animNotification));
+                .Append(notification.DOLocalMoveX(2000f, animNotification));
 
-        TextWarning.text = text;
+        textWarning.text = text;
 
-        TextWarning.color = color;
+        textWarning.color = color;
 
         SequencePopup.Play();
 
@@ -192,9 +198,9 @@ public class ButtonController : MonoBehaviour
 
         if (!string.IsNullOrEmpty(name))
         {
-            if (InputTextName)
+            if (inputTextName)
             {
-                InputTextName.text = name;
+                inputTextName.text = name;
             }
 
         }
@@ -211,7 +217,7 @@ public static class Events
 
     public static float MusicForce = 0;
 
-    public static List<short> IndexesActived = new List<short>();
+    public static List<short> indexesActived = new List<short>();
 
     [Obsolete]
     public static IEnumerator ChechInternetConnection(Action<bool> connect)

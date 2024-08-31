@@ -67,7 +67,6 @@ public class LocaledText : MonoBehaviour
     private void TranslateFromJson()
     {
         text.text = key == "" ? localization.GetLocalizedValue(text.text) : localization.GetLocalizedValue(key);
-        print(localization.GetLocalizedValue(key));
     }
 
     private async void TranslateFromAPIAsync(string lang)

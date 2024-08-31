@@ -70,9 +70,16 @@ public class DashboardAnimator : MonoBehaviour
 
     }
 
-    protected async void CloseGrowingLoadingPanel()
+    protected async void CloseGrowingLoadingPanel(string information = "")
     {
-        await DOTween.Sequence().Append(dashboardLoading.DOScale(Vector3.zero, 0.5f)).Play().AsyncWaitForCompletion();
+        TMP_Text text = dashboardLoading.GetComponentInChildren<TMP_Text>();
+        text.text = information;
+        Sequence sequencePop = DOTween.Sequence();
+        if (!string.IsNullOrEmpty(information))
+        {
+            sequencePop.AppendInterval(1f);
+        }
+        await sequencePop.Append(dashboardLoading.DOScale(Vector3.zero, 0.5f)).Play().AsyncWaitForCompletion();
         dashboardLoading.gameObject.SetActive(false);
         
     }

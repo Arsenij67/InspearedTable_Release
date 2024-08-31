@@ -7,8 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
-
-
+using Unity.VisualScripting;
 
 public sealed class Board : MonoBehaviour
 {   public static Board Instance { get; private set; }
@@ -37,7 +36,7 @@ public sealed class Board : MonoBehaviour
     private short indexShow
     { get
         { 
-            return Events.IndexesActived[UnityEngine.Random.Range(0, Events.IndexesActived.Count)];// выбираем 1 индекс случайно из выбранных нами
+            return Events.indexesActived[UnityEngine.Random.Range(0, Events.indexesActived.Count)];// выбираем 1 индекс случайно из выбранных нами
         }
     }
 
@@ -57,11 +56,6 @@ public sealed class Board : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
 
         Item_Decoration = GameObject.Find("SelectedItem").GetComponent<Transform>();
-
-
-        if (PlayerPrefs.GetInt("Max") != 0) return;
-
-        PlayerPrefs.SetInt("Max",0);
     }
     private async void MoveDecorate(Title tile)
     {
@@ -325,13 +319,10 @@ public sealed class Board : MonoBehaviour
 
                 _audioSource.Play();
 
+                StartCoroutine(ScoreCaracter.Instance.ChangeScoreAndRecord(tile.item.Value * ConnectedTiles.Count(),50));
                 
- 
-
-                StartCoroutine(ScoreCaracter.Instance.ChangeScore (tile.item.Value * ConnectedTiles.Count(),50));
-
                 fb.WriteData(SaveTypesFactory.deviceSaveManagerString.GetElement("Name") as string, ScoreCaracter.Instance.MaxScore);
-
+                
 
 
                 foreach (var ConnectedTile in ConnectedTiles) //перебор всех соседей и увеличение размера

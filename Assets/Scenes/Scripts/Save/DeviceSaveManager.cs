@@ -47,7 +47,6 @@ public class DeviceSaveManager<T>:MonoBehaviour
     }
     public void SaveElement(string key,T value)
     {
-       print("Element save " + key);
        string path = Path.Combine(Application.dataPath, "Resources\\Languages", "SystemData.xml");
        XElement xElement =  ConvertStringToXML(key,value);
        XDocument xDocument = new XDocument(xElement);
@@ -56,7 +55,6 @@ public class DeviceSaveManager<T>:MonoBehaviour
         {
             sw.Close();
         }
-        Debug.Log(path);
     }
     public object GetElement(string key)
     {

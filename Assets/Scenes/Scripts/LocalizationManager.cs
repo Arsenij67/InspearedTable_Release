@@ -59,8 +59,6 @@ public class LocalizationManager : MonoBehaviour
         if (DictFiles[langName]!=null)
         {
             deltajson = DictFiles[langName].text;
- 
-            print("File exist");
          
             var loadedData = JsonConvert.DeserializeObject<LocalizationData[]>(deltajson);
           

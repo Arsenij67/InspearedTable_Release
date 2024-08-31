@@ -9,7 +9,6 @@ public sealed class ScoreCaracter : MonoBehaviour
 {
     public static ScoreCaracter Instance { get; private set; }
 
- 
     [SerializeField] private TMP_Text  TextScoreUI;
 
     [SerializeField] private TMP_Text MaxScoreUI;
@@ -81,10 +80,10 @@ public sealed class ScoreCaracter : MonoBehaviour
     /// <param name="mark"></param>
     /// <param name="miliseconds">количество секунд на одну итерацию</param>
     /// <returns></returns>
-    public IEnumerator ChangeScore(int mark,float miliseconds)
+    public IEnumerator ChangeScoreAndRecord(int mark,float miliseconds)
     {
         
-        int  iter = mark / 10;
+        int iter = mark / 10;
 
         if (mark > 0)
         {
@@ -112,7 +111,29 @@ public sealed class ScoreCaracter : MonoBehaviour
             }
 
         }
-        MaxScore = Mathf.Max(MaxScore,Score);
+       yield return StartCoroutine(UpdateRecord(50));
+    }
+/// <summary>
+/// Увеличивает рекорд на разницу между счётом и последним рекордом
+/// </summary>
+/// <param name="milliseconds"> время одного кадра  в миллисекундах</param>
+/// <returns></returns>
+private IEnumerator UpdateRecord(float milliseconds = 50)
+    { 
+        float mark = Score - MaxScore;
+        float iter = mark / 10;
+
+        if (mark > 0)
+        {
+            while (mark > 0)
+            {
+
+                MaxScore += (int) iter;
+                mark -= iter;
+                yield return new WaitForSeconds(milliseconds / 1000);
+
+            }
+        }
     }
 
    
