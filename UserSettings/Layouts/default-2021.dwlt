@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1626.6667
     height: 902.6667
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 18
+  controlID: 105
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 19
+  controlID: 106
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 20
+  controlID: 18
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -222,7 +222,7 @@ MonoBehaviour:
   - {fileID: 14}
   - {fileID: 18}
   m_Selected: 1
-  m_LastSelected: 1
+  m_LastSelected: 0
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -242,14 +242,14 @@ MonoBehaviour:
     y: 549.3333
     width: 1164
     height: 303.33337
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 12}
+  m_MinSize: {x: 231, y: 271}
+  m_MaxSize: {x: 10001, y: 10021}
+  m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 12}
   - {fileID: 15}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -269,8 +269,8 @@ MonoBehaviour:
     y: 0
     width: 462.66663
     height: 852.6667
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -336,9 +336,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 70d20100
-      m_LastClickedID: 119408
-      m_ExpandedIDs: 40a3fdff82a3fdff6addfdff9a05fefff211feff4212feff1014feff8420feffd420feff5a25feff0634feff5e34feff3235feffdc37feff2645feff2846feffca54feff0e55feffd455feffe656feffac57feff8063feff30fbffff2a3501001a3601009c360100103b0100003c0100784f0100685001000c5f0100fc5f0100107401000075010040870100fc8d0100ec8e0100989d0100889e0100fad0010060d101004cd20100
+      m_SelectedIDs: d253feff
+      m_LastClickedID: -109614
+      m_ExpandedIDs: c053feffd253feff9455feffa655feff9857feffa857feffba57fefff259feff4661feff4861feffa664feff5472feff9072feffd272fefffc89feffa48cfeffee8cfeff948dfeff0e2bffff94c5ffffe6c5ffffbac6ffff26cfffffc2cfffffd2f9ffff32fbffff9468000054790000007b00009e7b00007e82000052830000b083000028840000328400003c8400001cb0000012100100d028010042290100862901006e2b01005e480100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -620,9 +620,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 218.5, y: 479.63693, z: 0}
+    m_Target: {x: 10.038951, y: 13.589204, z: 203.03345}
     speed: 2
-    m_Value: {x: 218.5, y: 479.63693, z: 0}
+    m_Value: {x: 9.933339, y: 13.196708, z: 211.16164}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -673,9 +673,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 67.77112
+    m_Target: 14.585247
     speed: 2
-    m_Value: 67.77112
+    m_Value: 15.27251
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -729,7 +729,7 @@ MonoBehaviour:
     m_LastAppliedPresetName: Default
     m_SaveData: []
   m_SearchFilter:
-    m_NameFilter: Anim
+    m_NameFilter: 
     m_ClassNames: []
     m_AssetLabels: []
     m_AssetBundleNames: []
@@ -741,36 +741,36 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes/Scripts
+    - Assets/Scenes/Graphics/Freeui/ZOSMA/Stage/Back
     m_Globs: []
-    m_OriginalText: Anim
+    m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes/Scripts
+  - Assets/Scenes/Graphics/Freeui/ZOSMA/Stage/Back
   m_LastFoldersGridSize: -1
   m_LastProjectPath: "C:\\Users\\\u0410\u0440\u0441\u0435\u043D\u0438\u0439\\Desktop\\InspearedTable_Release-master\\InspearedTable_Release-master"
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 343.1593}
-    m_SelectedIDs: 26670000
-    m_LastClickedID: 26406
-    m_ExpandedIDs: 00000000ea660000086700000c6700002667000000ca9a3b
+    scrollPos: {x: 0, y: 480}
+    m_SelectedIDs: 2c5a0100
+    m_LastClickedID: 88620
+    m_ExpandedIDs: 00000000b26500004a6600005266000058660000882d0100902d01006c3e0100045a0100085a010000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Crowns
+      m_OriginalName: Crowns
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 88572
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_SearchString: 
@@ -784,7 +784,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000ea660000
+    m_ExpandedIDs: 00000000b2650000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -809,9 +809,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: b4120000
-    m_LastClickedInstanceID: 4788
-    m_HadKeyboardFocusLastEvent: 1
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000d401010000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -940,7 +940,7 @@ MonoBehaviour:
   m_SerializedViewNames:
   - UnityEditor.DeviceSimulation.SimulatorWindow
   m_SerializedViewValues:
-  - "C:\\Users\\\u0410\u0440\u0441\u0435\u043D\u0438\u0439\\Desktop\\InspearedTable_Release-master\\InspearedTable_Release-master\\Library\\PlayModeViewStates\\bad34bbff14241a41a7a0d4edaf7db49"
+  - "C:\\Users\\\u0410\u0440\u0441\u0435\u043D\u0438\u0439\\Desktop\\InspearedTable_Release-master\\InspearedTable_Release-master\\Library\\PlayModeViewStates\\ef67eb4884eb8df4e99581bcf8f0b124"
   m_PlayModeViewName: GameView
   m_ShowGizmos: 0
   m_TargetDisplay: 0

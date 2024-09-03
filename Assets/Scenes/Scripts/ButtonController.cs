@@ -72,7 +72,6 @@ public class ButtonController : MonoBehaviour
             {
                 buttonPlay.interactable = true;
             }
-        print(Events.indexesActived.Count()+"---");
        
     }
     public void ChangeTogleState(int index) // изменение тогла в меню

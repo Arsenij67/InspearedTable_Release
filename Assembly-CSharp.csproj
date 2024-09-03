@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scenes\Scripts\Row.cs" />
     <Compile Include="Assets\Scenes\Scripts\Item.cs" />
     <Compile Include="Assets\Scenes\Scripts\LoadingBoard.cs" />
+    <Compile Include="Assets\Scenes\Scripts\Wheel\WheelFortune.cs" />
     <Compile Include="Assets\Scenes\Scripts\Interfaces\IAuthorizationListener.cs" />
     <Compile Include="Assets\Scenes\Scripts\ItemDataBase.cs" />
     <Compile Include="Assets\Scenes\Scripts\InputContent.cs" />

@@ -56,7 +56,7 @@ public class ParticlePopup : MonoBehaviour
 
     public async void Fly(float lenght = 200f,float duration=1.5f)
     {
-        Text ScoreText = transform.GetChild(0).GetComponent<Text>();
+        Text ScoreText = transform?.GetChild(0).GetComponent<Text>();
         float StartPosition = transform.position.y;
         float EndPosition = transform.position.y + lenght;
 
@@ -65,8 +65,6 @@ public class ParticlePopup : MonoBehaviour
         await SequenceFly.AsyncWaitForCompletion();
 
         transform.position = new Vector3(transform.position.x,StartPosition,transform.position.z);
-    
-   
     
     }// для текста
 }

@@ -392,7 +392,7 @@ MonoBehaviour:
   Pos: 0
   MaryCrist: {fileID: 8300000, guid: 00156ea21fb613347ab4d7eee2a2c117, type: 3}
   ClickButton: {fileID: 8300000, guid: 1b22feb51382a5042be95ccd7d08c703, type: 3}
-  BoardcContent: {fileID: 1668176345}
+  BoardContent: {fileID: 1668176345}
   ButtonBoardContent: {fileID: 689410297}
 --- !u!1 &56315942
 GameObject:
@@ -1740,17 +1740,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfdbc4ec482d93643b73fb9b5d649eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClipButtonPressed: {fileID: 8300000, guid: 1b22feb51382a5042be95ccd7d08c703, type: 3}
+  clipButtonPressed: {fileID: 0}
   localization: {fileID: 2076224916}
-  SantaLaugth: {fileID: 8300000, guid: 6479838818d4bb44db1dbb85b1782477, type: 3}
-  ButtonPlay: {fileID: 0}
+  santaLaugth: {fileID: 0}
+  buttonPlay: {fileID: 0}
   toggles:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  InputTextName: {fileID: 0}
+  inputTextName: {fileID: 0}
   fb: {fileID: 1648348823}
-  TextWarning: {fileID: 0}
+  textWarning: {fileID: 0}
 --- !u!1 &442040133
 GameObject:
   m_ObjectHideFlags: 0

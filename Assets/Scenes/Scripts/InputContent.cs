@@ -2,7 +2,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-public abstract  class Content: InputContent
+public abstract  class Content : InputContent
 {
  
 
@@ -12,8 +12,6 @@ public abstract  class Content: InputContent
   
     public abstract TextAsset File { get; set; }
     public abstract int Price { get; set; }
-
-    
     public abstract void ShowContent();
 
     public Image content;
@@ -156,7 +154,7 @@ public class InputContent : MonoBehaviour
     [SerializeField] private AudioClip MaryCrist;
 
     [SerializeField]  private AudioClip ClickButton;
-    public GameObject BoardcContent;
+    public GameObject BoardContent;
 
     public Button ButtonBoardContent;
 
@@ -175,15 +173,14 @@ public class InputContent : MonoBehaviour
 
         Events.MusicClick.Invoke(MaryCrist);
 
-        BoardcContent.SetActive(true); // доска
+        BoardContent.SetActive(true); // доска
 
 
 
-       short index = await board.GetCotentType();
+       short index = board.GetCotentType();
 
         switch (index)
         {
-
 
             case 0:
                 content = new Story();
@@ -213,7 +210,7 @@ public class InputContent : MonoBehaviour
         }
     }
 
-    protected async void MoveY(float Y) { await BoardcContent.transform.DOLocalMoveY(Y, 1f).Play().AsyncWaitForCompletion(); }
+    protected async void MoveY(float Y) { await BoardContent.transform.DOLocalMoveY(Y, 1f).Play().AsyncWaitForCompletion(); }
     public void ExitFromBoardContent()
     {
 

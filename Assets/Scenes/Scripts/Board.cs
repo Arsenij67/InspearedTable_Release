@@ -358,7 +358,7 @@ public sealed class Board : MonoBehaviour
 
 
     }
-    public async Task<short> GetCotentType()
+    public  short GetCotentType()
     {
  
         switch (indexShow)
@@ -375,7 +375,7 @@ public sealed class Board : MonoBehaviour
                 break;
 
         }
-        return await Task.FromResult<short>(indexShow);
+        return indexShow;
 
 
     }
