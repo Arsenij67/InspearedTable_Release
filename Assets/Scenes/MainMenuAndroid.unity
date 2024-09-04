@@ -435,6 +435,7 @@ GameObject:
   m_Component:
   - component: {fileID: 111326066}
   - component: {fileID: 111326067}
+  - component: {fileID: 111326068}
   m_Layer: 5
   m_Name: Fill AreaThirdSlider
   m_TagString: Untagged
@@ -455,6 +456,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1600699599}
+  - {fileID: 1195375964}
   m_Father: {fileID: 692885086}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -510,10 +512,24 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.274
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &111326068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111326065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 797462243ae7ea44d9630a87017d7a07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imageSection: {fileID: 0}
+  textTypeInfo: {fileID: 0}
 --- !u!1 &178613521
 GameObject:
   m_ObjectHideFlags: 0
@@ -2374,6 +2390,7 @@ GameObject:
   m_Component:
   - component: {fileID: 692885086}
   - component: {fileID: 692885087}
+  - component: {fileID: 692885088}
   m_Layer: 5
   m_Name: Fill AreaSecondSlider
   m_TagString: Untagged
@@ -2395,7 +2412,6 @@ RectTransform:
   m_Children:
   - {fileID: 1735838973}
   - {fileID: 111326066}
-  - {fileID: 1195375964}
   m_Father: {fileID: 2041296498}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2451,10 +2467,24 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.593
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &692885088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692885085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 797462243ae7ea44d9630a87017d7a07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imageSection: {fileID: 0}
+  textTypeInfo: {fileID: 0}
 --- !u!1 &698775868
 GameObject:
   m_ObjectHideFlags: 0
@@ -4736,12 +4766,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1762821481}
-  m_Father: {fileID: 692885086}
-  m_RootOrder: 2
+  m_Father: {fileID: 111326066}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00000023841858, y: -0.0000016093254}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1271997123
@@ -6503,7 +6533,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0.593
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -11619,6 +11649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3abda1a5f624f5e48b3ca148bc1585c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainSection: {fileID: 2041296500}
 --- !u!1 &1662526198
 GameObject:
   m_ObjectHideFlags: 0
@@ -12053,7 +12084,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -12205,7 +12236,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0.274
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -12716,6 +12747,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2041296498}
   - component: {fileID: 2041296499}
+  - component: {fileID: 2041296500}
   m_Layer: 5
   m_Name: WheelFirstSlider
   m_TagString: Untagged
@@ -12792,10 +12824,24 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2041296500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041296497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 797462243ae7ea44d9630a87017d7a07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imageSection: {fileID: 0}
+  textTypeInfo: {fileID: 0}
 --- !u!1 &2058913758
 GameObject:
   m_ObjectHideFlags: 0
