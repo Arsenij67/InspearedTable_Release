@@ -1,6 +1,6 @@
 using DG.Tweening;
 using System.Collections;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
+ 
 using UnityEngine;
 
 public class WheelFortune : MonoBehaviour
@@ -65,7 +65,7 @@ public class WheelFortune : MonoBehaviour
         float start = transform.rotation.eulerAngles.z;
         float end = transform.rotation.eulerAngles.z + angleDistance;
         Vector3 endVector = new Vector3(transform.rotation.x, transform.rotation.y, end);
-        Tween rotatingTween = DOTween.Sequence().AppendInterval(1f).Append(mainSection.gameObject.transform.DORotate(endVector, time, RotateMode.FastBeyond360));
+        Tween rotatingTween = DOTween.Sequence().AppendInterval(2f).Append(mainSection.gameObject.transform.DORotate(endVector, time, RotateMode.FastBeyond360));
        yield return rotatingTween.Play().WaitForCompletion();
     }
 
