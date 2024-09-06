@@ -4,6 +4,7 @@ using TMPro;
 using System.Collections;
 using System.Threading.Tasks;
 
+[RequireComponent(typeof(Slider))]
 public class Section : MonoBehaviour
 {
     [SerializeField] private Image imageSection;// изображение для отображения секции
@@ -14,7 +15,9 @@ public class Section : MonoBehaviour
 
     private Section ? childSection;
 
-    [SerializeField] private float fraction = 0.33333f;
+    private  readonly float fraction = 0.33333f;
+
+    private float MaxAngle = 0, MinAngle = 0;
     public void Awake()
     {
 
@@ -48,10 +51,22 @@ public class Section : MonoBehaviour
             sectionSlider.value = Mathf.Lerp(startValue, targetValue, elapsedTime / howFast);
             yield return new WaitForEndOfFrame();
         }
-        
-        yield return StartCoroutine(childSection?.DrawSection(howFast,targetValue));
+        if (childSection)
+        {
+            yield return StartCoroutine(childSection?.DrawSection(howFast, targetValue));
+        }
+        MinAngle = 360 * occupiedFraction;
+        MaxAngle = 360* targetValue;
     }
-
-
+    public bool isAreaSelected(float endAngle)
+    {
+       
+        while (endAngle > 360)
+        {
+            endAngle -= 360;
+        }
+        print(MinAngle + " = MinAngle " + MaxAngle + " = MaxAngle " + name + " True or False: "+ (endAngle > MinAngle && endAngle < MaxAngle)+ " End engle = "+ endAngle);
+        return endAngle > MinAngle && endAngle < MaxAngle;
+    }
 
 }
