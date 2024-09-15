@@ -1,6 +1,6 @@
 using DG.Tweening;
 using System.Collections;
- 
+using System.Linq;
 using UnityEngine;
 
 public class WheelFortune : MonoBehaviour
@@ -8,20 +8,25 @@ public class WheelFortune : MonoBehaviour
     [SerializeField] private Section mainSection;
     private byte countSections = 0;
     private Section lastSection;
-    private async void Awake()
+
+    public void RollWhealFortune()
     {
-
-        StartCoroutine(InitWheelFortune());  
-     
+        gameObject.SetActive(true);
+        gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        StartCoroutine(InitWheelFortune());
     }
-
     private IEnumerator InitWheelFortune()
     {
-        int randomAngle = 3600+270;
+        int randomAngle = 3600+Random.Range(0,360);
         GetLastSection(mainSection, out countSections, out lastSection);
-        yield return StartCoroutine(lastSection.DrawSection(0.3f, 0f)); // ждем конца отрисовки колеса
+        print((float)1 / countSections + " = ACTIVED IND");
+        yield return StartCoroutine(lastSection.DrawSection(0.5f, (float)1/countSections,0f)); // ждем конца отрисовки колеса
         yield return StartCoroutine(RotateWheel(randomAngle, 10)); // крутим колесо и ждём конца
-        print(CalculateDroppedSelection(randomAngle).name+"  rand Angle"+ randomAngle);
+        Section sectin = CalculateDroppedSelection(randomAngle);
+        print("выпало = "+ sectin.textTypeInfo.text);
+    
+
+
     }
 
     private Section CalculateDroppedSelection(int randomAngle)
@@ -30,7 +35,7 @@ public class WheelFortune : MonoBehaviour
         while (newlastSection.transform.childCount > 1 && newlastSection.transform.GetChild(1).GetComponent<Section>())
         {
  
-            if (newlastSection.isAreaSelected(randomAngle))
+            if (newlastSection.isAreaDropped(randomAngle))
             {
                
                 break;
@@ -50,14 +55,18 @@ public class WheelFortune : MonoBehaviour
     /// <param name="lastSection">ссылка на самый последний сектор в игре</param>
     private void GetLastSection(Section rootSect,out byte depth,out Section lastSection)
     {
-        depth = 1;
-        lastSection = mainSection;
-        while (lastSection.transform.childCount > 1 && lastSection.transform.GetChild(1).GetComponent<Section>()!=null) 
+        depth = 0;
+        lastSection = rootSect;
+        while (lastSection) 
         {
-           
+            if (lastSection.IsSectionActive())
+            {
+                depth++;
+            }
+            if (lastSection.transform.GetChild(1).GetComponent<Section>() == null) break;
             lastSection = lastSection.transform.GetChild(1).GetComponent<Section>();
-            depth++;
         }
+        
     }
 
     private IEnumerator RotateWheel(float angleDistance, float time)
