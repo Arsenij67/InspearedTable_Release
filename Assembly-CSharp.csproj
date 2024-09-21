@@ -112,7 +112,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Firebase\Plugins\iOS\Firebase.Auth.dll" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-    <None Include="Assets\Resources\Content\Story.txt" />
+    <None Include="Assets\Resources\Content\Fabe.txt" />
     <None Include="Assets\ProjectSettings\ProjectVersion.txt" />
     <None Include="Assets\Resources\Languages\SystemData.xml" />
     <None Include="Assets\Firebase\Plugins\iOS\Firebase.Database.dll" />

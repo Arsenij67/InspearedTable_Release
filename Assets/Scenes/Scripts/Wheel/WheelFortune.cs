@@ -12,18 +12,19 @@ public class WheelFortune : MonoBehaviour
     public void RollWhealFortune()
     {
         gameObject.SetActive(true);
-        gameObject.transform.GetChild(0).gameObject.SetActive(true);
         StartCoroutine(InitWheelFortune());
     }
     private IEnumerator InitWheelFortune()
     {
-        int randomAngle = 3600+Random.Range(0,360);
+        int randomAngle = 3600 + Random.Range(0,360);
         GetLastSection(mainSection, out countSections, out lastSection);
-        print((float)1 / countSections + " = ACTIVED IND");
         yield return StartCoroutine(lastSection.DrawSection(0.5f, (float)1/countSections,0f)); // ждем конца отрисовки колеса
         yield return StartCoroutine(RotateWheel(randomAngle, 10)); // крутим колесо и ждём конца
-        Section sectin = CalculateDroppedSelection(randomAngle);
-        print("выпало = "+ sectin.textTypeInfo.text);
+        Section section = CalculateDroppedSelection(randomAngle);
+        Content content = InputContent.GetClassBuyIndex(section.indexSection);
+
+        print("выпало = " + content.File.name);
+        
     
 
 
@@ -71,7 +72,6 @@ public class WheelFortune : MonoBehaviour
 
     private IEnumerator RotateWheel(float angleDistance, float time)
     {
-        float start = transform.rotation.eulerAngles.z;
         float end = transform.rotation.eulerAngles.z + angleDistance;
         Vector3 endVector = new Vector3(transform.rotation.x, transform.rotation.y, end);
         Tween rotatingTween = DOTween.Sequence().AppendInterval(2f).Append(mainSection.gameObject.transform.DORotate(endVector, time, RotateMode.FastBeyond360));

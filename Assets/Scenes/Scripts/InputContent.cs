@@ -112,7 +112,7 @@ public class Story : Content //0
 
     public Story()
     {
-        File = (TextAsset)Resources.Load(path: "Content/Story");
+        File = (TextAsset)Resources.Load(path: "Content/Fabe");
 
         Info = GameObject.Find("Content").GetComponent<TMP_Text>();
 
@@ -184,7 +184,7 @@ public class InputContent : MonoBehaviour
        content =  GetClassBuyIndex(index);
 
     }
-    public Content GetClassBuyIndex(int i)
+    public static Content GetClassBuyIndex(int i)
     {
         switch (i)
         {
