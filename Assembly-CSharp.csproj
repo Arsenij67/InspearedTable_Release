@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{D43526D3-1623-EADA-9089-D968C169D1C9}</ProjectGuid>
+    <ProjectGuid>{A3572AAF-2EBF-FF5A-5091-45788134669E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -112,7 +112,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Firebase\Plugins\iOS\Firebase.Auth.dll" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-    <None Include="Assets\Resources\Content\Fabe.txt" />
+    <None Include="Assets\Resources\Content\Story.txt" />
     <None Include="Assets\ProjectSettings\ProjectVersion.txt" />
     <None Include="Assets\Resources\Languages\SystemData.xml" />
     <None Include="Assets\Firebase\Plugins\iOS\Firebase.Database.dll" />
@@ -883,7 +883,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{FC95ECF8-45FE-1098-9D67-B6ADEDF96AC9}</Project>
+      <Project>{9B453DC5-A724-900F-8E41-AA8C8374EECF}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
     </ProjectReference>
   </ItemGroup>

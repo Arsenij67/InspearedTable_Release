@@ -3,99 +3,70 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using System.Threading.Tasks;
-using System.Linq;
-using System;
 
 [RequireComponent(typeof(Slider))]
 public class Section : MonoBehaviour
 {
+    [SerializeField] private Image imageSection;// изображение для отображения секции
 
-    public Image ImageTypeInfo; // надпись с типом контента
-    [Tooltip("индекс секции показывает, какой тип информации используется 0 1 или 2")]
-    public byte indexSection; 
+    [SerializeField] private TMP_Text textTypeInfo; // надпись с типом контента
 
     private Slider sectionSlider;
 
-    [SerializeField] private Section sectionParent;
+    private Section ? childSection;
+
+    private  readonly float fraction = 0.33333f;
 
     private float MaxAngle = 0, MinAngle = 0;
-
-    private void Awake()
+    public void Awake()
     {
-     
-        if (!Events.indexesActived.Contains(indexSection))
+
+        if (transform.childCount > 1)
         {
-            ImageTypeInfo.gameObject.SetActive(false);
+            transform.parent.TryGetComponent<Section>(out childSection);
+        } 
 
+        else 
+        {
+            Debug.Log("Мало дочерних элементов для новой секции");
         }
-    }
-    internal bool IsSectionActive()
-    {
-        return  Events.indexesActived.Contains(indexSection);
 
     }
 
     /// <summary>
     /// Рисует секцию
     /// </summary>
-    /// <param name="occupierFraction">какая часть в долях от 0 до 1 занимает выбранная часть</param>
+    /// <param name="fraction">какая часть в долях от 0 до 1 занимает выбранная часть</param>
     /// <param name="howFast">время в секундах рисовки секции</param>
-    public IEnumerator DrawSection(float howFast, float sizeOneSection,float occupierFraction )
+
+    public IEnumerator DrawSection(float howFast, float occupiedFraction)
     {
-        float targetValue = occupierFraction;
-        if (IsSectionActive())
+        sectionSlider = GetComponent<Slider>();
+        float elapsedTime = 0; // время прошедшее после запуска
+        float targetValue = Mathf.Clamp(sectionSlider.value + fraction + occupiedFraction, 0, 1);
+        float startValue = sectionSlider.value+ occupiedFraction;
+        while (elapsedTime < howFast)
         {
-            
-            sectionSlider = GetComponent<Slider>();
-            targetValue = Mathf.Clamp(sizeOneSection + occupierFraction, 0, 1);
-                       float elapsedTime = 0; // время прошедшее после запуска
-            float startValue = occupierFraction;
-
-            MinAngle = 360 * startValue;
-            MaxAngle = 360 * targetValue;
-
-            print($" MinAngle = {MinAngle} MaxAngle = {MaxAngle}  res =  {MinAngle + (MaxAngle - MinAngle) / 2}");
-            Vector2 coordinates = GetCoordinatesLabel(MinAngle+(MaxAngle-MinAngle)/2-60, 30);
-            ImageTypeInfo.transform.localPosition =  coordinates;
-
-            while (elapsedTime < howFast)
-            {
-                elapsedTime += Time.deltaTime;
-                sectionSlider.value = Mathf.Lerp(startValue, targetValue, elapsedTime / howFast);
-                yield return new WaitForEndOfFrame();
-            }
-            
+            elapsedTime += Time.deltaTime;
+            sectionSlider.value = Mathf.Lerp(startValue, targetValue, elapsedTime / howFast);
+            yield return new WaitForEndOfFrame();
         }
-
-        if (sectionParent)
+        if (childSection)
         {
-            yield return StartCoroutine(sectionParent.DrawSection(howFast, sizeOneSection, targetValue));
+            yield return StartCoroutine(childSection?.DrawSection(howFast, targetValue));
         }
-        
-       
+        MinAngle = 360 * occupiedFraction;
+        MaxAngle = 360* targetValue;
     }
-    internal bool isAreaDropped(float endAngle)
+    public bool isAreaSelected(float endAngle)
     {
        
         while (endAngle > 360)
         {
             endAngle -= 360;
         }
-    
+        print(MinAngle + " = MinAngle " + MaxAngle + " = MaxAngle " + name + " True or False: "+ (endAngle > MinAngle && endAngle < MaxAngle)+ " End engle = "+ endAngle);
         return endAngle > MinAngle && endAngle < MaxAngle;
-    }
-
-    private Vector2 GetCoordinatesLabel(float Angle, float radius = 1)
-    {
-      
-       float x = Mathf.Sin(Angle*(Mathf.PI/180)) *radius;
-       float y = Mathf.Cos(Angle* (Mathf.PI / 180)) * radius;
-       return new Vector2(x, y);
-    }
-
-    private float GetRadiusLabel(float x,float y)
-    {
-        return Mathf.Sqrt(x * x + y * y);
     }
 
 }

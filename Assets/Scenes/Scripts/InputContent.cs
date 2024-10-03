@@ -1,5 +1,4 @@
 using DG.Tweening;
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -95,7 +94,7 @@ public class Joke : Content//1
         }
         else
         {
-            Info.text = "Запас анекдотов закончился!";
+            Info.text = "Запас анкдотов закончился!";
         
         }
     }
@@ -112,7 +111,7 @@ public class Story : Content //0
 
     public Story()
     {
-        File = (TextAsset)Resources.Load(path: "Content/Fabe");
+        File = (TextAsset)Resources.Load(path: "Content/Story");
 
         Info = GameObject.Find("Content").GetComponent<TMP_Text>();
 
@@ -155,7 +154,6 @@ public class InputContent : MonoBehaviour
     [SerializeField] private AudioClip MaryCrist;
 
     [SerializeField]  private AudioClip ClickButton;
-
     public GameObject BoardContent;
 
     public Button ButtonBoardContent;
@@ -166,7 +164,7 @@ public class InputContent : MonoBehaviour
     {
         InitializeContent();
     }
-    internal Content content = null;
+    private Content content = null;
     public  async void InitializeContent()
     {
         content = null;
@@ -181,24 +179,18 @@ public class InputContent : MonoBehaviour
 
        short index = board.GetCotentType();
 
-       content =  GetClassBuyIndex(index);
-
-    }
-    public static Content GetClassBuyIndex(int i)
-    {
-        switch (i)
+        switch (index)
         {
+
             case 0:
-                return new Story();
-                 
+                content = new Story();
+                break;
             case 1:
-                return new Joke();
-      
+                content = new Joke();
+                break;
             case 2:
-                return new Motivation();
-            default:
-                return null;
-            
+                content = new Motivation();
+                break;
         }
 
     }
