@@ -9,27 +9,22 @@ public class Section : MonoBehaviour
 {
     [SerializeField] private Image imageSection;// изображение для отображения секции
 
-    [SerializeField] private TMP_Text textTypeInfo; // надпись с типом контента
 
     private Slider sectionSlider;
 
-    private Section ? childSection;
-
-    private  readonly float fraction = 0.33333f;
+    private Section ? sectionParent;
+    public float adder = 0;
 
     private float MaxAngle = 0, MinAngle = 0;
+
+    [SerializeField] private byte indexSection;
     public void Awake()
     {
 
-        if (transform.childCount > 1)
+         if (transform.childCount > 1)
         {
-            transform.parent.TryGetComponent<Section>(out childSection);
+            transform.parent.TryGetComponent<Section>(out sectionParent);
         } 
-
-        else 
-        {
-            Debug.Log("Мало дочерних элементов для новой секции");
-        }
 
     }
 
@@ -39,24 +34,30 @@ public class Section : MonoBehaviour
     /// <param name="fraction">какая часть в долях от 0 до 1 занимает выбранная часть</param>
     /// <param name="howFast">время в секундах рисовки секции</param>
 
-    public IEnumerator DrawSection(float howFast, float occupiedFraction)
+    public IEnumerator DrawSection(float howFast, float occupiedFraction, float sectionArea)
     {
-        sectionSlider = GetComponent<Slider>();
-        float elapsedTime = 0; // время прошедшее после запуска
-        float targetValue = Mathf.Clamp(sectionSlider.value + fraction + occupiedFraction, 0, 1);
-        float startValue = sectionSlider.value+ occupiedFraction;
-        while (elapsedTime < howFast)
+        float targetValue = Mathf.Clamp(occupiedFraction, 0, 1);
+        if (IsSectionActive())
         {
-            elapsedTime += Time.deltaTime;
-            sectionSlider.value = Mathf.Lerp(startValue, targetValue, elapsedTime / howFast);
-            yield return new WaitForEndOfFrame();
+            sectionSlider = GetComponent<Slider>();
+            float elapsedTime = 0; // время прошедшее после запуска
+            
+            float startValue = sectionSlider.value + occupiedFraction;
+            targetValue = startValue + sectionArea;
+            while (elapsedTime < howFast)
+            {
+                elapsedTime += Time.deltaTime;
+                sectionSlider.value = Mathf.Lerp(startValue, targetValue, elapsedTime / howFast);
+                yield return new WaitForEndOfFrame();
+            }
         }
-        if (childSection)
-        {
-            yield return StartCoroutine(childSection?.DrawSection(howFast, targetValue));
-        }
-        MinAngle = 360 * occupiedFraction;
-        MaxAngle = 360* targetValue;
+            if (sectionParent)
+            {
+                yield return StartCoroutine(sectionParent?.DrawSection(howFast, targetValue, sectionArea));
+            }
+            MinAngle = 360 * occupiedFraction;
+            MaxAngle = 360 * targetValue;
+        
     }
     public bool isAreaSelected(float endAngle)
     {
@@ -67,6 +68,56 @@ public class Section : MonoBehaviour
         }
         print(MinAngle + " = MinAngle " + MaxAngle + " = MaxAngle " + name + " True or False: "+ (endAngle > MinAngle && endAngle < MaxAngle)+ " End engle = "+ endAngle);
         return endAngle > MinAngle && endAngle < MaxAngle;
+    }
+    private Vector2 GetCoordinatesLabel(float Angle, float radius = 1)
+    {
+        float x = Mathf.Cos((Angle) * Mathf.Deg2Rad) * radius;
+        float y = Mathf.Sin((Angle) * Mathf.Deg2Rad) * radius;
+        return new Vector2(x, -y);
+    }
+
+    internal void ArrangeIcon(float sizeOneSection, float occupierFraction=0)
+    {
+        imageSection.gameObject.SetActive(IsSectionActive());
+        float targetValue = occupierFraction;
+        if (IsSectionActive())
+        {
+            targetValue = Mathf.Clamp(sizeOneSection + occupierFraction, 0, 1);
+            float startValue = occupierFraction;
+            MinAngle = 360 * startValue;
+            MaxAngle = 360 * targetValue;
+            print($" MinAngle = {MinAngle} MaxAngle = {MaxAngle}  res =  {MinAngle + (MaxAngle - MinAngle) / 2}");
+            SetCoordinatesLabel((MinAngle + ((MaxAngle - MinAngle) / 2)) +90);
+
+        }
+        
+             
+
+        if (sectionParent)
+        {
+            sectionParent.ArrangeIcon(sizeOneSection, targetValue);
+        }
+
+
+    }
+    //private void Update()
+    //{
+    //    SetCoordinatesLabel((MinAngle + ((MaxAngle - MinAngle) / 2)) - adder);
+    //}
+    private void SetCoordinatesLabel(float Angle)
+    {
+
+        imageSection.transform.localPosition = GetCoordinatesLabel((float)Angle, 30);
+    }
+
+    private float GetRadiusLabel(float x, float y)
+    {
+        return Mathf.Sqrt(x * x + y * y);
+    }
+    internal bool IsSectionActive()
+    {
+        return Events.indexesActived.Contains(indexSection);
+
     }
 
 }
