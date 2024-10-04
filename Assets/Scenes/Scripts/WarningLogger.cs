@@ -9,7 +9,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WarningLogger : DashboardAnimator,IAuthorizationListener
+[RequireComponent(typeof(ScenesLoader))]
+public class WarningLogger : DashboardAnimator, IAuthorizationListener
 {
     //переменные
 
@@ -21,6 +22,7 @@ public class WarningLogger : DashboardAnimator,IAuthorizationListener
     [SerializeField] private InputField ? mailField, passField, secondPassField;
     public Button actionButton;
     [SerializeField] private LocalizationManager localizationManager;
+    private ScenesLoader sceneLoader;
     // свойства
     string IAuthorizationListener.mail => mail;
 
@@ -30,6 +32,7 @@ public class WarningLogger : DashboardAnimator,IAuthorizationListener
 
     private void Awake()
     {
+        sceneLoader = GetComponent<ScenesLoader>();
         warningTextDict = warningTextList.Where(selector => selector != null).ToDictionary(k=>k.name.Substring(k.name.Length-4),e=>e);
         // ключи: Mail, ass1, ass2
      
@@ -195,7 +198,7 @@ public class WarningLogger : DashboardAnimator,IAuthorizationListener
 
     public void OnAuthorizationFailed(AggregateException error)
     {
-        DisplayGrowingLoadingPanel(error.Message);
+        DisplayGrowingLoadingPanel(error.Message+ " Check mail and password!");
         localizationManager?.OnResponseChanged?.Invoke();
 
     }
@@ -206,10 +209,12 @@ public class WarningLogger : DashboardAnimator,IAuthorizationListener
         localizationManager?.OnResponseChanged?.Invoke();
     }
 
-    public void OnLogInSucceeded()
+    public async  void OnLogInSucceeded()
     {
-        DisplayGrowingLoadingPanel(string.Format($"Вы успешно зашли в аккаунт!"));
         localizationManager?.OnResponseChanged?.Invoke();
+        await DisplayGrowingLoadingPanel(string.Format($"Вы успешно зашли в аккаунт!"),2f);
+        sceneLoader.LoadScene();
+       
     }
 
 

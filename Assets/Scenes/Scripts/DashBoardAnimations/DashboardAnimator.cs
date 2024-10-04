@@ -59,14 +59,14 @@ public class DashboardAnimator : MonoBehaviour
 /// Появлется окно загрузки
 /// </summary>
 /// <param name="information">предупреждение выводимое перед загрузкой</param>
-    protected async void DisplayGrowingLoadingPanel(string information)
+    protected async Task DisplayGrowingLoadingPanel(string information,float interval = 5)
     {
         dashboardLoading.gameObject.SetActive(true);
         TMP_Text text = dashboardLoading.GetComponentInChildren<TMP_Text>();
         text.text = information;
         await DOTween.Sequence().Append(dashboardLoading.DOScale(Vector3.zero,0))
             .Append(dashboardLoading.DOScale(Vector3.one, 1))
-            .AppendInterval(5f).Play().AsyncWaitForCompletion();
+            .AppendInterval(interval).Play().AsyncWaitForCompletion();
 
     }
 

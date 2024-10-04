@@ -3053,6 +3053,7 @@ GameObject:
   m_Component:
   - component: {fileID: 924843344}
   - component: {fileID: 924843345}
+  - component: {fileID: 924843346}
   m_Layer: 0
   m_Name: RegisterWindow
   m_TagString: AuthListener
@@ -3108,6 +3109,22 @@ MonoBehaviour:
   secondPassField: {fileID: 78855885}
   actionButton: {fileID: 1131729238754798119}
   localizationManager: {fileID: 1828614191}
+--- !u!114 &924843346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924843343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c54e5da46bd4d945ba4e552e5c9c3f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dir: 1
+  targetPosition: {fileID: 0}
+  dashboardLoading: {fileID: 0}
+  sceneName: 
 --- !u!1 &1066968224
 GameObject:
   m_ObjectHideFlags: 0
@@ -5302,6 +5319,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1769693951}
   - component: {fileID: 1769693952}
+  - component: {fileID: 1769693953}
   m_Layer: 0
   m_Name: LoginWindow
   m_TagString: AuthListener
@@ -5356,6 +5374,22 @@ MonoBehaviour:
   secondPassField: {fileID: 0}
   actionButton: {fileID: 1131729239285787829}
   localizationManager: {fileID: 1828614191}
+--- !u!114 &1769693953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769693950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c54e5da46bd4d945ba4e552e5c9c3f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dir: 1
+  targetPosition: {fileID: 0}
+  dashboardLoading: {fileID: 0}
+  sceneName: MainMenuAndroid
 --- !u!1 &1774117479
 GameObject:
   m_ObjectHideFlags: 0
@@ -6093,6 +6127,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: FbAuthorization, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

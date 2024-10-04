@@ -132,7 +132,7 @@ public class FbAuthorization : MonoBehaviour
 
             if (logIn.Exception != null)
             {
-                warningLoggerLogInListener.OnAuthorizationFailed(new AggregateException(logIn.Exception.Flatten().Message));
+                warningLoggerLogInListener.OnAuthorizationFailed(new AggregateException("Pass or mail is not correct: " + logIn.Exception.Flatten().Message));
                 Debug.Log(logIn.Exception.Flatten().Message);
             }
 

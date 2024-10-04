@@ -55,7 +55,13 @@ public class ButtonController : MonoBehaviour
         notification = textWarning?.transform.parent;
         SetDefaultName();
         TryToPlay();
-         
+
+        buttonPlay = GameObject.FindGameObjectWithTag("ButtonPlay").GetComponent<Button>();
+
+        buttonPlay.interactable = false;
+
+        Events.indexesActived.Clear();
+
     }
 
    
@@ -87,7 +93,7 @@ public class ButtonController : MonoBehaviour
         }
         TryToPlay();
     }
-    public  async void LoadScene(string scene)
+    public async void LoadScene(string scene)
     {
         Events.MusicClick.Invoke(clipButtonPressed);
 
@@ -96,16 +102,6 @@ public class ButtonController : MonoBehaviour
         while (AsyncOperation.isDone == false)
         {
             await Task.Yield();
-        }
-        
-        if (scene.StartsWith("MainMenu"))
-        {
-            
-            buttonPlay = GameObject.FindGameObjectWithTag("ButtonPlay").GetComponent<Button>();
-
-            buttonPlay.interactable = false;
-
-            Events.indexesActived.Clear();
         }
 
     }
