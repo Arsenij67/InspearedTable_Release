@@ -100,10 +100,6 @@ public class Section : MonoBehaviour
 
 
     }
-    //private void Update()
-    //{
-    //    SetCoordinatesLabel((MinAngle + ((MaxAngle - MinAngle) / 2)) - adder);
-    //}
     private void SetCoordinatesLabel(float Angle)
     {
 
