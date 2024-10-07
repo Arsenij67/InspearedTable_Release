@@ -198,7 +198,7 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
 
     public void OnAuthorizationFailed(AggregateException error)
     {
-        DisplayGrowingLoadingPanel(error.Message+ " Check mail and password!");
+        DisplayGrowingLoadingPanel(error.Message);
         localizationManager?.OnResponseChanged?.Invoke();
 
     }

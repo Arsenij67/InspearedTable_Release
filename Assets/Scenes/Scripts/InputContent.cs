@@ -1,11 +1,13 @@
 using DG.Tweening;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public abstract  class Content : InputContent
 {
- 
 
+
+    public abstract string Name { get; }
     public  TMP_Text Info { get; set; }
 
     public string[] contents;
@@ -20,6 +22,7 @@ public abstract  class Content : InputContent
 public class Motivation : Content//2
 
 {
+    public override string Name => "Motivation";
     private static int NumberCont = 15;
     public override int Price { get; set; } = 1500;
     public override TextAsset File { get; set; }
@@ -68,6 +71,8 @@ public class Joke : Content//1
  
     public override int Price { get; set; } = 2000;
 
+    public override string Name => "Joke";
+
     public  Joke()
     {
         File = (TextAsset)Resources.Load(path: "Content/Jokes");
@@ -104,6 +109,8 @@ public class Joke : Content//1
  
 public class Story : Content //0
 {
+    public override string Name => "Story";
+
     private static int NumberCont = 0;
     public override int Price { get; set; } = 3000;
     public override TextAsset File { get; set; }
@@ -179,18 +186,26 @@ public class InputContent : MonoBehaviour
 
        short index = board.GetCotentType();
 
+        content = GetContentByIndex(index);
+    }
+   
+    public static Content GetContentByIndex(short index)
+
+    {
         switch (index)
         {
 
             case 0:
-                content = new Story();
-                break;
+                return new Story();
+          
             case 1:
-                content = new Joke();
-                break;
+                return  new Joke();
+             
             case 2:
-                content = new Motivation();
-                break;
+                return new Motivation();
+
+            default:
+                return null;
         }
 
     }

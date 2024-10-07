@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using System.Threading.Tasks;
+using System.Linq;
 
 [RequireComponent(typeof(Slider))]
 public class Section : MonoBehaviour
@@ -17,7 +18,7 @@ public class Section : MonoBehaviour
 
     private float MaxAngle = 0, MinAngle = 0;
 
-    [SerializeField] private byte indexSection;
+    public  byte indexSection;
     public void Awake()
     {
 
@@ -69,7 +70,7 @@ public class Section : MonoBehaviour
         print(MinAngle + " = MinAngle " + MaxAngle + " = MaxAngle " + name + " True or False: "+ (endAngle > MinAngle && endAngle < MaxAngle)+ " End engle = "+ endAngle);
         return endAngle > MinAngle && endAngle < MaxAngle;
     }
-    private Vector2 GetCoordinatesLabel(float Angle, float radius = 1)
+    private Vector2 GetCoordinatesLabel(float Angle, float radius = 10)
     {
         float x = Mathf.Cos((Angle) * Mathf.Deg2Rad) * radius;
         float y = Mathf.Sin((Angle) * Mathf.Deg2Rad) * radius;
@@ -87,6 +88,11 @@ public class Section : MonoBehaviour
             MinAngle = 360 * startValue;
             MaxAngle = 360 * targetValue;
             print($" MinAngle = {MinAngle} MaxAngle = {MaxAngle}  res =  {MinAngle + (MaxAngle - MinAngle) / 2}");
+            if (Events.indexesActived.Count() <= 1)
+            {
+                SetCoordinatesLabel(0);
+            }
+
             SetCoordinatesLabel((MinAngle + ((MaxAngle - MinAngle) / 2)) +90);
 
         }
@@ -98,12 +104,12 @@ public class Section : MonoBehaviour
             sectionParent.ArrangeIcon(sizeOneSection, targetValue);
         }
 
-
+       
     }
     private void SetCoordinatesLabel(float Angle)
     {
 
-        imageSection.transform.localPosition = GetCoordinatesLabel((float)Angle, 30);
+        imageSection.transform.localPosition = GetCoordinatesLabel((float)Angle, 100);
     }
 
     private float GetRadiusLabel(float x, float y)

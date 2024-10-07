@@ -3,16 +3,21 @@ using System.Collections;
 using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 
-public class WheelFortune : MonoBehaviour
+public class WheelFortune : DashboardAnimator
 {
     [SerializeField] private Section mainSection;
     private byte countSections = 0;
     private Section lastSection;
-   public void RollWhell()
+   public void RollWheel()
     {
-        gameObject.SetActive(true);
         StartCoroutine(InitWheelFortune());  
      
+    }
+
+    public async void OpenRollWheel()
+    {
+        await base.DisplayGrowingLoadingPanel("",2);
+        RollWheel();
     }
 
     private IEnumerator InitWheelFortune()
@@ -20,11 +25,13 @@ public class WheelFortune : MonoBehaviour
        
         int randomAngle = 3600+Random.RandomRange(360,720);
         GetLastSection(mainSection, out countSections, out lastSection);
-        print("Activ " +(float) 1/countSections);
         lastSection.ArrangeIcon((float)1 / countSections);
         yield return StartCoroutine(lastSection.DrawSection(0.3f, 0,(float)1/countSections)); // ждем конца отрисовки колеса
         yield return StartCoroutine(RotateWheel(randomAngle, 10)); // крутим колесо и ждём конца
-        print(CalculateDroppedSelection(randomAngle).name+"  rand Angle"+ randomAngle);
+        Section currentsection = CalculateDroppedSelection(randomAngle);
+        Content c = InputContent.GetContentByIndex(currentsection.indexSection);
+        print(c.name);
+
     }
 
     private Section CalculateDroppedSelection(int randomAngle)

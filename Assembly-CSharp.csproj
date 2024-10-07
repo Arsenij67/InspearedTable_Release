@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scenes\Scripts\ButtonController.cs" />
     <Compile Include="Assets\Scenes\Scripts\Save\SaveSystemData.cs" />
     <Compile Include="Assets\Scenes\Scripts\WarningLogger.cs" />
+    <Compile Include="Assets\Scenes\Scripts\ScenesLoader.cs" />
     <Compile Include="Assets\Scenes\Scripts\ParticlePopup.cs" />
     <Compile Include="Assets\Scenes\Scripts\LocalizationData.cs" />
     <Compile Include="Assets\Scenes\Scripts\LocalizationManager.cs" />
@@ -83,7 +84,6 @@
     <Compile Include="Assets\Scenes\Scripts\TranslateMode.cs" />
     <Compile Include="Assets\Scenes\Scripts\Board.cs" />
     <Compile Include="Assets\Scenes\Scripts\FBDatabase\Fb.cs" />
-    <Compile Include="Assets\Scenes\Scripts\ScenesLoader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
