@@ -15,7 +15,8 @@ using TMPro;
 
 public class ButtonController : MonoBehaviour
 {
-    private AudioSource AudioSource;  
+    //переменные
+    private AudioSource AudioSource;
 
     [SerializeField] private AudioClip clipButtonPressed;
 
@@ -23,9 +24,9 @@ public class ButtonController : MonoBehaviour
 
     [SerializeField] private AudioClip santaLaugth;
 
-    public Button buttonPlay;   
+    public Button buttonPlay;
 
-    public List<Toggle> toggles = new List<Toggle>(3); 
+    public List<Toggle> toggles = new List<Toggle>(3);
 
     public TMP_InputField inputTextName;
 
@@ -35,6 +36,12 @@ public class ButtonController : MonoBehaviour
 
     private Transform notification;
 
+    public enum sceneName
+    {
+        Authorization,
+        GameAndroid,
+        MainMenuAndroid,
+    }
 
     private void Awake()
     {
@@ -93,11 +100,10 @@ public class ButtonController : MonoBehaviour
         }
         TryToPlay();
     }
-    public async void LoadScene(string scene)
+    public static async void LoadScene(sceneName sceneName)
     {
-        Events.MusicClick.Invoke(clipButtonPressed);
 
-        AsyncOperation AsyncOperation = SceneManager.LoadSceneAsync(scene);
+        AsyncOperation AsyncOperation = SceneManager.LoadSceneAsync(sceneName.GameAndroid.ToString());
 
         while (AsyncOperation.isDone == false)
         {

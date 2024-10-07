@@ -2157,7 +2157,7 @@ GameObject:
   - component: {fileID: 534166578}
   - component: {fileID: 534166577}
   m_Layer: 5
-  m_Name: OutButton
+  m_Name: LeaderBoardButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12313,7 +12313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipButtonPressed: {fileID: 8300000, guid: 1b22feb51382a5042be95ccd7d08c703, type: 3}
   localization: {fileID: 184499907}
-  santaLaugth: {fileID: 0}
+  santaLaugth: {fileID: 8300000, guid: 6479838818d4bb44db1dbb85b1782477, type: 3}
   buttonPlay: {fileID: 1119918643}
   toggles:
   - {fileID: 796909363}

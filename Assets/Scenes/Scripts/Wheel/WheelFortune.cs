@@ -26,16 +26,16 @@ public class WheelFortune : DashboardAnimator
     private IEnumerator InitWheelFortune()
     {
        
-        int randomAngle = 3600+Random.RandomRange(360,720);
+        int randomAngle = 3600+ Random.RandomRange(360,720);
         GetLastSection(mainSection, out countSections, out lastSection);
         lastSection.ArrangeIcon((float)1 / countSections);
         yield return StartCoroutine(lastSection.DrawSection(0.3f, 0,(float)1/countSections)); // ждем конца отрисовки колеса
         yield return StartCoroutine(RotateWheel(randomAngle, 10)); // крутим колесо и ждём конца
         Section currentsection = CalculateDroppedSelection(randomAngle);
         WheelPanelResult panelResult = (resultPopUp as WheelPanelResult);
-        panelResult.OutputResult(currentsection);
         panelResult.SetDroppedImage(currentsection.ImageSection);
-
+        yield return StartCoroutine(panelResult.OutputResult(currentsection));
+        ButtonController.LoadScene(ButtonController.sceneName.GameAndroid);
     }
 
     private Section CalculateDroppedSelection(int randomAngle)

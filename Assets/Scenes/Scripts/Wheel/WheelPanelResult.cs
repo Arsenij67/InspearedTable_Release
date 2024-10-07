@@ -1,5 +1,6 @@
 using UnityEngine.UI;
 using UnityEngine;
+using System.Collections;
 
 public class WheelPanelResult : DashboardAnimator
 {
@@ -14,12 +15,13 @@ public class WheelPanelResult : DashboardAnimator
         imagePanel.sprite = img.sprite;
     
     }
-    internal async void OutputResult(Section droppedSection)
+    internal IEnumerator OutputResult(Section droppedSection)
     {
         Content currentCont = InputContent.GetContentByIndex(droppedSection.indexSection);
-        await DisplayGrowingLoadingPanel(" Поздравляю! У вас выпало: " + currentCont.Name,1);
+        yield return  DisplayGrowingLoadingPanel(" Поздравляю! У вас выпало: " + currentCont.Name,2);
         confettiSystem.Play();
         Events.MusicClick.Invoke(clipResult);
+        yield return new WaitForSeconds(3f);
 
     }
 }
