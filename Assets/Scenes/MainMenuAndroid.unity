@@ -14731,3 +14731,4 @@ MonoBehaviour:
   dashboardLoading: {fileID: 4159454000177687179}
   imagePanel: {fileID: 618392298192566758}
   confettiSystem: {fileID: 1327000409}
+  clipResult: {fileID: 8300000, guid: 02197c4454441e44eab861d405ae0bd9, type: 3}
