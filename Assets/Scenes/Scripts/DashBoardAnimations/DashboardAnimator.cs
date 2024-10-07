@@ -11,6 +11,7 @@ public class DashboardAnimator : MonoBehaviour
 
     [SerializeField] private Transform targetPosition = null;
     [SerializeField] private Transform dashboardLoading;
+
     internal async Task MoveQueuedAnimationBoard(Transform[] elements, float speed = 0.6f)
     {
         if (Events.AllTasks != null)

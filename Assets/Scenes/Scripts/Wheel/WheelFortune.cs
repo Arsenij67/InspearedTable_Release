@@ -8,16 +8,19 @@ public class WheelFortune : DashboardAnimator
     [SerializeField] private Section mainSection;
     private byte countSections = 0;
     private Section lastSection;
+    [SerializeField] private DashboardAnimator resultPopUp; // после колеса фортуны вылезает окошко с результатом 
    public void RollWheel()
     {
+        gameObject.SetActive(true);
         StartCoroutine(InitWheelFortune());  
      
     }
 
     public async void OpenRollWheel()
     {
-        await base.DisplayGrowingLoadingPanel("",2);
         RollWheel();
+        await base.DisplayGrowingLoadingPanel("",2);
+        
     }
 
     private IEnumerator InitWheelFortune()
@@ -29,8 +32,9 @@ public class WheelFortune : DashboardAnimator
         yield return StartCoroutine(lastSection.DrawSection(0.3f, 0,(float)1/countSections)); // ждем конца отрисовки колеса
         yield return StartCoroutine(RotateWheel(randomAngle, 10)); // крутим колесо и ждём конца
         Section currentsection = CalculateDroppedSelection(randomAngle);
-        Content c = InputContent.GetContentByIndex(currentsection.indexSection);
-        print(c.name);
+        WheelPanelResult panelResult = (resultPopUp as WheelPanelResult);
+        panelResult.OutputResult(currentsection);
+        panelResult.SetDroppedImage(currentsection.ImageSection);
 
     }
 
@@ -87,6 +91,5 @@ public class WheelFortune : DashboardAnimator
        yield return rotatingTween.Play().WaitForCompletion();
     }
 
-
-
+   
 }

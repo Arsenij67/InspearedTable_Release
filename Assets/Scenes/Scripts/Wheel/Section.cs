@@ -8,17 +8,21 @@ using System.Linq;
 [RequireComponent(typeof(Slider))]
 public class Section : MonoBehaviour
 {
+    // переменные
     [SerializeField] private Image imageSection;// изображение для отображения секции
-
 
     private Slider sectionSlider;
 
     private Section ? sectionParent;
+
     public float adder = 0;
 
     private float MaxAngle = 0, MinAngle = 0;
 
     public  byte indexSection;
+
+    // свойства
+    internal Image ImageSection => imageSection;
     public void Awake()
     {
 
@@ -91,14 +95,14 @@ public class Section : MonoBehaviour
             if (Events.indexesActived.Count() <= 1)
             {
                 SetCoordinatesLabel(0);
+                return;
             }
 
-            SetCoordinatesLabel((MinAngle + ((MaxAngle - MinAngle) / 2)) +90);
+            SetCoordinatesLabel((MinAngle + ((MaxAngle - MinAngle) / 2)) +90,100);
 
         }
         
              
-
         if (sectionParent)
         {
             sectionParent.ArrangeIcon(sizeOneSection, targetValue);
@@ -106,10 +110,10 @@ public class Section : MonoBehaviour
 
        
     }
-    private void SetCoordinatesLabel(float Angle)
+    private void SetCoordinatesLabel(float Angle, float radius = 0)
     {
 
-        imageSection.transform.localPosition = GetCoordinatesLabel((float)Angle, 100);
+        imageSection.transform.localPosition = GetCoordinatesLabel((float)Angle, radius);
     }
 
     private float GetRadiusLabel(float x, float y)
@@ -121,5 +125,6 @@ public class Section : MonoBehaviour
         return Events.indexesActived.Contains(indexSection);
 
     }
+
 
 }
