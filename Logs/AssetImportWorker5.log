@@ -1713,3 +1713,61 @@ AssetImportParameters requested are different than current active one (requested
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 161907.044617 seconds.
+  path: Assets/Scenes/Graphics/Lana Studio/Hyper Casual FX/Materials/Circles_Additive.mat
+  artifactKey: Guid(b3ed9e83085d95542b762dd15b306e7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Graphics/Lana Studio/Hyper Casual FX/Materials/Circles_Additive.mat using Guid(b3ed9e83085d95542b762dd15b306e7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd067cdbd88c38f11e974d00520eed49a') in 0.135482 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Scenes/Graphics/Lana Studio/Hyper Casual FX/Materials/Square.mat
+  artifactKey: Guid(4b527b1687387864c8998d612b2cc8d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Graphics/Lana Studio/Hyper Casual FX/Materials/Square.mat using Guid(4b527b1687387864c8998d612b2cc8d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '11b56d0cb1ed3687d16a41b50e1020cc') in 0.024152 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.661415 seconds.
+  path: Assets/Scenes/Graphics/Lana Studio/Hyper Casual FX/Models/Confetti.fbx
+  artifactKey: Guid(420e62b074ab91a47a0e91d82f0df470) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Graphics/Lana Studio/Hyper Casual FX/Models/Confetti.fbx using Guid(420e62b074ab91a47a0e91d82f0df470) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '83aa2e5db217533010533f7e1860c02c') in 0.297034 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2.950376 seconds.
+  path: Assets/Scenes/Graphics/Lana Studio/Hyper Casual FX/Prefabs/Area/Area_fire_red.prefab
+  artifactKey: Guid(af0d06ad2f476cc43be23ac0f464a510) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Graphics/Lana Studio/Hyper Casual FX/Prefabs/Area/Area_fire_red.prefab using Guid(af0d06ad2f476cc43be23ac0f464a510) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b2d4c45fe160aa80182881ee3f3fd64a') in 0.031726 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Scenes/Graphics/Lana Studio/Hyper Casual FX/Prefabs/Area/Area_heal_green.prefab
+  artifactKey: Guid(690951f4781b19649bc5c7892414ff37) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Graphics/Lana Studio/Hyper Casual FX/Prefabs/Area/Area_heal_green.prefab using Guid(690951f4781b19649bc5c7892414ff37) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7752c4243fb459151e7a513e98646652') in 0.026503 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2.114602 seconds.
+  path: Assets/Scenes/Graphics/Lana Studio/Hyper Casual FX/Prefabs/Flash/Flash_ellow.prefab
+  artifactKey: Guid(aa122f157eac1c8428ae5db8a315ccd8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Graphics/Lana Studio/Hyper Casual FX/Prefabs/Flash/Flash_ellow.prefab using Guid(aa122f157eac1c8428ae5db8a315ccd8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77cbea96a727694c9271f818d5919ce4') in 0.014219 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Scenes/Graphics/Lana Studio/Hyper Casual FX/Prefabs/Flash/Flash_magic_ellow_blue.prefab
+  artifactKey: Guid(895c6d094b6b213418cddcfb520298e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Graphics/Lana Studio/Hyper Casual FX/Prefabs/Flash/Flash_magic_ellow_blue.prefab using Guid(895c6d094b6b213418cddcfb520298e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5c341bbdde6908bb435d3eb38ecbb326') in 0.012127 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Scenes/Graphics/Lana Studio/Hyper Casual FX/Prefabs/Flash/Flash_star_ellow_green.prefab
+  artifactKey: Guid(052d5f6cf7d3ebc44bba49fbe653f9a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Graphics/Lana Studio/Hyper Casual FX/Prefabs/Flash/Flash_star_ellow_green.prefab using Guid(052d5f6cf7d3ebc44bba49fbe653f9a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b266ab92c3bde13ca25ea552555be3f8') in 0.013234 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Scenes/Graphics/Lana Studio/Hyper Casual FX/Prefabs/Flash/Flash_magic_blue_pink.prefab
+  artifactKey: Guid(064c608c3a271334299e1fa22913842f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Graphics/Lana Studio/Hyper Casual FX/Prefabs/Flash/Flash_magic_blue_pink.prefab using Guid(064c608c3a271334299e1fa22913842f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b83e831a2464ad763978ceccaed7dfe4') in 0.014279 seconds 
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
