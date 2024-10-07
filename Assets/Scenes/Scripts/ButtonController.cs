@@ -63,10 +63,10 @@ public class ButtonController : MonoBehaviour
         SetDefaultName();
         TryToPlay();
 
-        buttonPlay = GameObject.FindGameObjectWithTag("ButtonPlay").GetComponent<Button>();
-
-        buttonPlay.interactable = false;
-
+        if (buttonPlay)
+        {
+            buttonPlay.interactable = false;
+        }
         Events.indexesActived.Clear();
 
     }
@@ -103,7 +103,7 @@ public class ButtonController : MonoBehaviour
     public static async void LoadScene(sceneName sceneName)
     {
 
-        AsyncOperation AsyncOperation = SceneManager.LoadSceneAsync(sceneName.GameAndroid.ToString());
+        AsyncOperation AsyncOperation = SceneManager.LoadSceneAsync(sceneName.ToString());
 
         while (AsyncOperation.isDone == false)
         {
@@ -112,14 +112,12 @@ public class ButtonController : MonoBehaviour
 
     }
 
-    private  void PlayMusicGame(AudioClip clip)
+    private void PlayMusicGame(AudioClip clip)
     {
         AudioSource.clip = clip;
         AudioSource.Play();
         
     }
-
-
     public async void InputName()
     {
 
@@ -206,7 +204,11 @@ public class ButtonController : MonoBehaviour
 
         }
     }
-    
+
+    public void GoToMainMenu()
+    {
+        LoadScene(sceneName.MainMenuAndroid);
+    }
 }
 
 

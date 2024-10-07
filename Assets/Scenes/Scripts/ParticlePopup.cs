@@ -56,15 +56,18 @@ public class ParticlePopup : MonoBehaviour
 
     public async void Fly(float lenght = 200f,float duration=1.5f)
     {
-        Text ScoreText = transform?.GetChild(0).GetComponent<Text>();
-        float StartPosition = transform.position.y;
-        float EndPosition = transform.position.y + lenght;
+        if (this)
+        {
+            Text ScoreText = transform?.GetChild(0).GetComponent<Text>();
+            float StartPosition = transform.position.y;
+            float EndPosition = transform.position.y + lenght;
 
-        Tween SequenceFly = DOTween.Sequence().Append(transform.DOLocalMoveY(EndPosition, 1.5f)).Append(ScoreText.DOFade(0, 2f));
+            Tween SequenceFly = DOTween.Sequence().Append(transform.DOLocalMoveY(EndPosition, 1.5f)).Append(ScoreText.DOFade(0, 2f));
 
-        await SequenceFly.AsyncWaitForCompletion();
+            await SequenceFly.AsyncWaitForCompletion();
 
-        transform.position = new Vector3(transform.position.x,StartPosition,transform.position.z);
+            transform.position = new Vector3(transform.position.x, StartPosition, transform.position.z);
+        }
     
     }// для текста
 }
