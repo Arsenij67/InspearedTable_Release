@@ -77,6 +77,7 @@
     <Compile Include="Assets\Scenes\Scripts\Item.cs" />
     <Compile Include="Assets\Scenes\Scripts\LoadingBoard.cs" />
     <Compile Include="Assets\Scenes\Scripts\Wheel\WheelFortune.cs" />
+    <Compile Include="Assets\Scenes\Scripts\Wheel\WheelPanelResult.cs" />
     <Compile Include="Assets\Scenes\Scripts\Interfaces\IAuthorizationListener.cs" />
     <Compile Include="Assets\Scenes\Scripts\ItemDataBase.cs" />
     <Compile Include="Assets\Scenes\Scripts\InputContent.cs" />
@@ -84,7 +85,6 @@
     <Compile Include="Assets\Scenes\Scripts\TranslateMode.cs" />
     <Compile Include="Assets\Scenes\Scripts\Board.cs" />
     <Compile Include="Assets\Scenes\Scripts\FBDatabase\Fb.cs" />
-    <Compile Include="Assets\Scenes\Scripts\Wheel\WheelPanelResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
