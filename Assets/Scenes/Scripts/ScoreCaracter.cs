@@ -49,11 +49,10 @@ public sealed class ScoreCaracter : MonoBehaviour
     }
     private ScoreCaracter()
     {
-        
+        Instance = this;
     }
     private async void Start()
     {
-        Instance = this;
         fb = FindObjectOfType<Fb>();
         await fb.InitInfoTask; // ждем конец инициализации
         MaxScore = Convert.ToInt32(fb.dataSnapshot.Child(SaveTypesFactory.deviceSaveManagerString.GetElement("Name") as string).Child("Record").Value);

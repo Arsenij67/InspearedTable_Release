@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 public abstract  class Content : InputContent
@@ -17,6 +18,13 @@ public abstract  class Content : InputContent
     public abstract void ShowContent();
 
     public Image content;
+
+    internal void SetTitleBoard(ref TMP_Text title)
+    {
+        title.text = Name;
+        print("ƒ¿¿¿¿¿");
+    }
+
 
 } 
 public class Motivation : Content//2
@@ -167,12 +175,13 @@ public class InputContent : MonoBehaviour
 
     private Board board;
 
+    public Content droppedContent;
     private void Awake()
     {
         InitializeContent();
     }
     private Content content = null;
-    public  async void InitializeContent()
+    public void InitializeContent()
     {
         content = null;
 
@@ -182,11 +191,9 @@ public class InputContent : MonoBehaviour
 
         BoardContent.SetActive(true); // ‰ÓÒÍ‡
 
+        content = GetContentByIndex(Events.DroppedIndex);
 
-
-       short index = board.GetCotentType();
-
-        content = GetContentByIndex(index);
+        content.SetTitleBoard(ref board.ContentType);
     }
    
     public static Content GetContentByIndex(short index)

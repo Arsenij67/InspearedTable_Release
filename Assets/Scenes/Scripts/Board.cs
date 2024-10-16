@@ -10,7 +10,8 @@ using UnityEngine.UI;
 using Unity.VisualScripting;
 
 public sealed class Board : MonoBehaviour
-{   public static Board Instance { get; private set; }
+{   
+    public static Board Instance { get; private set; }
     
     public Row[] rows;
 
@@ -32,13 +33,10 @@ public sealed class Board : MonoBehaviour
 
     [SerializeField] private AudioClip SantaLaught;
 
-    public Button Button;
-    private short indexShow
-    { get
-        { 
-            return Events.indexesActived[UnityEngine.Random.Range(0, Events.indexesActived.Count)];// выбираем 1 индекс случайно из выбранных нами
-        }
-    }
+    public Button ButtonContent;
+    private short IndexShow => Events.DroppedIndex;// выбираем 1 индекс случайно из выбранных нами
+       
+    
 
     private Transform Item_Decoration;
     private Fb fb;
@@ -56,6 +54,7 @@ public sealed class Board : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
 
         Item_Decoration = GameObject.Find("SelectedItem").GetComponent<Transform>();
+   
     }
     private async void MoveDecorate(Title tile)
     {
@@ -358,36 +357,16 @@ public sealed class Board : MonoBehaviour
 
 
     }
-    public  short GetCotentType()
-    {
- 
-        switch (indexShow)
-        {
-            case 0:
-                ContentType.text = "Fabe";
-                break;
-            case 1:
-                ContentType.text = "Joke";
-                break;
-
-            case 2:
-                ContentType.text = "Motivation";
-                break;
-
-        }
-        return indexShow;
-
-
-    }
-   private async Task CheckScore()
+  
+   private async void CheckScore()
     {
         while (true)
         {
-            if (ScoreCaracter.Instance.Score >= 3000f &&indexShow == 0) Button.interactable = true;
+            if (ScoreCaracter.Instance.Score >= 3000f && IndexShow == 0) ButtonContent.interactable = true;
 
-            else if (ScoreCaracter.Instance.Score >= 2000f && indexShow== 1) Button.interactable = true;
+            else if (ScoreCaracter.Instance.Score >= 2000f && IndexShow== 1) ButtonContent.interactable = true;
 
-            else if (ScoreCaracter.Instance.Score >= 1500f && indexShow == 2) Button.interactable = true;
+            else if (ScoreCaracter.Instance.Score >= 1500f && IndexShow == 2) ButtonContent.interactable = true;
 
             await Task.Delay(1000);
  

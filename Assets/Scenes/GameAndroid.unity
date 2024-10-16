@@ -394,6 +394,7 @@ MonoBehaviour:
   ClickButton: {fileID: 8300000, guid: 1b22feb51382a5042be95ccd7d08c703, type: 3}
   BoardContent: {fileID: 1668176345}
   ButtonBoardContent: {fileID: 689410297}
+  droppedContent: {fileID: 0}
 --- !u!1 &56315942
 GameObject:
   m_ObjectHideFlags: 0
@@ -2642,18 +2643,6 @@ MonoBehaviour:
       - m_Target: {fileID: 24190138}
         m_TargetAssemblyTypeName: InputContent, Assembly-CSharp
         m_MethodName: ShowContent
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LocaledText, Assembly-CSharp
-        m_MethodName: UpdateText
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5382,7 +5371,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Motivation
+  m_text: ________________________________
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8161,7 +8150,7 @@ MonoBehaviour:
   ContentType: {fileID: 1147231909}
   ButtonClick: {fileID: 8300000, guid: 1b22feb51382a5042be95ccd7d08c703, type: 3}
   SantaLaught: {fileID: 8300000, guid: 6479838818d4bb44db1dbb85b1782477, type: 3}
-  Button: {fileID: 689410297}
+  ButtonContent: {fileID: 689410297}
   TextScore: {fileID: 3237196779871615055, guid: a3b6e19f884bf1645bb00d226b323bad, type: 3}
   ParcileExpload: {fileID: 198357973136645638, guid: 67a684e320da6e7439421a07e3fa265c, type: 3}
 --- !u!82 &1648348822

@@ -18,6 +18,8 @@ public class WheelPanelResult : DashboardAnimator
     internal IEnumerator OutputResult(Section droppedSection)
     {
         Content currentCont = InputContent.GetContentByIndex(droppedSection.indexSection);
+        Events.DroppedIndex = droppedSection.indexSection;
+        Debug.Log(Events.DroppedIndex);
         yield return  DisplayGrowingLoadingPanel(" Поздравляю! У вас выпало: " + currentCont.Name,2);
         confettiSystem.Play();
         Events.MusicClick.Invoke(clipResult);

@@ -222,6 +222,8 @@ public static class Events
 
     public static List<short> indexesActived = new List<short>();
 
+    public static short DroppedIndex;
+
     [Obsolete]
     public static IEnumerator ChechInternetConnection(Action<bool> connect)
     {
