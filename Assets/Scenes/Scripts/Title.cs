@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
-
+using DG.Tweening;
+using UnityEditor;
+using Unity.VisualScripting;
 
 public sealed class Title:MonoBehaviour
 {
@@ -57,6 +59,9 @@ public sealed class Title:MonoBehaviour
     
     }
 
+    private bool canMix = true;
+    internal bool CanMix => canMix;
+
 
     public Title Left => x > 0 ? Board.Instance.tiles[x - 1, y] : null; // свойства,хранящие своих соседей
     public Title Top => y > 0 ? Board.Instance.tiles[x, y - 1] : null;
@@ -74,14 +79,15 @@ public sealed class Title:MonoBehaviour
         };
 
 
-    private void Awake() { 
-
+    private void Awake() {
+        
+       
+ 
         AddListener();
+       
     }
 
     public void AddListener() => button.onClick.AddListener(() => Board.Instance.Select(this));
-
-
 
 
     public List<Title> GetConnectedTiles(List<Title> exclude = null)
@@ -113,6 +119,33 @@ public sealed class Title:MonoBehaviour
     
     }
 
- 
+    internal IEnumerator FallDown(float time)
+    {
+        // Ссылка на текущий объект
+        canMix = false;
+
+        Transform thisTransform = Instantiate(this.gameObject,this.transform).transform;
+        thisTransform.transform.localPosition = new Vector2(0,0);
+
+        // Создаем последовательность анимаций
+        DG.Tweening.Sequence sequenceFall = DOTween.Sequence();
+        DG.Tweening.Sequence sequenceRotate = DOTween.Sequence();
+
+        Vector3 endVector = new Vector3(transform.rotation.x, transform.rotation.y, 720);
+
+        sequenceFall.Append(thisTransform.DOMoveY(thisTransform.position.y - 10f, time)).Append(thisTransform.DOMoveY(thisTransform.position.y - 10f, time+time*0.25f).SetEase(Ease.OutQuad));
+
+        sequenceRotate.Append(thisTransform.DORotate(endVector, time, RotateMode.FastBeyond360));
+
+        sequenceRotate.Play();
+
+        yield return sequenceFall.Play().WaitForCompletion();
+
+        Destroy(thisTransform.gameObject);
+        canMix = true;
+
+
+    }
+
 
 }

@@ -22,7 +22,7 @@ public abstract  class Content : InputContent
     internal void SetTitleBoard(ref TMP_Text title)
     {
         title.text = Name;
-        print("ÄÀÀÀÀÀ");
+     
     }
 
 

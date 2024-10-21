@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.VisualScripting;
+using System.Collections;
 
 public sealed class Board : MonoBehaviour
 {   
@@ -35,7 +36,7 @@ public sealed class Board : MonoBehaviour
 
     public Button ButtonContent;
     private short IndexShow => Events.DroppedIndex;// выбираем 1 индекс случайно из выбранных нами
-       
+
     
 
     private Transform Item_Decoration;
@@ -204,18 +205,28 @@ public sealed class Board : MonoBehaviour
 
     public void MixTiles()
     {
-       
-        for (var y = 0; y < Height; y++)
-        {
-            for (var x = 0; x < With; x++)
+        
+
+            for (var y = 0; y < Height; y++)
             {
-                
+                for (var x = 0; x < With; x++)
+                {
                 var tile = rows[y].titles[x];
-                
-                tile.item = ItemDataBase.items[UnityEngine.Random.Range(0, ItemDataBase.items.Length)];
+                    if (tile.CanMix)
+                    {
+                    
+
+                        tile.item = ItemDataBase.items[UnityEngine.Random.Range(0, ItemDataBase.items.Length)];
+
+                        StartCoroutine(tile.FallDown(2));
+                    }
+                }
             }
-        }
+        
+
     }
+
+   
     private bool CanPop()
     {
 
