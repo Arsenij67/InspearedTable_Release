@@ -1,160 +1,160 @@
 [
-  {
+    {
 
-    "key": "Title",
-    "value": "Choose your faivorit content!"
-  },
-
-
-  {
-    "key": "Content1",
-    "value": "Fables        3000"
+        "key": "Title",
+        "value": "Choose your faivorit content!"
+    },
 
 
-
-  },
-  {
-
-    "key": "Exit",
-    "value": "Exit"
-
-  },
-  {
-    "key": "Content2",
-    "value": "Jokes          2000"
-
-  },
-  {
-    "key": "Content3",
-    "value": "Motivations 1500"
-  },
-  {
-    "key": "VK",
-    "value": "Developer contact"
-
-  },
-  {
-    "key": "Volume",
-    "value": "Music"
-
-  },
-
-  {
-    "key": "ButtonPlay",
-    "value": "Play"
-  },
-  {
-    "key": "Motivation",
-    "value": "Motivation!"
-  },
-  {
-    "key": "Fabe",
-    "value": "Fabe"
-  },
-  {
-    "key": "Joke",
-    "value": "Joke"
-  },
-  {
-    "key": "TitleGame",
-    "value": "You have got:"
-  },
-
-  {
-    "key": "Score",
-    "value": "Score:"
-  },
-  {
-    "key": "EnterName",
-    "value": "Enter name"
-
-
-  },
-  {
-
-    "key": "Name updated!",
-    "value": "Name updated!"
-
-  },
-  {
-
-    "key": "This name is taken!",
-    "value": "This name is taken!"
-
-  },
-  {
-
-    "key": "Fill in the name cell!",
-    "value": "Fill in the name cell!"
-
-  },
-  {
-    "key": "ExitGame",
-    "value": "Exit Game?"
-
-
-  },
-  {
-    "key": "Max Score",
-    "value": "Max Score"
-
-
-  },
-  {
-
-    "key": "No internet connection!",
-    "value": "No internet connection!"
-
-
-  },
-  {
-    "key": "ExitButton",
-    "value": "Exit Game"
-
-
-  },
-  {
-    "key": "Yes",
-    "value": "Sure"
-
-
-  },
-  {
-    "key": "No",
-    "value": "Noo!"
-
-
-  },
-  {
-
-    "key": "TableName",
-    "value": "Names"
-
-
-  },
-  {
+    {
+        "key": "Content1",
+        "value": "Fables        3000"
 
 
 
-    "key": "TableRecord",
-    "value": "Records"
+    },
+    {
+
+        "key": "Exit",
+        "value": "Exit"
+
+    },
+    {
+        "key": "Content2",
+        "value": "Jokes          2000"
+
+    },
+    {
+        "key": "Content3",
+        "value": "Motivations 1500"
+    },
+    {
+        "key": "VK",
+        "value": "Developer contact"
+
+    },
+    {
+        "key": "Volume",
+        "value": "Music"
+
+    },
+
+    {
+        "key": "ButtonPlay",
+        "value": "Play"
+    },
+    {
+        "key": "Motivation",
+        "value": "Motivation!"
+    },
+    {
+        "key": "Fabe",
+        "value": "Fabe"
+    },
+    {
+        "key": "Joke",
+        "value": "Joke"
+    },
+    {
+        "key": "TitleGame",
+        "value": "You have got:"
+    },
+
+    {
+        "key": "Score",
+        "value": "Score:"
+    },
+    {
+        "key": "EnterName",
+        "value": "Enter name"
+
+
+    },
+    {
+
+        "key": "Name updated!",
+        "value": "Name updated!"
+
+    },
+    {
+
+        "key": "This name is taken!",
+        "value": "This name is taken!"
+
+    },
+    {
+
+        "key": "Fill in the name cell!",
+        "value": "Fill in the name cell!"
+
+    },
+    {
+        "key": "ExitGame",
+        "value": "Exit Game?"
+
+
+    },
+    {
+        "key": "Max Score",
+        "value": "Max Score"
+
+
+    },
+    {
+
+        "key": "No internet connection!",
+        "value": "No internet connection!"
+
+
+    },
+    {
+        "key": "ExitButton",
+        "value": "Exit Game"
+
+
+    },
+    {
+        "key": "Yes",
+        "value": "Sure"
+
+
+    },
+    {
+        "key": "No",
+        "value": "Noo!"
+
+
+    },
+    {
+
+        "key": "TableName",
+        "value": "Names"
+
+
+    },
+    {
 
 
 
-  },
-
-  {
-    "key": "LeaderTitle",
-    "value": "Leader Board"
+        "key": "TableRecord",
+        "value": "Records"
 
 
-  },
 
-  {
-    "key": "Settings",
-    "value": "Settings"
+    },
+
+    {
+        "key": "LeaderTitle",
+        "value": "Leader Board"
 
 
-  }
+    },
+
+    {
+        "key": "Settings",
+        "value": "Settings"
+
+
+    } 
 
 ]

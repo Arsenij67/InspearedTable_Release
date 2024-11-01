@@ -32,7 +32,7 @@ public class LocaledText : MonoBehaviour
             localization = GameObject.FindGameObjectWithTag("LocalizationManager").GetComponent<LocalizationManager>();
             LocalizationManager.OnLanguageChanged += UpdateText;
             LocalizationManager.OnResponseChanged += UpdateText;
-        
+
 
         }
         
@@ -109,21 +109,21 @@ public class LocaledText : MonoBehaviour
     {
         // ???????? ??????????? ????? ?? ??????????
         return translatedText
-            .Replace("?", "a")
-            .Replace("?", "a")
-            .Replace("?", "a")
-            .Replace("?", "c")
-            .Replace("?", "e")
-            .Replace("?", "e")
-            .Replace("?", "e")
-            .Replace("?", "e")
-            .Replace("?", "i")
-            .Replace("?", "i")
-            .Replace("?", "o")
-            .Replace("?", "u")
-            .Replace("?", "u")
-            .Replace("?", "u")
-            .Replace("?", "y");
+            .Replace("à", "a")
+            .Replace("â", "a")
+            .Replace("ä", "a")
+            .Replace("ç", "c")
+            .Replace("é", "e")
+            .Replace("è", "e")
+            .Replace("ê", "e")
+            .Replace("ë", "e")
+            .Replace("î", "i")
+            .Replace("ï", "i")
+            .Replace("ô", "o")
+            .Replace("ù", "u")
+            .Replace("û", "u")
+            .Replace("ü", "u")
+            .Replace("ÿ", "y");
 
     }
 
@@ -131,6 +131,7 @@ public class LocaledText : MonoBehaviour
     {
 
         LocalizationManager.OnLanguageChanged -= UpdateText;
+        LocalizationManager.OnResponseChanged -= UpdateText;
 
 
     }

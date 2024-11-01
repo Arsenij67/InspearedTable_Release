@@ -37,13 +37,13 @@ public class Motivation : Content//2
     public Motivation()
     {
 
-        File = (TextAsset)Resources.Load(path: "Content/Motivation"); //загрузка текста из папок 
+        File = (TextAsset)Resources.Load(path: "Content/Motivation"); //???????? ?????? ?? ????? 
 
-        Info = GameObject.Find("Content").GetComponent<TMP_Text>(); // нахождение компонета Text на сцене
+        Info = GameObject.Find("Content").GetComponent<TMP_Text>(); // ?????????? ????????? Text ?? ?????
 
-        string file = File.text.ToString(); // преобразование текста в троку
+        string file = File.text.ToString(); // ?????????????? ?????? ? ?????
 
-        contents = file.Split("*"); // массив фраз мотивации
+        contents = file.Split("*"); // ?????? ???? ?????????
         NumberCont = contents.Length;
 
     }
@@ -56,16 +56,18 @@ public class Motivation : Content//2
             int index = NumberCont;
             MoveY(0);
 
-            Info.text = contents[index]; // показываем наш текстовый контент
+            Info.text = contents[index]; // ?????????? ??? ????????? ???????
 
-            contents[index].Remove(index); // удаление показанного фрагмента из нашего массива 
+            contents[index].Remove(index); // ???????? ??????????? ????????? ?? ?????? ??????? 
         }
 
         else
         {
-            Info.text = "Запас мотивации закончился!";
+            Info.text = "????? ????????? ??????????!";
 
         }
+        LocalizationManager.OnResponseChanged.Invoke();
+
     }
 }
 
@@ -90,7 +92,7 @@ public class Joke : Content//1
         string file = File.text.ToString();
 
 
-        contents = file.Split("*"); // массив анекдотов
+        contents = file.Split("*"); // ?????? ?????????
 
         NumberCont = contents.Length;
 
@@ -107,9 +109,10 @@ public class Joke : Content//1
         }
         else
         {
-            Info.text = "Запас анкдотов закончился!";
+            Info.text = "????? ???????? ??????????!";
         
         }
+        LocalizationManager.OnResponseChanged.Invoke();
     }
 }
 
@@ -132,7 +135,7 @@ public class Story : Content //0
 
         string file = File.text.ToString();
 
-        contents = file.Split("*"); // массив историй
+        contents = file.Split("*"); // ?????? ???????
 
         NumberCont = contents.Length;
     }
@@ -155,7 +158,9 @@ public class Story : Content //0
         }
 
         else
-        { Info.text = "Запас мудрых притч закончился!"; }
+        { Info.text = "????? ?????? ????? ??????????!"; }
+
+        LocalizationManager.OnResponseChanged.Invoke();
     }
 
     
@@ -189,7 +194,7 @@ public class InputContent : MonoBehaviour
 
         Events.MusicClick.Invoke(MaryCrist);
 
-        BoardContent.SetActive(true); // доска
+        BoardContent.SetActive(true); // ?????
 
         content = GetContentByIndex(Events.DroppedIndex);
 
@@ -228,11 +233,14 @@ public class InputContent : MonoBehaviour
         
             content.ShowContent();
 
-            StartCoroutine(ScoreCaracter.Instance.ChangeScoreAndRecord(-(content.Price), 50));// платим за контент
+            StartCoroutine(ScoreCaracter.Instance.ChangeScoreAndRecord(-(content.Price), 50));// ?????? ?? ???????
         }
+
+        LocalizationManager.OnResponseChanged.Invoke();
     }
 
     protected async void MoveY(float Y) { await BoardContent.transform.DOLocalMoveY(Y, 1f).Play().AsyncWaitForCompletion(); }
+
     public void ExitFromBoardContent()
     {
 
