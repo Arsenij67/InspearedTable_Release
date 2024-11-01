@@ -57,9 +57,9 @@ public class DashboardAnimator : MonoBehaviour
         }
     }
 /// <summary>
-/// Появлется окно
+/// ????????? ????
 /// </summary>
-/// <param name="information">предупреждение выводимое перед загрузкой</param>
+/// <param name="information">?????????????? ????????? ????? ?????????</param>
     protected async Task DisplayGrowingLoadingPanel(string information,float interval = 5)
     {
         dashboardLoading.gameObject.SetActive(true);
@@ -68,6 +68,7 @@ public class DashboardAnimator : MonoBehaviour
         {
             text.text = information;
         }
+        LocalizationManager.OnResponseChanged();
         await DOTween.Sequence().Append(dashboardLoading.DOScale(Vector3.zero,0))
             .Append(dashboardLoading.DOScale(Vector3.one, 1))
             .AppendInterval(interval).Play().AsyncWaitForCompletion();

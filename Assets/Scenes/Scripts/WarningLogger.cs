@@ -12,7 +12,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(ScenesLoader))]
 public class WarningLogger : DashboardAnimator, IAuthorizationListener
 {
-    //переменные
+    //??????????
 
     [SerializeField] private TMP_Text [] warningTextList;
     protected  Dictionary<string, TMP_Text> warningTextDict;
@@ -21,25 +21,24 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
     internal string mail;
     [SerializeField] private InputField ? mailField, passField, secondPassField;
     public Button actionButton;
-    [SerializeField] private LocalizationManager localizationManager;
     private ScenesLoader sceneLoader;
-    // свойства
+    // ????????
     string IAuthorizationListener.mail => mail;
 
     string IAuthorizationListener.pass => pass;
 
-    bool IAuthorizationListener.isAllDataRight => isFirstPassRight && isSecondPassRight && isMailRight;    // свойство, отвечающее за то, все ли данные в поле введены верно
+    bool IAuthorizationListener.isAllDataRight => isFirstPassRight && isSecondPassRight && isMailRight;    // ????????, ?????????? ?? ??, ??? ?? ?????? ? ???? ??????? ?????
 
     private void Awake()
     {
         sceneLoader = GetComponent<ScenesLoader>();
         warningTextDict = warningTextList.Where(selector => selector != null).ToDictionary(k=>k.name.Substring(k.name.Length-4),e=>e);
-        // ключи: Mail, ass1, ass2
+        // ?????: Mail, ass1, ass2
      
     }
 
 /// <summary>
-/// Проверяет правильность ввода второго пароля и решает какую информацию выводить на экран
+/// ????????? ???????????? ????? ??????? ?????? ? ?????? ????? ?????????? ???????? ?? ?????
 /// </summary>
     public void CheckFirstPass()
     {
@@ -56,18 +55,18 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
             char[] allLiterals = alphabetSmall.Union(alphabetBig).ToArray();
             if (pass.Contains(' '))
             {
-                DisplayWarning("Уберите пробелы", warningTextDict["ass1"], Color.red);
+                DisplayWarning("??????? ???????", warningTextDict["ass1"], Color.red);
 
             }
             else
             {
-                if (pass.All(lit => allSymbols.Contains(lit))) // если все символы это цифры и латинские буквы
+                if (pass.All(lit => allSymbols.Contains(lit))) // ???? ??? ??????? ??? ????? ? ????????? ?????
                 {
 
          
                     if (digits.Where(predicate => pass.Contains(predicate)).ToArray().Length < minimalCountDigits)
                     {
-                        DisplayWarning("Добавьте минимум три разных числа ", warningTextDict["ass1"], Color.red);
+                        DisplayWarning("???????? ??????? ??? ?????? ????? ", warningTextDict["ass1"], Color.red);
                     }
                     else
                     {
@@ -75,13 +74,13 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
                         if (allLiterals.Where(symbol => pass.Contains(symbol)).ToArray().Length >= minCountLiterals)
                         {
 
-                            DisplayWarning("Пароль корректен", warningTextDict["ass1"], new Color(0.3f, 0.64f, 0.3f));
+                            DisplayWarning("?????? ?????????", warningTextDict["ass1"], new Color(0.3f, 0.64f, 0.3f));
                             isFirstPassRight = true;
                         }
 
                         else 
                         {
-                            DisplayWarning("Добавьте минимум три буквы", warningTextDict["ass1"],Color.red);
+                            DisplayWarning("???????? ??????? ??? ?????", warningTextDict["ass1"],Color.red);
                         }
                     }
 
@@ -90,7 +89,7 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
                 else
                 {
 
-                    DisplayWarning("Используйте только латинские буквы и цифры", warningTextDict["ass1"], Color.red);
+                    DisplayWarning("??????????? ?????? ????????? ????? ? ?????", warningTextDict["ass1"], Color.red);
 
                 }
             }
@@ -98,12 +97,12 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
         }
         else
         {
-            DisplayWarning("Вы не ввели пароль!", warningTextDict["ass1"], Color.red);
+            DisplayWarning("?? ?? ????? ??????!", warningTextDict["ass1"], Color.red);
         }
 
     }
 /// <summary>
-/// Проверяет правильность ввода  первого пароля и решает какую информацию выводить на экран
+/// ????????? ???????????? ?????  ??????? ?????? ? ?????? ????? ?????????? ???????? ?? ?????
 /// </summary>
     public void CheckSecondPass()
     {
@@ -113,25 +112,25 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
         {
             if (pass2.Equals(pass1))
             {
-                DisplayWarning("Пароли совпадают", warningTextDict["ass2"], new Color(0.3f, 0.64f, 0.3f));
+                DisplayWarning("?????? ?????????", warningTextDict["ass2"], new Color(0.3f, 0.64f, 0.3f));
                 isSecondPassRight = true;
             }
 
             else
             {
-                DisplayWarning("Пароли не совпадают!", warningTextDict["ass2"], Color.red);
+                DisplayWarning("?????? ?? ?????????!", warningTextDict["ass2"], Color.red);
             }
         }
 
         else
         {
-            DisplayWarning("Вы не продублировали пароль!", warningTextDict["ass2"], Color.red);
+            DisplayWarning("?? ?? ?????????????? ??????!", warningTextDict["ass2"], Color.red);
         }
 
     }
 
 /// <summary>
-/// Проверяет правильность ввода почты и решает какую информацию выводить на экран
+/// ????????? ???????????? ????? ????? ? ?????? ????? ?????????? ???????? ?? ?????
 /// </summary>
     public void CheckMail()
     {
@@ -141,25 +140,25 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
 
         TMP_Text mailText = warningTextDict["Mail"];
 
-        if (!string.IsNullOrEmpty(mail)) // если что - то написано
+        if (!string.IsNullOrEmpty(mail)) // ???? ??? - ?? ????????
         {
             var res =  listDomens.Where(selector => mail.Contains(selector)).FirstOrDefault();
             if (!string.IsNullOrEmpty(res) && mail.EndsWith(res))
             {
-                DisplayWarning("Почта введена корректно: ", mailText, new Color(0.3f, 0.64f, 0.3f));
+                DisplayWarning("????? ??????? ?????????: ", mailText, new Color(0.3f, 0.64f, 0.3f));
                 isMailRight = true;
             }
 
             else
             {
-                DisplayWarning("Почта введена НЕ корректно:", mailText, Color.red);
+                DisplayWarning("????? ??????? ?? ?????????:", mailText, Color.red);
             }
 
 
         }
         else
         {
-            DisplayWarning("Вы не ввели почту!",mailText,Color.red);  
+            DisplayWarning("?? ?? ????? ?????!",mailText,Color.red);  
         }
     }
 
@@ -170,7 +169,7 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
     }
 
 /// <summary>
-/// Отвечает за перемещение с анимациями доски
+/// ???????? ?? ??????????? ? ?????????? ?????
 /// </summary>
     public async void MoveWarningAnimationBoard()
     {
@@ -186,33 +185,33 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
     public void OnRegisterMail()
     {
 
-        DisplayGrowingLoadingPanel("Письмо отправлено на почту. \r\nПодтвердите его, перейдя по ссылке в письме!");
-        localizationManager?.OnResponseChanged?.Invoke();
+        DisplayGrowingLoadingPanel("?????? ?????????? ?? ?????. \r\n??????????? ???, ??????? ?? ?????? ? ??????!");
+              LocalizationManager.OnResponseChanged?.Invoke();
     }
 
     public void OnVerifiedMail()
     {
-        CloseGrowingLoadingPanel("Вы успешно зарегистрированы!");
-        localizationManager?.OnResponseChanged?.Invoke();
+        CloseGrowingLoadingPanel("?? ??????? ????????????????!");
+        LocalizationManager.OnResponseChanged?.Invoke();
     }
 
     public void OnAuthorizationFailed(AggregateException error)
     {
         DisplayGrowingLoadingPanel(error.Message);
-        localizationManager?.OnResponseChanged?.Invoke();
+        LocalizationManager.OnResponseChanged?.Invoke();
 
     }
 
     public void CloseLoadingPanel()
     {
         CloseGrowingLoadingPanel();
-        localizationManager?.OnResponseChanged?.Invoke();
+        LocalizationManager.OnResponseChanged?.Invoke();
     }
 
     public async  void OnLogInSucceeded()
     {
-        localizationManager?.OnResponseChanged?.Invoke();
-        await DisplayGrowingLoadingPanel(string.Format($"Вы успешно зашли в аккаунт!"),2f);
+        LocalizationManager.OnResponseChanged?.Invoke();
+        await DisplayGrowingLoadingPanel(string.Format($"?? ??????? ????? ? ???????!"),2f);
         sceneLoader.LoadScene();
        
     }

@@ -30,9 +30,9 @@ public class LocaledText : MonoBehaviour
         {
 
             localization = GameObject.FindGameObjectWithTag("LocalizationManager").GetComponent<LocalizationManager>();
-            localization.OnLanguageChanged += UpdateText;
-            localization.OnResponseChanged += UpdateText;
-            Debug.Log(name);
+            LocalizationManager.OnLanguageChanged += UpdateText;
+            LocalizationManager.OnResponseChanged += UpdateText;
+        
 
         }
         
@@ -72,14 +72,14 @@ public class LocaledText : MonoBehaviour
     private async void TranslateFromAPIAsync(string lang)
     {
         HttpClient client = new HttpClient();
-        const string apiKey = "AQVN1K5XuAZWmbj7SNck8xc1RiKWr27tYrSw5jUh"; // ключ от API
+        const string apiKey = "AQVN1K5XuAZWmbj7SNck8xc1RiKWr27tYrSw5jUh"; // ???? ?? API
         var url = "https://translate.api.cloud.yandex.net/translate/v2/translate";
 
         var requestBody = new
         {
-            targetLanguageCode = lang, // язык перевода
-            texts = new[] { text.text }, // переводимый текст
-            folderId = "b1g5gt63mkqi8qskjsu0" // имя папки
+            targetLanguageCode = lang, // ???? ????????
+            texts = new[] { text.text }, // ??????????? ?????
+            folderId = "b1g5gt63mkqi8qskjsu0" // ??? ?????
 
         };
      
@@ -94,21 +94,43 @@ public class LocaledText : MonoBehaviour
         {
             string responseContent = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<TranslateResponse>(responseContent);
-           text.text =  result.Translations[0].Text;
+           text.text =  ReplaceUnreadableSymbols(result.Translations[0].Text);
         }
 
         else
         {
-            text.text =  $"Ошибка при переводе: {response.StatusCode} - {response.ReasonPhrase}";
+            text.text =  $"?????? ??? ????????: {response.StatusCode} - {response.ReasonPhrase}";
         }
 
+
+    }
+
+    private string ReplaceUnreadableSymbols(string translatedText)
+    {
+        // ???????? ??????????? ????? ?? ??????????
+        return translatedText
+            .Replace("?", "a")
+            .Replace("?", "a")
+            .Replace("?", "a")
+            .Replace("?", "c")
+            .Replace("?", "e")
+            .Replace("?", "e")
+            .Replace("?", "e")
+            .Replace("?", "e")
+            .Replace("?", "i")
+            .Replace("?", "i")
+            .Replace("?", "o")
+            .Replace("?", "u")
+            .Replace("?", "u")
+            .Replace("?", "u")
+            .Replace("?", "y");
 
     }
 
     private void OnDestroy()
     {
 
-        localization.OnLanguageChanged -= UpdateText;
+        LocalizationManager.OnLanguageChanged -= UpdateText;
 
 
     }

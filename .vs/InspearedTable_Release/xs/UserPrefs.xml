@@ -1,0 +1,53 @@
+﻿<Properties StartupConfiguration="{A3572AAF-2EBF-FF5A-5091-45788134669E}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scenes/Scripts/FBAuthorization/FbAuthorization.cs">
+    <Files>
+      <File FileName="Assets/Scenes/Scripts/Item.cs" Line="1" Column="1" />
+      <File FileName="Assets/Resources/Languages/zh 1.json" Line="28" Column="32" />
+      <File FileName="Assets/Resources/Languages/ru.json" Line="1" Column="1" />
+      <File FileName="Assets/Scenes/Scripts/Save/DeviceSaveManager.cs" Line="26" Column="6" />
+      <File FileName="Assets/Scenes/Scripts/LocalizationManager.cs" Line="30" Column="1" />
+      <File FileName="Assets/Scenes/Scripts/FBDatabase/Fb.cs" Line="118" Column="38" />
+      <File FileName="Assets/Scenes/Scripts/LocalizationData.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scenes/Scripts/LocaledText.cs" Line="35" Column="9" />
+      <File FileName="Assets/Scenes/Scripts/Wheel/WheelFortune.cs" Line="35" Column="69" />
+      <File FileName="Assets/Scenes/Scripts/Wheel/WheelPanelResult.cs" Line="22" Column="45" />
+      <File FileName="Assets/Scenes/Scripts/DashBoardAnimations/DashboardAnimator.cs" Line="71" Column="49" />
+      <File FileName="Assets/Scenes/Scripts/WarningLogger.cs" Line="23" Column="32" />
+      <File FileName="Assets/Scenes/Scripts/ButtonSwithLang.cs" Line="28" Column="28" />
+      <File FileName="Assets/Scenes/Scripts/ButtonController.cs" Line="179" Column="28" />
+      <File FileName="Assets/Resources/Languages/SystemData.xml" Line="1" Column="22" />
+      <File FileName="Assets/Scenes/Scripts/FBAuthorization/FbAuthorization.cs" Line="30" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="InspearedTable_Release" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Resources" expanded="True">
+                <Node name="Languages" expanded="True" />
+              </Node>
+              <Node name="Scenes" expanded="True">
+                <Node name="Scripts" expanded="True">
+                  <Node name="DashBoardAnimations" expanded="True" />
+                  <Node name="FBAuthorization" expanded="True">
+                    <Node name="FbAuthorization.cs" selected="True" />
+                  </Node>
+                  <Node name="FBDatabase" expanded="True" />
+                  <Node name="Save" expanded="True" />
+                  <Node name="Wheel" expanded="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="af05b13d-9b31-452a-a1fa-852da5a38d6a" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

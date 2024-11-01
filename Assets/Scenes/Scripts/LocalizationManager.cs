@@ -7,8 +7,8 @@ using System.Linq;
 public class LocalizationManager : MonoBehaviour
 {
     private static Dictionary<string, string> LocalizedText = new Dictionary<string, string>();
-    public Action OnLanguageChanged;
-    public Action OnResponseChanged;
+    public  static Action OnLanguageChanged;
+    public static Action OnResponseChanged;
     [SerializeField] private TextAsset [] LangFiles = new TextAsset[3];
     private Dictionary<string, TextAsset> DictFiles;
     private const string startLanguage = "en";
@@ -54,7 +54,7 @@ public class LocalizationManager : MonoBehaviour
     {
 
         string deltajson;
-        print(langName);
+   
         LocalizedText.Clear();
         if (DictFiles[langName]!=null)
         {

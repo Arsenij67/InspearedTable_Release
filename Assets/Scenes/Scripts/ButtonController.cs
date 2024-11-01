@@ -15,7 +15,7 @@ using TMPro;
 
 public class ButtonController : MonoBehaviour
 {
-    //переменные
+    //??????????
     private AudioSource AudioSource;
 
     [SerializeField] private AudioClip clipButtonPressed;
@@ -57,7 +57,7 @@ public class ButtonController : MonoBehaviour
         {
 
             if(inputTextName!=null)
-            inputTextName.text = (string)SaveTypesFactory.deviceSaveManagerString.GetElement("Name");//вывод имени после инициализации
+            inputTextName.text = (string)SaveTypesFactory.deviceSaveManagerString.GetElement("Name");//????? ????? ????? ?????????????
         }
         notification = textWarning?.transform.parent;
         SetDefaultName();
@@ -72,7 +72,7 @@ public class ButtonController : MonoBehaviour
     }
 
    
-    public void TryToPlay() // проверяем доступность к игре
+    public void TryToPlay() // ????????? ??????????? ? ????
     {
         if (buttonPlay == null) return;
         
@@ -87,9 +87,9 @@ public class ButtonController : MonoBehaviour
             }
        
     }
-    public void ChangeTogleState(int index) // изменение тогла в меню
+    public void ChangeTogleState(int index) // ????????? ????? ? ????
     {
-        if (toggles[index] != null && !toggles[index].isOn) // если тогл выключен, то удаляем его индекс из списка активных
+        if (toggles[index] != null && !toggles[index].isOn) // ???? ???? ????????, ?? ??????? ??? ?????? ?? ?????? ????????
         {
             Events.indexesActived.Remove((short)index);
         }
@@ -129,25 +129,25 @@ public class ButtonController : MonoBehaviour
             } 
             return;
 
-        })); // если есть интернет, то программа выполняется
+        })); // ???? ???? ????????, ?? ????????? ???????????
 
         string name = inputTextName.text;
          
-        if (name.Length > 4)// добавлена проверка количества символов
+        if (name.Length > 4)// ????????? ???????? ?????????? ????????
         {
 
             if (fb.CheckNameUser(name) == false)
             {
                 
             
-                fb.RemoveData(SaveTypesFactory.deviceSaveManagerInteger.GetElement("Name") as string);//удаляем старые данные из базы
+                fb.RemoveData(SaveTypesFactory.deviceSaveManagerInteger.GetElement("Name") as string);//??????? ?????? ?????? ?? ????
                  
                 int maxScore = int.Parse(await fb.GetRecord());
-                SaveTypesFactory.deviceSaveManagerString.SaveElement("Name", name); // сохраним новые 
+                SaveTypesFactory.deviceSaveManagerString.SaveElement("Name", name); // ???????? ????? 
 
                 StartCoroutine(fb.WriteData(SaveTypesFactory.deviceSaveManagerString.GetElement("Name").ToString(),maxScore));
 
-                TryToPlay();//Меняем состояние кнопки играть
+                TryToPlay();//?????? ????????? ?????? ??????
 
                 PopupWarning("Name updated!", Color.green);
 
@@ -176,7 +176,7 @@ public class ButtonController : MonoBehaviour
     {
         
             text = localization.GetLocalizedValue(text);
-            localization.OnLanguageChanged.Invoke();
+        LocalizationManager.OnLanguageChanged.Invoke();
 
        Tween SequencePopup = DOTween.Sequence()
                 .Append(notification.DOLocalMoveX(150f, animNotification))

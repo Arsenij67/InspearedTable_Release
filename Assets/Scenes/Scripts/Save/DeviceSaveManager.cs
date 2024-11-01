@@ -5,7 +5,7 @@ using System;
 using Palmmedia.ReportGenerator.Core.Parser.Analysis;
 
 /// <summary>
-/// класс- синглтон для сохранения служебной информации на девайс
+/// ?????- ???????? ??? ?????????? ????????? ?????????? ?? ??????
 /// </summary>
 /// <typeparam name="T"></typeparam>
 public class DeviceSaveManager<T>:MonoBehaviour
@@ -24,8 +24,8 @@ public class DeviceSaveManager<T>:MonoBehaviour
     }
     private XElement ConvertStringToXML(string key, T value)
     {
-        print(!File.Exists(path));
-        if (!File.Exists(path)/*|| File.ReadAllText(path).Length<1*/)
+        
+        if (!File.Exists(path)|| File.ReadAllText(path).Length<1)
         {
             CreateFile(path);
             root = new XElement("root");
@@ -47,7 +47,7 @@ public class DeviceSaveManager<T>:MonoBehaviour
     }
     public void SaveElement(string key,T value)
     {
-       string path = Path.Combine(Application.dataPath, "Resources\\Languages", "SystemData.xml");
+       string path = Path.Combine(Application.dataPath, "Resources","Languages", "SystemData.xml");
        XElement xElement =  ConvertStringToXML(key,value);
        XDocument xDocument = new XDocument(xElement);
         StreamWriter sw = new StreamWriter(path);
@@ -58,10 +58,9 @@ public class DeviceSaveManager<T>:MonoBehaviour
     }
     public object GetElement(string key)
     {
-        path =  Path.Combine(Application.dataPath, "Resources\\Languages", "SystemData.xml"); // путь к системным данным
+        path =  Path.Combine(Application.dataPath, "Resources","Languages", "SystemData.xml"); // ???? ? ????????? ??????
         if (!File.Exists(path))
         {
-            Debug.Log("Файла по пути не существует, поэтому создан");
             SaveElement(key, default(T));
             return null is T;
         }
