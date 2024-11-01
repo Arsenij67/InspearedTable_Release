@@ -337,6 +337,9 @@
     <Reference Include="Firebase.Platform">
       <HintPath>Assets/Firebase/Plugins/Firebase.Platform.dll</HintPath>
     </Reference>
+    <Reference Include="Firebase.AppCheck">
+      <HintPath>Assets/Firebase/Plugins/Firebase.AppCheck.dll</HintPath>
+    </Reference>
     <Reference Include="Firebase.Auth">
       <HintPath>Assets/Firebase/Plugins/Firebase.Auth.dll</HintPath>
     </Reference>

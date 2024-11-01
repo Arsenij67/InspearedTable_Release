@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1046505363346",
+    "firebase_url": "https://insptable-default-rtdb.firebaseio.com",
+    "project_id": "insptable",
+    "storage_bucket": "insptable.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046505363346:android:7315d32a34d7807527934b",
+        "android_client_info": {
+          "package_name": "com.Oazis.InspearedTable"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPsNeikjumQ8kjLjqDS7syzlZw1OQMEV0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
