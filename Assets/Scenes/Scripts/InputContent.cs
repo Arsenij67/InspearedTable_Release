@@ -18,7 +18,7 @@ public abstract class Content : InputContent
     public abstract int Price { get; set; }
     public abstract void ShowContent();
 
-    public Image content;
+    public Image contentImage;
 
     internal void SetTitleBoard(ref TMP_Text title)
     {
@@ -60,9 +60,11 @@ public class Motivation : Content//2
             NumberCont -= 1;
             int index = NumberCont;
             MoveY(0);
+            Info = GameObject.FindGameObjectWithTag("Content").GetComponent<TMPro.TMP_Text>();
+            if (Info)
+                Info.text = contents[index]; // ?????????? ??? ????????? ???????
 
-            Info.text = contents[index]; // ?????????? ??? ????????? ???????
-
+            else print('n');
             contents[index].Remove(index); // ???????? ??????????? ????????? ?? ?????? ??????? 
         }
 
@@ -91,7 +93,7 @@ public class Joke : Content//1
     public  Joke()
     {
 
-        Debug.Log("base");
+       
 
         File =Resources.Load<TextAsset>(path: "Content/Jokes");
 
@@ -112,7 +114,11 @@ public class Joke : Content//1
             MoveY(0);
             NumberCont -= 1;
             int index = NumberCont;
-            Info.text = contents[index];   
+            Info = GameObject.FindGameObjectWithTag("Content").GetComponent<TMPro.TMP_Text>();
+            if (Info)
+                Info.text = contents[index]; // ?????????? ??? ????????? ???????
+
+            else print('n');
         }
         else
         {
@@ -155,9 +161,13 @@ public class Story : Content //0
         if (NumberCont > 0)
         {
             MoveY(0);
-            int index = NumberCont-=1; 
+            int index = NumberCont-=1;
 
-            Info.text = contents[index];
+            Info = GameObject.FindGameObjectWithTag("Content").GetComponent<TMPro.TMP_Text>();
+            if (Info)
+                Info.text = contents[index]; // ?????????? ??? ????????? ???????
+
+            else print('n');
 
             contents[index].Remove(index);
         }
@@ -179,6 +189,7 @@ public class InputContent : MonoBehaviour
     [SerializeField] private AudioClip MaryCrist;
 
     [SerializeField]  private AudioClip ClickButton;
+
     public Transform BoardContent;
 
     public TMP_Text Info;
@@ -188,11 +199,13 @@ public class InputContent : MonoBehaviour
     private Board board;
 
     public Content droppedContent;
+
     private void Awake()
     {
         InitializeContent();
     }
     private Content content = null;
+
     public void InitializeContent()
     {
         content = null;
@@ -206,6 +219,8 @@ public class InputContent : MonoBehaviour
         content = GetContentByIndex(Events.DroppedIndex);
 
         content.SetTitleBoard(ref board.ContentType);
+
+     
     }
    
     public static Content GetContentByIndex(short index)
@@ -246,7 +261,7 @@ public class InputContent : MonoBehaviour
         LocalizationManager.OnResponseChanged.Invoke();
     }
 
-    protected void MoveY(float Y) { BoardContent.transform.DOLocalMoveY(Y, 1f).Play(); }
+    protected void MoveY(float Y) { BoardContent.DOLocalMoveY(Y, 1f).Play(); }
 
     public void ExitFromBoardContent()
     {
