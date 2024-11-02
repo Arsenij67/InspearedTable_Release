@@ -1,8 +1,8 @@
 ﻿<Properties StartupConfiguration="{A3572AAF-2EBF-FF5A-5091-45788134669E}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Resources/Languages/en.json">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scenes/Scripts/InputContent.cs">
     <Files>
       <File FileName="Assets/Scenes/Scripts/Item.cs" Line="1" Column="1" />
-      <File FileName="Assets/Resources/Languages/ru.json" Line="161" Column="6" />
+      <File FileName="Assets/Resources/Languages/ru.json" Line="161" Column="7" />
       <File FileName="Assets/Scenes/Scripts/Save/DeviceSaveManager.cs" />
       <File FileName="Assets/Scenes/Scripts/LocalizationManager.cs" />
       <File FileName="Assets/Scenes/Scripts/FBDatabase/Fb.cs" Line="118" Column="1" />
@@ -11,14 +11,15 @@
       <File FileName="Assets/Scenes/Scripts/Wheel/WheelFortune.cs" />
       <File FileName="Assets/Scenes/Scripts/Wheel/WheelPanelResult.cs" />
       <File FileName="Assets/Scenes/Scripts/DashBoardAnimations/DashboardAnimator.cs" />
-      <File FileName="Assets/Scenes/Scripts/WarningLogger.cs" />
-      <File FileName="Assets/Scenes/Scripts/ButtonSwithLang.cs" />
-      <File FileName="Assets/Scenes/Scripts/ButtonController.cs" />
-      <File FileName="Assets/Resources/Languages/SystemData.xml" />
-      <File FileName="Assets/Scenes/Scripts/FBAuthorization/FbAuthorization.cs" />
-      <File FileName="Assets/Scenes/Scripts/InputContent.cs" Line="242" Column="1" />
-      <File FileName="Assets/Resources/Languages/fr.json" Line="113" Column="6" />
-      <File FileName="Assets/Resources/Languages/en.json" Line="158" Column="4" />
+      <File FileName="Assets/Scenes/Scripts/WarningLogger.cs" Line="23" Column="32" />
+      <File FileName="Assets/Scenes/Scripts/ButtonSwithLang.cs" Line="28" Column="28" />
+      <File FileName="Assets/Scenes/Scripts/ButtonController.cs" Line="179" Column="28" />
+      <File FileName="Assets/Resources/Languages/SystemData.xml" Line="1" Column="22" />
+      <File FileName="Assets/Scenes/Scripts/FBAuthorization/FbAuthorization.cs" Line="3" Column="26" />
+      <File FileName="Assets/Scenes/Scripts/InputContent.cs" Line="235" Column="1" />
+      <File FileName="Assets/Resources/Languages/fr.json" Line="109" Column="6" />
+      <File FileName="Assets/Resources/Languages/en.json" Line="158" Column="7" />
+      <File FileName="Assets/Resources/Content/Jokes.txt" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -26,6 +27,7 @@
           <Node name="InspearedTable_Release" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Resources" expanded="True">
+                <Node name="Content" expanded="True" />
                 <Node name="Languages" expanded="True" />
               </Node>
               <Node name="Scenes" expanded="True">
@@ -35,7 +37,7 @@
                   <Node name="FBDatabase" expanded="True" />
                   <Node name="Save" expanded="True" />
                   <Node name="Wheel" expanded="True" />
-                  <Node name="LocaledText.cs" selected="True" />
+                  <Node name="InputContent.cs" selected="True" />
                 </Node>
               </Node>
             </Node>

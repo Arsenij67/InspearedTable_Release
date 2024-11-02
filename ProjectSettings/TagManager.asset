@@ -11,6 +11,7 @@ TagManager:
   - ButtonPlay
   - Flags
   - AuthListener
+  - Content
   layers:
   - Default
   - TransparentFX

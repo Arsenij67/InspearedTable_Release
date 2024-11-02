@@ -1,18 +1,19 @@
 using DG.Tweening;
 using System;
+using System.IO;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-public abstract  class Content : InputContent
+public abstract class Content : InputContent
 {
 
 
     public abstract string Name { get; }
-    public  TMP_Text Info { get; set; }
+   
 
     public string[] contents;
-  
+    protected static int NumberCont;
     public abstract TextAsset File { get; set; }
     public abstract int Price { get; set; }
     public abstract void ShowContent();
@@ -22,8 +23,10 @@ public abstract  class Content : InputContent
     internal void SetTitleBoard(ref TMP_Text title)
     {
         title.text = Name;
-     
+
     }
+
+
 
 
 } 
@@ -31,20 +34,22 @@ public class Motivation : Content//2
 
 {
     public override string Name => "Motivation";
-    private static int NumberCont = 15;
     public override int Price { get; set; } = 1500;
     public override TextAsset File { get; set; }
     public Motivation()
     {
+       
 
-        File = (TextAsset)Resources.Load(path: "Content/Motivation"); //???????? ?????? ?? ????? 
+        File = Resources.Load<TextAsset>(path:"Content/Motivation");
 
-        Info = GameObject.Find("Content").GetComponent<TMP_Text>(); // ?????????? ????????? Text ?? ?????
+        string file = File.text.ToString();
 
-        string file = File.text.ToString(); // ?????????????? ?????? ? ?????
-
-        contents = file.Split("*"); // ?????? ???? ?????????
+        print(file);
+        contents = file.Split("*"); // ?????? ?????????
+        print(contents);
         NumberCont = contents.Length;
+
+
 
     }
     public override void ShowContent()
@@ -76,23 +81,25 @@ public class Motivation : Content//2
 
 public class Joke : Content//1
 {
-    private static int NumberCont = 12;
+     
     public override TextAsset File { get; set; }
  
     public override int Price { get; set; } = 2000;
 
-    public override string Name => "Joke";
+    public override string Name => "Jokes";
 
     public  Joke()
     {
-        File = (TextAsset)Resources.Load(path: "Content/Jokes");
 
-        Info = GameObject.Find("Content").GetComponent<TMP_Text>();
+        Debug.Log("base");
+
+        File =Resources.Load<TextAsset>(path: "Content/Jokes");
 
         string file = File.text.ToString();
 
-
+        print(file);
         contents = file.Split("*"); // ?????? ?????????
+        print(contents);
 
         NumberCont = contents.Length;
 
@@ -121,24 +128,26 @@ public class Joke : Content//1
 public class Story : Content //0
 {
     public override string Name => "Story";
-
-    private static int NumberCont = 0;
+    
     public override int Price { get; set; } = 3000;
     public override TextAsset File { get; set; }
 
 
     public Story()
     {
-        File = (TextAsset)Resources.Load(path: "Content/Story");
-
-        Info = GameObject.Find("Content").GetComponent<TMP_Text>();
+        
+        File = Resources.Load<TextAsset>(path: "Content/Story");
 
         string file = File.text.ToString();
+        print(file);
 
-        contents = file.Split("*"); // ?????? ???????
+        contents = file.Split("*"); // ?????? ?????????
+        print(contents);
 
         NumberCont = contents.Length;
+
     }
+
     public override void ShowContent()
     {
        
@@ -146,11 +155,7 @@ public class Story : Content //0
         if (NumberCont > 0)
         {
             MoveY(0);
-            int index = NumberCont-1;
-
-            NumberCont -= 1;
-
-            
+            int index = NumberCont-=1; 
 
             Info.text = contents[index];
 
@@ -174,7 +179,9 @@ public class InputContent : MonoBehaviour
     [SerializeField] private AudioClip MaryCrist;
 
     [SerializeField]  private AudioClip ClickButton;
-    public GameObject BoardContent;
+    public Transform BoardContent;
+
+    public TMP_Text Info;
 
     public Button ButtonBoardContent;
 
@@ -194,7 +201,7 @@ public class InputContent : MonoBehaviour
 
         Events.MusicClick.Invoke(MaryCrist);
 
-        BoardContent.SetActive(true); // ?????
+        BoardContent.gameObject.SetActive(true); // ?????
 
         content = GetContentByIndex(Events.DroppedIndex);
 
@@ -239,7 +246,7 @@ public class InputContent : MonoBehaviour
         LocalizationManager.OnResponseChanged.Invoke();
     }
 
-    protected async void MoveY(float Y) { await BoardContent.transform.DOLocalMoveY(Y, 1f).Play().AsyncWaitForCompletion(); }
+    protected void MoveY(float Y) { BoardContent.transform.DOLocalMoveY(Y, 1f).Play(); }
 
     public void ExitFromBoardContent()
     {
