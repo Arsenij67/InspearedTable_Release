@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,7 +18,7 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
     [SerializeField]private bool isFirstPassRight = false, isSecondPassRight= false, isMailRight = false;
     internal string pass;
     internal string mail;
-    [SerializeField] private InputField ? mailField, passField, secondPassField;
+    [SerializeField] private TMP_InputField ? mailField, passField, secondPassField;
     public Button actionButton;
     private ScenesLoader sceneLoader;
     // ????????
@@ -55,7 +54,7 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
             char[] allLiterals = alphabetSmall.Union(alphabetBig).ToArray();
             if (pass.Contains(' '))
             {
-                DisplayWarning("??????? ???????", warningTextDict["ass1"], Color.red);
+                DisplayWarning("Remove the spaces", warningTextDict["ass1"], Color.red);
 
             }
             else
@@ -66,7 +65,7 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
          
                     if (digits.Where(predicate => pass.Contains(predicate)).ToArray().Length < minimalCountDigits)
                     {
-                        DisplayWarning("???????? ??????? ??? ?????? ????? ", warningTextDict["ass1"], Color.red);
+                        DisplayWarning("Enter at least 3 different digits ", warningTextDict["ass1"], Color.red);
                     }
                     else
                     {
@@ -74,13 +73,13 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
                         if (allLiterals.Where(symbol => pass.Contains(symbol)).ToArray().Length >= minCountLiterals)
                         {
 
-                            DisplayWarning("?????? ?????????", warningTextDict["ass1"], new Color(0.3f, 0.64f, 0.3f));
+                            DisplayWarning("Password is correct!", warningTextDict["ass1"], new Color(0.3f, 0.64f, 0.3f));
                             isFirstPassRight = true;
                         }
 
                         else 
                         {
-                            DisplayWarning("???????? ??????? ??? ?????", warningTextDict["ass1"],Color.red);
+                            DisplayWarning("Enter at least 3 different literals", warningTextDict["ass1"],Color.red);
                         }
                     }
 
@@ -89,7 +88,7 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
                 else
                 {
 
-                    DisplayWarning("??????????? ?????? ????????? ????? ? ?????", warningTextDict["ass1"], Color.red);
+                    DisplayWarning("Enter at least 3 different literals and digits", warningTextDict["ass1"], Color.red);
 
                 }
             }
@@ -97,9 +96,10 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
         }
         else
         {
-            DisplayWarning("?? ?? ????? ??????!", warningTextDict["ass1"], Color.red);
+            DisplayWarning("Password is empty", warningTextDict["ass1"], Color.red);
         }
 
+        LocalizationManager.OnResponseChanged();
     }
 /// <summary>
 /// ????????? ???????????? ?????  ??????? ?????? ? ?????? ????? ?????????? ???????? ?? ?????
@@ -112,21 +112,21 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
         {
             if (pass2.Equals(pass1))
             {
-                DisplayWarning("?????? ?????????", warningTextDict["ass2"], new Color(0.3f, 0.64f, 0.3f));
+                DisplayWarning("Password is match", warningTextDict["ass2"], new Color(0.3f, 0.64f, 0.3f));
                 isSecondPassRight = true;
             }
 
             else
             {
-                DisplayWarning("?????? ?? ?????????!", warningTextDict["ass2"], Color.red);
+                DisplayWarning("Passwords don't match!", warningTextDict["ass2"], Color.red);
             }
         }
 
         else
         {
-            DisplayWarning("?? ?? ?????????????? ??????!", warningTextDict["ass2"], Color.red);
+            DisplayWarning("Password is empty!", warningTextDict["ass2"], Color.red);
         }
-
+        LocalizationManager.OnResponseChanged();
     }
 
 /// <summary>
@@ -136,7 +136,7 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
     {
         mail = mailField.text;
 
-        string[] listDomens = new string [] { "@gmail.com", "@yahoo.com", "@outlook.com", "@hotmail.com", "@icloud.com", "@mail.ru", "@yandex.ru"};
+        string[] listDomens = new string [] { "@gmail.com", "@yahoo.com", "@outlook.com", "@hotmail.com", "@icloud.com", "@mail.ru", "@yandex.ru","@informatics.ru"};
 
         TMP_Text mailText = warningTextDict["Mail"];
 
@@ -145,21 +145,23 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
             var res =  listDomens.Where(selector => mail.Contains(selector)).FirstOrDefault();
             if (!string.IsNullOrEmpty(res) && mail.EndsWith(res))
             {
-                DisplayWarning("????? ??????? ?????????: ", mailText, new Color(0.3f, 0.64f, 0.3f));
+                DisplayWarning("Mail is correct!", mailText, new Color(0.3f, 0.64f, 0.3f));
                 isMailRight = true;
             }
 
             else
             {
-                DisplayWarning("????? ??????? ?? ?????????:", mailText, Color.red);
+                DisplayWarning("Mail must have domain", mailText, Color.red);
             }
 
 
         }
         else
         {
-            DisplayWarning("?? ?? ????? ?????!",mailText,Color.red);  
+            DisplayWarning("Enter the mail!",mailText,Color.red);  
         }
+
+        LocalizationManager.OnResponseChanged();
     }
 
     private void DisplayWarning(string message,TMP_Text field,Color color)

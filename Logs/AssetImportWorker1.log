@@ -2390,3 +2390,41 @@ AssetImportParameters requested are different than current active one (requested
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 65437.603913 seconds.
+  path: Assets/Scenes/Graphics/Lana Studio/Hyper Casual FX/Textures/Blast_directional.png
+  artifactKey: Guid(d4ed2c24a7c24e3419b43faf029ce757) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Graphics/Lana Studio/Hyper Casual FX/Textures/Blast_directional.png using Guid(d4ed2c24a7c24e3419b43faf029ce757) Importer(815301076,1909f56bfc062723c751e8b465ee728b) WARNING: RGBA Compressed ASTC6X6 UNorm format is not supported, decompressing texture
+ -> (artifact id: 'be2efb31836a416a3b53ef356d8d98b4') in 0.878161 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000203 seconds.
+  path: Assets/GUI_Parts/Gui_parts/button3_ready.png
+  artifactKey: Guid(5659b073e19871d4da7394b6456da365) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GUI_Parts/Gui_parts/button3_ready.png using Guid(5659b073e19871d4da7394b6456da365) Importer(815301076,1909f56bfc062723c751e8b465ee728b) WARNING: RGBA Compressed ASTC6X6 UNorm format is not supported, decompressing texture
+ -> (artifact id: '0ffbfc0e86697740ebec3266b8a975ba') in 0.021121 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000120 seconds.
+  path: Assets/Scenes/Graphics/Lana Studio/Hyper Casual FX/Textures/Gradient01.png
+  artifactKey: Guid(1ad88c9c9b62b4e40af9d2d3db57588d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Graphics/Lana Studio/Hyper Casual FX/Textures/Gradient01.png using Guid(1ad88c9c9b62b4e40af9d2d3db57588d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) WARNING: RGBA Compressed ASTC6X6 UNorm format is not supported, decompressing texture
+ -> (artifact id: 'c20f17d2eae5c477348882a7fc14b983') in 0.016004 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000117 seconds.
+  path: Assets/GUI_Parts/Gui_parts/button2_ready_on.png
+  artifactKey: Guid(6b8728d20b5d4c540b335c3789517218) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GUI_Parts/Gui_parts/button2_ready_on.png using Guid(6b8728d20b5d4c540b335c3789517218) Importer(815301076,1909f56bfc062723c751e8b465ee728b) WARNING: RGBA Compressed ASTC6X6 UNorm format is not supported, decompressing texture
+ -> (artifact id: 'ee0b184d7d67797542d9e338b9f56baf') in 0.022520 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000085 seconds.
+  path: Assets/Scenes/Graphics/Freeui/ZOSMA/Set/Enter.png
+  artifactKey: Guid(553b12781cfb17945a355190edf2412f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Graphics/Freeui/ZOSMA/Set/Enter.png using Guid(553b12781cfb17945a355190edf2412f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) WARNING: RGBA Compressed ASTC6X6 UNorm format is not supported, decompressing texture
+ -> (artifact id: '9a77496502ec4dd9f87d28ba1f6c7cb1') in 0.018716 seconds 
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
