@@ -1,28 +1,28 @@
 ﻿<Properties StartupConfiguration="{A3572AAF-2EBF-FF5A-5091-45788134669E}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scenes/Scripts/WarningLogger.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scenes/Scripts/LocaledText.cs">
     <Files>
       <File FileName="Assets/Scenes/Scripts/Item.cs" Line="1" Column="1" />
       <File FileName="Assets/Resources/Languages/ru.json" />
       <File FileName="Assets/Scenes/Scripts/Save/DeviceSaveManager.cs" />
-      <File FileName="Assets/Scenes/Scripts/LocalizationManager.cs" />
+      <File FileName="Assets/Scenes/Scripts/LocalizationManager.cs" Line="11" Column="26" />
       <File FileName="Assets/Scenes/Scripts/FBDatabase/Fb.cs" />
-      <File FileName="Assets/Scenes/Scripts/LocalizationData.cs" />
-      <File FileName="Assets/Scenes/Scripts/LocaledText.cs" Line="134" Column="48" />
-      <File FileName="Assets/Scenes/Scripts/Wheel/WheelFortune.cs" />
-      <File FileName="Assets/Scenes/Scripts/Wheel/WheelPanelResult.cs" />
-      <File FileName="Assets/Scenes/Scripts/DashBoardAnimations/DashboardAnimator.cs" Line="95" Column="1" />
-      <File FileName="Assets/Scenes/Scripts/WarningLogger.cs" Line="164" Column="49" />
+      <File FileName="Assets/Scenes/Scripts/LocalizationData.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scenes/Scripts/Wheel/WheelFortune.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scenes/Scripts/Wheel/WheelPanelResult.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scenes/Scripts/DashBoardAnimations/DashboardAnimator.cs" />
+      <File FileName="Assets/Scenes/Scripts/WarningLogger.cs" Line="164" Column="38" />
       <File FileName="Assets/Scenes/Scripts/ButtonSwithLang.cs" />
-      <File FileName="Assets/Scenes/Scripts/ButtonController.cs" Line="179" Column="28" />
+      <File FileName="Assets/Scenes/Scripts/ButtonController.cs" />
       <File FileName="Assets/Resources/Languages/SystemData.xml" />
-      <File FileName="Assets/Scenes/Scripts/FBAuthorization/FbAuthorization.cs" Line="3" Column="26" />
-      <File FileName="Assets/Scenes/Scripts/InputContent.cs" Line="65" Column="41" />
+      <File FileName="Assets/Scenes/Scripts/FBAuthorization/FbAuthorization.cs" />
+      <File FileName="Assets/Scenes/Scripts/InputContent.cs" />
       <File FileName="Assets/Resources/Languages/fr.json" />
       <File FileName="Assets/Resources/Languages/en.json" />
       <File FileName="Assets/Resources/Content/Jokes.txt" />
-      <File FileName="Assets/Scenes/Scripts/Board.cs" Line="332" Column="1" />
-      <File FileName="Assets/Scenes/Scripts/LeaderBoard.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scenes/Scripts/ScoreCaracter.cs" Line="70" Column="30" />
+      <File FileName="Assets/Scenes/Scripts/Board.cs" />
+      <File FileName="Assets/Scenes/Scripts/LeaderBoard.cs" />
+      <File FileName="Assets/Scenes/Scripts/ScoreCaracter.cs" />
+      <File FileName="Assets/Scenes/Scripts/LocaledText.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -40,7 +40,7 @@
                   <Node name="FBDatabase" expanded="True" />
                   <Node name="Save" expanded="True" />
                   <Node name="Wheel" expanded="True" />
-                  <Node name="WarningLogger.cs" selected="True" />
+                  <Node name="LocaledText.cs" selected="True" />
                 </Node>
               </Node>
             </Node>

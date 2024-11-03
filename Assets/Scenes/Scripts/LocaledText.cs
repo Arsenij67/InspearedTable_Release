@@ -15,7 +15,9 @@ public class LocaledText : MonoBehaviour
     protected LocalizationManager localization;
     protected TMP_Text text;
     [SerializeField] protected TranslateMode translateMode;
-     
+
+  
+
     private void Awake()
     {
         
@@ -23,6 +25,7 @@ public class LocaledText : MonoBehaviour
         if (text == null)
         {
             text = GetComponent<TMP_Text>();
+            
 
         }
 
@@ -30,9 +33,12 @@ public class LocaledText : MonoBehaviour
         {
 
             localization = GameObject.FindGameObjectWithTag("LocalizationManager").GetComponent<LocalizationManager>();
-            LocalizationManager.OnLanguageChanged += UpdateText;
-            LocalizationManager.OnResponseChanged += UpdateText;
 
+            if (!string.IsNullOrEmpty(text.text))
+            {
+                LocalizationManager.OnLanguageChanged += UpdateText;
+                LocalizationManager.OnResponseChanged += UpdateText;
+            }
 
         }
         
