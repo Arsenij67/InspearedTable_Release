@@ -75,7 +75,6 @@
     <Compile Include="Assets/Scenes/Scripts/LocaledText.cs" />
     <Compile Include="Assets/Scenes/Scripts/Row.cs" />
     <Compile Include="Assets/Scenes/Scripts/Item.cs" />
-    <Compile Include="Assets/Scenes/Scripts/LoadingBoard.cs" />
     <Compile Include="Assets/Scenes/Scripts/Wheel/WheelFortune.cs" />
     <Compile Include="Assets/Scenes/Scripts/Wheel/WheelPanelResult.cs" />
     <Compile Include="Assets/Scenes/Scripts/Interfaces/IAuthorizationListener.cs" />

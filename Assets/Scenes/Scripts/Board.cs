@@ -7,7 +7,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
-using Unity.VisualScripting;
 using System.Collections;
 
 public sealed class Board : MonoBehaviour
@@ -35,6 +34,7 @@ public sealed class Board : MonoBehaviour
     [SerializeField] private AudioClip SantaLaught;
 
     public Button ButtonContent;
+
     private short IndexShow => Events.DroppedIndex;// выбираем 1 индекс случайно из выбранных нами
 
     
@@ -162,6 +162,7 @@ public sealed class Board : MonoBehaviour
         
         }    
     }
+
     public void UpLoadTiles()
     {
         tiles = new Title[rows.Max(rows => rows.titles.Length), rows.Length];
@@ -331,7 +332,7 @@ public sealed class Board : MonoBehaviour
 
                 StartCoroutine(ScoreCaracter.Instance.ChangeScoreAndRecord(tile.item.Value * ConnectedTiles.Count(),50));
                 
-                fb.WriteData(SaveTypesFactory.deviceSaveManagerString.GetElement("Name") as string, ScoreCaracter.Instance.MaxScore);
+                StartCoroutine(fb.WriteData(SaveTypesFactory.deviceSaveManagerString.GetElement("Name") as string, ScoreCaracter.Instance.MaxScore));
                 
 
 
