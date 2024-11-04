@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -63,11 +64,7 @@ public class DashboardAnimator : MonoBehaviour
     protected async Task DisplayGrowingLoadingPanel(string information,float interval = 5)
     {
         dashboardLoading.gameObject.SetActive(true);
-        TMP_Text text = dashboardLoading?.GetComponentInChildren<TMP_Text>();
-        if (text != null)
-        {
-            text.text = information;
-        }
+         
         LocalizationManager.OnResponseChanged();
         await DOTween.Sequence().Append(dashboardLoading.DOScale(Vector3.zero,0))
             .Append(dashboardLoading.DOScale(Vector3.one, 1))

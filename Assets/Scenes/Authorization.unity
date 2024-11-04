@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4966485, g: 0.39719987, b: 0.3077905, a: 1}
+  m_IndirectSpecularColor: {r: 0.4967327, g: 0.3974649, b: 0.30760464, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1279,8 +1279,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d127697fbd29041a6d9d77d6c01862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 
-  translateMode: 1
+  key: Log in
+  translateMode: 0
 --- !u!1 &493200264
 GameObject:
   m_ObjectHideFlags: 0
@@ -1823,8 +1823,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d127697fbd29041a6d9d77d6c01862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 
-  translateMode: 1
+  key: Enter text
+  translateMode: 0
 --- !u!114 &666538552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2712,8 +2712,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d127697fbd29041a6d9d77d6c01862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 
-  translateMode: 1
+  key: Enter pass
+  translateMode: 0
 --- !u!1 &897299846
 GameObject:
   m_ObjectHideFlags: 0
@@ -2862,8 +2862,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d127697fbd29041a6d9d77d6c01862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 
-  translateMode: 1
+  key: Enter mail
+  translateMode: 0
 --- !u!1 &907505353
 GameObject:
   m_ObjectHideFlags: 0
@@ -4259,8 +4259,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d127697fbd29041a6d9d77d6c01862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 
-  translateMode: 1
+  key: Registration
+  translateMode: 0
 --- !u!1 &1211482334
 GameObject:
   m_ObjectHideFlags: 0
@@ -4546,8 +4546,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d127697fbd29041a6d9d77d6c01862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 
-  translateMode: 1
+  key: Enter mail
+  translateMode: 0
 --- !u!1 &1285358630
 GameObject:
   m_ObjectHideFlags: 0
@@ -4772,8 +4772,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d127697fbd29041a6d9d77d6c01862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 
-  translateMode: 1
+  key: Registration
+  translateMode: 0
 --- !u!1 &1346657306
 GameObject:
   m_ObjectHideFlags: 0
@@ -4961,8 +4961,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d127697fbd29041a6d9d77d6c01862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 
-  translateMode: 1
+  key: Enter text
+  translateMode: 0
 --- !u!114 &1353914516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5568,8 +5568,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d127697fbd29041a6d9d77d6c01862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 
-  translateMode: 1
+  key: Log in
+  translateMode: 0
 --- !u!1 &1557088411
 GameObject:
   m_ObjectHideFlags: 0
@@ -6115,8 +6115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d127697fbd29041a6d9d77d6c01862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 
-  translateMode: 1
+  key: Try pass
+  translateMode: 0
 --- !u!1 &1722909802
 GameObject:
   m_ObjectHideFlags: 0
@@ -6169,8 +6169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d127697fbd29041a6d9d77d6c01862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 
-  translateMode: 1
+  key: Enter text
+  translateMode: 0
 --- !u!114 &1722909805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6513,8 +6513,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d127697fbd29041a6d9d77d6c01862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 
-  translateMode: 1
+  key: Enter pass
+  translateMode: 0
 --- !u!1 &1769693950
 GameObject:
   m_ObjectHideFlags: 0
@@ -6888,8 +6888,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d127697fbd29041a6d9d77d6c01862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 
-  translateMode: 1
+  key: Enter text
+  translateMode: 0
 --- !u!1 &1909351707
 GameObject:
   m_ObjectHideFlags: 0
@@ -7203,8 +7203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d127697fbd29041a6d9d77d6c01862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 
-  translateMode: 1
+  key: Enter text
+  translateMode: 0
 --- !u!114 &2128986750
 MonoBehaviour:
   m_ObjectHideFlags: 0

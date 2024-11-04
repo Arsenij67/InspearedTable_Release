@@ -99,7 +99,7 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
             DisplayWarning("Password is empty", warningTextDict["ass1"], Color.red);
         }
 
-        LocalizationManager.OnResponseChanged();
+       
     }
 /// <summary>
 /// ????????? ???????????? ?????  ??????? ?????? ? ?????? ????? ?????????? ???????? ?? ?????
@@ -126,7 +126,7 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
         {
             DisplayWarning("Password is empty!", warningTextDict["ass2"], Color.red);
         }
-        LocalizationManager.OnResponseChanged();
+       
     }
 
 /// <summary>
@@ -161,13 +161,15 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
             DisplayWarning("Enter the mail!",mailText,Color.red);  
         }
 
-        LocalizationManager.OnResponseChanged();
+       
     }
 
     private void DisplayWarning(string message,TMP_Text field,Color color)
     { 
+       
         field.color = color;
-        field.text = message;
+        field.GetComponent<LocaledText>().UpdateText(message);
+       
     }
 
 /// <summary>
@@ -187,33 +189,33 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
     public void OnRegisterMail()
     {
 
-        DisplayGrowingLoadingPanel("?????? ?????????? ?? ?????. \r\n??????????? ???, ??????? ?? ?????? ? ??????!");
-              LocalizationManager.OnResponseChanged?.Invoke();
+        DisplayGrowingLoadingPanel("\nTo register, follow the link in the email! ");
+        
     }
 
     public void OnVerifiedMail()
     {
-        CloseGrowingLoadingPanel("?? ??????? ????????????????!");
-        LocalizationManager.OnResponseChanged?.Invoke();
+        CloseGrowingLoadingPanel("\nYou have successfully verified your account! ");
+       
     }
 
     public void OnAuthorizationFailed(AggregateException error)
     {
         DisplayGrowingLoadingPanel(error.Message);
-        LocalizationManager.OnResponseChanged?.Invoke();
+       
 
     }
 
     public void CloseLoadingPanel()
     {
         CloseGrowingLoadingPanel();
-        LocalizationManager.OnResponseChanged?.Invoke();
+        
     }
 
-    public async  void OnLogInSucceeded()
+    public async void OnLogInSucceeded()
     {
-        LocalizationManager.OnResponseChanged?.Invoke();
-        await DisplayGrowingLoadingPanel(string.Format($"?? ??????? ????? ? ???????!"),2f);
+        
+        await DisplayGrowingLoadingPanel(string.Format($"The login was completed successfully!"),2f);
         sceneLoader.LoadScene();
        
     }

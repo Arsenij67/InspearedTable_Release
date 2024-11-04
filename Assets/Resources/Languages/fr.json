@@ -1,110 +1,138 @@
 [
-    {
-        "key": "Title",
-        "value": "Choisissez ce que vous aimez!"
-    },
-    {
-        "key": "Exit",
-        "value": "Sortie"
-    },
-    {
-        "key": "Content1",
-        "value": "Fable        3000"
-    },
-    {
-        "key": "Content2",
-        "value": "Blague       2000"
-    },
-    {
-        "key": "VK",
-        "value": "Contact developpeur"
-    },
-    {
-        "key": "Volume",
-        "value": "Son"
-    },
-    {
-        "key": "Content3",
-        "value": "Motivation   1500"
-    },
-    {
-        "key": "EnterName",
-        "value": "Entrez le nom"
-    },
-    {
-        "key": "ExitGame",
-        "value": "Quitter le jeu ?"
-    },
-    {
-        "key": "Max Score",
-        "value": "Meilleur score"
-    },
-    {
-        "key": "ExitButton",
-        "value": "Quitter le jeu"
-    },
-    {
-        "key": "Yes",
-        "value": "Oui"
-    },
-    {
-        "key": "No",
-        "value": "Non."
-    },
-    {
-        "key": "ButtonPlay",
-        "value": "Jeu"
-    },
-    {
-        "key": "Motivation",
-        "value": "Motivation !"
-    },
-    {
-        "key": "Fabe",
-        "value": "Fable"
-    },
-    {
-        "key": "Joke",
-        "value": "Anecdote"
-    },
-    {
-        "key": "TitleGame",
-        "value": "Vous avez ete attrape"
-    },
-    {
-        "key": "Score",
-        "value": "Compte"
-    },
-    {
-        "key": "Name updated!",
-        "value": "Nom mis a jour !"
-    },
-    {
-        "key": "This name is taken!",
-        "value": "Ce nom est déjà pris !"
-    },
-    {
-        "key": "Fill in the name cell!",
-        "value": "Le nom est trop court !"
-    },
-    {
-        "key": "No internet connection!",
-        "value": "Pas de connexion Internet !"
-    },
-    {
-        "key": "TableName",
-        "value": "Nom"
-    },
-    {
-        "key": "TableRecord",
-        "value": "Enregistrement"
-    },
-    {
-        "key": "LeaderTitle",
-        "value": "Classement"
-    },
-    {
-        "key": "Settings",
-        "value": "Parametres"
-    }
+  {
+    "key": "Title",
+    "value": "Choisissez ce que vous aimez!"
+  },
+  {
+    "key": "Exit",
+    "value": "Sortie"
+  },
+  {
+    "key": "Content1",
+    "value": "Fable        3000"
+  },
+  {
+    "key": "Content2",
+    "value": "Blague       2000"
+  },
+  {
+    "key": "VK",
+    "value": "Contact developpeur"
+  },
+  {
+    "key": "Volume",
+    "value": "Son"
+  },
+  {
+    "key": "Content3",
+    "value": "Motivation   1500"
+  },
+  {
+    "key": "EnterName",
+    "value": "Entrez le nom"
+  },
+  {
+    "key": "ExitGame",
+    "value": "Quitter le jeu ?"
+  },
+  {
+    "key": "Max Score",
+    "value": "Meilleur score"
+  },
+  {
+    "key": "ExitButton",
+    "value": "Quitter le jeu"
+  },
+  {
+    "key": "Yes",
+    "value": "Oui"
+  },
+  {
+    "key": "No",
+    "value": "Non."
+  },
+  {
+    "key": "ButtonPlay",
+    "value": "Jeu"
+  },
+  {
+    "key": "Motivation",
+    "value": "Motivation !"
+  },
+  {
+    "key": "Fabe",
+    "value": "Fable"
+  },
+  {
+    "key": "Joke",
+    "value": "Anecdote"
+  },
+  {
+    "key": "TitleGame",
+    "value": "Vous avez ete attrape"
+  },
+  {
+    "key": "Score",
+    "value": "Compte"
+  },
+  {
+    "key": "Name updated!",
+    "value": "Nom mis a jour !"
+  },
+  {
+    "key": "This name is taken!",
+    "value": "Ce nom est déjà pris !"
+  },
+  {
+    "key": "Fill in the name cell!",
+    "value": "Le nom est trop court !"
+  },
+  {
+    "key": "No internet connection!",
+    "value": "Pas de connexion Internet !"
+  },
+  {
+    "key": "TableName",
+    "value": "Nom"
+  },
+  {
+    "key": "TableRecord",
+    "value": "Enregistrement"
+  },
+  {
+    "key": "LeaderTitle",
+    "value": "Classement"
+  },
+  {
+    "key": "Settings",
+    "value": "Parametres"
+  },
+  {
+    "key": "Log in",
+    "value": "Se connecter"
+  },
+  {
+    "key": "Registration",
+    "value": "Enregistrement"
+  },
+
+  {
+    "key": "Enter mail",
+    "value": "Entrer le courrier"
+  },
+  {
+    "key": "Enter pass",
+    "value": "Entrez le mot de passe"
+  },
+
+  {
+    "key": "Try pass",
+    "value": "Essayez le mot de passe"
+  },
+  {
+    "key": "Enter text",
+    "value": "Entrer du texte"
+  }
+
+
 ]

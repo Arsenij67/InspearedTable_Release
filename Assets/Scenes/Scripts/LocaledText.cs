@@ -15,9 +15,7 @@ public class LocaledText : MonoBehaviour
     protected LocalizationManager localization;
     protected TMP_Text text;
     [SerializeField] protected TranslateMode translateMode;
-
-  
-
+    
     private void Awake()
     {
         
@@ -34,18 +32,17 @@ public class LocaledText : MonoBehaviour
 
             localization = GameObject.FindGameObjectWithTag("LocalizationManager").GetComponent<LocalizationManager>();
 
-            if (!string.IsNullOrEmpty(text.text))
-            {
+           
                 LocalizationManager.OnLanguageChanged += UpdateText;
-                LocalizationManager.OnResponseChanged += UpdateText;
-            }
+                
+          
 
         }
         
 
     }
 
-    public virtual  void UpdateText()
+    public virtual void UpdateText()
     {
             if (translateMode.Equals(TranslateMode.LocalTranslate))
             {
@@ -61,7 +58,7 @@ public class LocaledText : MonoBehaviour
                    {
                        if (connect.Equals(true))
                        {
-                           TranslateFromAPIAsync((string)SaveTypesFactory.deviceSaveManagerString.GetElement("Language"));
+                           TranslateFromAPIAsync((string)SaveTypesFactory.deviceSaveManagerString.GetElement("Language"),text.text);
                        }
                    }
                    ));
@@ -70,25 +67,54 @@ public class LocaledText : MonoBehaviour
 
     }
 
+    public virtual void UpdateText(string textToTranslate = "none")
+    {
+        if (translateMode.Equals(TranslateMode.LocalTranslate))
+        {
+
+            TranslateFromJson();
+
+        }
+
+        else if (translateMode.Equals(TranslateMode.APITranslate))
+        {
+            StartCoroutine(Events.ChechInternetConnection
+                (connect =>
+                {
+                    if (connect.Equals(true))
+                    {
+                        TranslateFromAPIAsync((string)SaveTypesFactory.deviceSaveManagerString.GetElement("Language"), textToTranslate);
+                    }
+                }
+                ));
+        }
+
+
+    }
+
+
+
+
     private void TranslateFromJson()
     {
         text.text = key == "" ? localization.GetLocalizedValue(text.text) : localization.GetLocalizedValue(key);
     }
 
-    private async void TranslateFromAPIAsync(string lang)
+    private async void TranslateFromAPIAsync(string lang, string text)
     {
         HttpClient client = new HttpClient();
-        const string apiKey = "AQVN1K5XuAZWmbj7SNck8xc1RiKWr27tYrSw5jUh"; // ???? ?? API
+        const string apiKey = "AQVN04q_jBXOeXRdy6nh2l24qhV3e1RNXfvam80V"; // ???? ?? API
         var url = "https://translate.api.cloud.yandex.net/translate/v2/translate";
 
         var requestBody = new
         {
             targetLanguageCode = lang, // ???? ????????
-            texts = new[] { text.text }, // ??????????? ?????
-            folderId = "b1g5gt63mkqi8qskjsu0" // ??? ?????
+            texts = new[] { text}, // ??????????? ?????
+            folderId = "b1gcs887qqjchlhcu03p" // ??? ?????
 
         };
-     
+
+        print(text);
 
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Api-Key", apiKey);
 
@@ -100,12 +126,12 @@ public class LocaledText : MonoBehaviour
         {
             string responseContent = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<TranslateResponse>(responseContent);
-           text.text =  ReplaceUnreadableSymbols(result.Translations[0].Text);
+            this.text.text =  ReplaceUnreadableSymbols(result.Translations[0].Text);
         }
 
         else
         {
-            text.text =  $"?????? ??? ????????: {response.StatusCode} - {response.ReasonPhrase}";
+            this.text.text =  $": {response.StatusCode} - {response.ReasonPhrase}";
         }
 
 

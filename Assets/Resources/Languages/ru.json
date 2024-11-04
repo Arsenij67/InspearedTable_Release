@@ -153,12 +153,39 @@
 
 
   },
-    {
-        "key": "Settings",
-        "value": "Настройки"
+  {
+    "key": "Settings",
+    "value": "Настройки"
 
 
-    } 
+  },
+  {
+    "key": "Log in",
+    "value": "Вход"
+  },
+  {
+    "key": "Registration",
+    "value": "Регистрация"
+  },
+
+  {
+    "key": "Enter mail",
+    "value": "Введите почту"
+  },
+  {
+    "key": "Enter pass",
+    "value": "Введите пароль"
+  },
+
+  {
+    "key": "Try pass",
+    "value": "Повторите пароль"
+  },
+
+  {
+    "key": "Enter text",
+    "value": "Введите текст"
+  }
 
 
 

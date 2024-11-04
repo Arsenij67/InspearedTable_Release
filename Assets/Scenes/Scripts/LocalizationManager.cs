@@ -35,8 +35,6 @@ public class LocalizationManager : MonoBehaviour
 
         OnLanguageChanged?.Invoke();
 
-
-
     }
 
     
@@ -64,7 +62,6 @@ public class LocalizationManager : MonoBehaviour
           
             for (int i = 0; i < loadedData.Length; i++)
             {
-
                 LocalizedText.Add(loadedData[i].key, loadedData[i].value);
             }
             CurrentLanguage = langName;
