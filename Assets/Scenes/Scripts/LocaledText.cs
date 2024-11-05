@@ -5,9 +5,10 @@ using UnityEngine.UI;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
-
+using System.Threading;
 using TMPro;
 using System.Text;
+using Unity.VisualScripting;
 
 public class LocaledText : MonoBehaviour
 {
@@ -15,15 +16,15 @@ public class LocaledText : MonoBehaviour
     protected LocalizationManager localization;
     protected TMP_Text text;
     [SerializeField] protected TranslateMode translateMode;
-    
+
     private void Awake()
     {
-        
+
 
         if (text == null)
         {
             text = GetComponent<TMP_Text>();
-            
+
 
         }
 
@@ -32,38 +33,33 @@ public class LocaledText : MonoBehaviour
 
             localization = GameObject.FindGameObjectWithTag("LocalizationManager").GetComponent<LocalizationManager>();
 
-           
-                LocalizationManager.OnLanguageChanged += UpdateText;
-                
-          
-
         }
-        
+        LocalizationManager.OnLanguageChanged += UpdateText;
 
     }
 
     public virtual void UpdateText()
     {
-            if (translateMode.Equals(TranslateMode.LocalTranslate))
-            {
+        if (translateMode.Equals(TranslateMode.LocalTranslate))
+        {
 
-                TranslateFromJson();
+            TranslateFromJson();
 
-            }
+        }
 
-            else if (translateMode.Equals(TranslateMode.APITranslate))
-            {
-               StartCoroutine( Events.ChechInternetConnection
-                   (connect =>
-                   {
-                       if (connect.Equals(true))
-                       {
-                           TranslateFromAPIAsync((string)SaveTypesFactory.deviceSaveManagerString.GetElement("Language"),text.text);
-                       }
-                   }
-                   ));
-            }
-       
+        else if (translateMode.Equals(TranslateMode.APITranslate))
+        {
+            StartCoroutine(Events.ChechInternetConnection
+                (connect =>
+                {
+                    if (connect.Equals(true))
+                    {
+                        TranslateFromAPIAsync((string)SaveTypesFactory.deviceSaveManagerString.GetElement("Language"), text.text);
+                    }
+                }
+                ));
+        }
+
 
     }
 
@@ -72,7 +68,7 @@ public class LocaledText : MonoBehaviour
         if (translateMode.Equals(TranslateMode.LocalTranslate))
         {
 
-            TranslateFromJson();
+            TranslateFromJson(textToTranslate);
 
         }
 
@@ -95,9 +91,9 @@ public class LocaledText : MonoBehaviour
 
 
 
-    private void TranslateFromJson()
+    private void TranslateFromJson(string text = "none")
     {
-        text.text = key == "" ? localization.GetLocalizedValue(text.text) : localization.GetLocalizedValue(key);
+        this.text.text = key == "" ? localization.GetLocalizedValue(text) : localization.GetLocalizedValue(key);
     }
 
     private async void TranslateFromAPIAsync(string lang, string text)
@@ -109,34 +105,26 @@ public class LocaledText : MonoBehaviour
         var requestBody = new
         {
             targetLanguageCode = lang, // ???? ????????
-            texts = new[] { text}, // ??????????? ?????
+            texts = new[] { text }, // ??????????? ?????
             folderId = "b1gcs887qqjchlhcu03p" // ??? ?????
 
         };
 
-        print(text);
-
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Api-Key", apiKey);
 
         string jsonRequestBody = JsonConvert.SerializeObject(requestBody);
-        var content = new StringContent(jsonRequestBody,Encoding.UTF8,"application/json");
-        var response =  await client.PostAsync(url, content);
+        var content = new StringContent(jsonRequestBody, Encoding.UTF8, "application/json");
+        var response = await client.PostAsync(url, content);
 
-        if (response.IsSuccessStatusCode)
+        if (response.IsSuccessStatusCode && !string.IsNullOrEmpty(text))
         {
             string responseContent = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<TranslateResponse>(responseContent);
-            this.text.text =  ReplaceUnreadableSymbols(result.Translations[0].Text);
+            this.text.text = ReplaceUnreadableSymbols(result.Translations[0].Text);
+           
         }
-
-        else
-        {
-            this.text.text =  $": {response.StatusCode} - {response.ReasonPhrase}";
-        }
-
 
     }
-
     private string ReplaceUnreadableSymbols(string translatedText)
     {
         // ???????? ??????????? ????? ?? ??????????
@@ -158,6 +146,17 @@ public class LocaledText : MonoBehaviour
             .Replace("ÿ", "y");
 
     }
+
+    public static LocaledText operator + (LocaledText localedText, int val)
+    {
+        localedText.text.text += val;
+
+        return localedText;
+
+    }
+
+ 
+
 
     private void OnDestroy()
     {

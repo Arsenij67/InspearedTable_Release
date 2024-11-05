@@ -31,7 +31,8 @@ public sealed class ScoreCaracter : MonoBehaviour
         set
         {
             _score = value;
-            localedScore.UpdateText("Score:  "+ _score);
+            localedScore.UpdateText("Score: ");
+            localedScore += _score;
 
         }
     
@@ -64,9 +65,10 @@ public sealed class ScoreCaracter : MonoBehaviour
         {
             _maxscore = value;
           
-            localedMaxScore.UpdateText("Max Score: "+_maxscore);
-          
-          
+            localedMaxScore.UpdateText("Max Score: ");
+            localedMaxScore +=_score;
+
+
         }
 
     }

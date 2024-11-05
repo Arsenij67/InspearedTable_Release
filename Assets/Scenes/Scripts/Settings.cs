@@ -61,7 +61,9 @@ public sealed class Settings : DashboardAnimator
             Task[] tasks = Events.AllTasks.ToArray();
 
             while (!Task.WhenAll(tasks).IsCompleted)
-            { await Task.Yield(); }
+            { 
+                await Task.Yield();
+            }
         }
 
         if (dir == Direction.To)
@@ -71,7 +73,7 @@ public sealed class Settings : DashboardAnimator
 
             foreach (Transform element in settingsElements)
             {
-                element.DOScale(Vector3.zero, 0.001f);
+                element.DOScale(Vector3.zero, 0f);
             }
 
 
@@ -140,7 +142,7 @@ public sealed class Settings : DashboardAnimator
     {
         RectTransform [] ExitMenuChildrens = WindowExit.GetChild(0).GetComponentsInChildren<RectTransform>(true);
 
-        WindowExit.gameObject.SetActive(true);
+        WindowExit.transform.localScale = Vector3.one;
 
         await UploadSettingsAnim (ExitMenuChildrens,0.05f);
 

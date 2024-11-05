@@ -65,7 +65,7 @@ public class DashboardAnimator : MonoBehaviour
     {
         dashboardLoading.gameObject.SetActive(true);
          
-        LocalizationManager.OnResponseChanged();
+        LocalizationManager.OnResponseChanged?.Invoke();
         await DOTween.Sequence().Append(dashboardLoading.DOScale(Vector3.zero,0))
             .Append(dashboardLoading.DOScale(Vector3.one, 1))
             .AppendInterval(interval).Play().AsyncWaitForCompletion();

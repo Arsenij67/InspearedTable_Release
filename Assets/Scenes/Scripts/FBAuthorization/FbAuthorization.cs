@@ -4,12 +4,12 @@ using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class FbAuthorization : MonoBehaviour
 {
     private IAuthorizationListener warningLoggerRegistrationListener;
     private IAuthorizationListener warningLoggerLogInListener;
-
 
     private FirebaseAuth FirebaseAuth;
 
@@ -102,6 +102,8 @@ public class FbAuthorization : MonoBehaviour
                 warningLoggerRegistrationListener.OnAuthorizationFailed(new System.AggregateException("Uncorrectable data!"));
 
             }
+
+   
         
         }
     /// <summary>
@@ -161,8 +163,6 @@ public class FbAuthorization : MonoBehaviour
             
         }
 
-       
-
     }
     private IEnumerator SendVerificationMail(Task<AuthResult> userCreationTask)
     {
@@ -181,6 +181,7 @@ public class FbAuthorization : MonoBehaviour
         
     }
 
+    
 
 
 

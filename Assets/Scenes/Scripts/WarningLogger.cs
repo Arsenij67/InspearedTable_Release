@@ -19,8 +19,8 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
     internal string pass;
     internal string mail;
     [SerializeField] private TMP_InputField ? mailField, passField, secondPassField;
-    public Button actionButton;
     private ScenesLoader sceneLoader;
+    public Button actionButton;
     // ????????
     string IAuthorizationListener.mail => mail;
 
@@ -32,8 +32,9 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
     {
         sceneLoader = GetComponent<ScenesLoader>();
         warningTextDict = warningTextList.Where(selector => selector != null).ToDictionary(k=>k.name.Substring(k.name.Length-4),e=>e);
-        // ?????: Mail, ass1, ass2
-     
+        //// ?????: Mail, ass1, ass2
+        SwitchButton(isFirstPassRight && isSecondPassRight && isMailRight);
+
     }
 
 /// <summary>
@@ -92,14 +93,14 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
 
                 }
             }
-
+            SwitchButton(isFirstPassRight && isSecondPassRight && isMailRight);
         }
         else
         {
             DisplayWarning("Password is empty", warningTextDict["ass1"], Color.red);
         }
 
-       
+        SwitchButton(isFirstPassRight && isSecondPassRight && isMailRight);
     }
 /// <summary>
 /// ????????? ???????????? ?????  ??????? ?????? ? ?????? ????? ?????????? ???????? ?? ?????
@@ -126,7 +127,7 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
         {
             DisplayWarning("Password is empty!", warningTextDict["ass2"], Color.red);
         }
-       
+        SwitchButton(isFirstPassRight && isSecondPassRight && isMailRight);
     }
 
 /// <summary>
@@ -161,7 +162,7 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
             DisplayWarning("Enter the mail!",mailText,Color.red);  
         }
 
-       
+        SwitchButton(isFirstPassRight && isSecondPassRight && isMailRight);
     }
 
     private void DisplayWarning(string message,TMP_Text field,Color color)
@@ -218,6 +219,12 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
         await DisplayGrowingLoadingPanel(string.Format($"The login was completed successfully!"),2f);
         sceneLoader.LoadScene();
        
+    }
+
+    private void SwitchButton(bool On)
+    {
+        actionButton.interactable = On;
+
     }
 
 

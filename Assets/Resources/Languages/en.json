@@ -62,7 +62,7 @@
 
   {
     "key": "Score",
-    "value": "Score:"
+    "value": "Score: "
   },
   {
     "key": "EnterName",
@@ -96,7 +96,7 @@
   },
   {
     "key": "Max Score",
-    "value": "Max Score"
+    "value": "Max Score "
 
 
   },
