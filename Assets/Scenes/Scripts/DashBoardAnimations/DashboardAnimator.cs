@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
+using UnityEditor.Localization.Editor;
 using UnityEngine;
 
 public class DashboardAnimator : MonoBehaviour
@@ -12,6 +13,7 @@ public class DashboardAnimator : MonoBehaviour
 
     [SerializeField] private Transform targetPosition = null;
     [SerializeField] private Transform dashboardLoading;
+    [SerializeField] private TMP_Text  mainText;
 
     internal async Task MoveQueuedAnimationBoard(Transform[] elements, float speed = 0.6f)
     {
@@ -63,9 +65,12 @@ public class DashboardAnimator : MonoBehaviour
 /// <param name="information">?????????????? ????????? ????? ?????????</param>
     protected async Task DisplayGrowingLoadingPanel(string information,float interval = 5)
     {
+        print("LF");
         dashboardLoading.gameObject.SetActive(true);
-         
+        mainText.text = information;
+
         LocalizationManager.OnResponseChanged?.Invoke();
+ 
         await DOTween.Sequence().Append(dashboardLoading.DOScale(Vector3.zero,0))
             .Append(dashboardLoading.DOScale(Vector3.one, 1))
             .AppendInterval(interval).Play().AsyncWaitForCompletion();
@@ -74,8 +79,7 @@ public class DashboardAnimator : MonoBehaviour
 
     protected async void CloseGrowingLoadingPanel(string information = "")
     {
-        TMP_Text text = dashboardLoading.GetComponentInChildren<TMP_Text>();
-        text.text = information;
+        mainText.text = information;
         Sequence sequencePop = DOTween.Sequence();
         if (!string.IsNullOrEmpty(information))
         {

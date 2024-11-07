@@ -169,7 +169,8 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
     { 
        
         field.color = color;
-        field.GetComponent<LocaledText>().UpdateText(message);
+        field.text = message;
+        LocalizationManager.OnResponseChanged();
        
     }
 
@@ -200,9 +201,10 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
        
     }
 
-    public void OnAuthorizationFailed(AggregateException error)
+    public async void OnAuthorizationFailed(AggregateException error)
     {
-        DisplayGrowingLoadingPanel(error.Message);
+         
+        await DisplayGrowingLoadingPanel(error.Message);
        
 
     }

@@ -31,8 +31,9 @@ public sealed class ScoreCaracter : MonoBehaviour
         set
         {
             _score = value;
-            localedScore.UpdateText("Score: ");
+            TextScoreUI.text = "Score: ";
             localedScore += _score;
+            LocalizationManager.OnResponseChanged();
 
         }
     
@@ -65,8 +66,10 @@ public sealed class ScoreCaracter : MonoBehaviour
         {
             _maxscore = value;
           
-            localedMaxScore.UpdateText("Max Score: ");
+            MaxScoreUI.text = ("Max Score: ");
             localedMaxScore +=_score;
+            LocalizationManager.OnResponseChanged();
+
 
 
         }

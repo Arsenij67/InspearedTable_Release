@@ -26,7 +26,7 @@ public class ButtonSwithLang : MonoBehaviour
 
         localization.LoadLocalizedText(localization.CurrentLanguage);
 
-        LocalizationManager.OnLanguageChanged?.Invoke();
+       LocalizationManager.OnLanguageChanged?.Invoke();
    
     
     }

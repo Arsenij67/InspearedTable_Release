@@ -171,7 +171,7 @@ public class ButtonController : MonoBehaviour
     {
         
             text = localization.GetLocalizedValue(text);
-            LocalizationManager.OnLanguageChanged.Invoke();
+          LocalizationManager.OnLanguageChanged.Invoke();
 
        Tween SequencePopup = DOTween.Sequence()
                 .Append(notification.DOLocalMoveX(150f, animNotification))

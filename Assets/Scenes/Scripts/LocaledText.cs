@@ -35,6 +35,7 @@ public class LocaledText : MonoBehaviour
 
         }
         LocalizationManager.OnLanguageChanged += UpdateText;
+        LocalizationManager.OnResponseChanged += UpdateText;
 
     }
 
@@ -54,7 +55,7 @@ public class LocaledText : MonoBehaviour
                 {
                     if (connect.Equals(true))
                     {
-                        TranslateFromAPIAsync((string)SaveTypesFactory.deviceSaveManagerString.GetElement("Language"), text.text);
+                        TranslateFromAPIAsync((string)SaveTypesFactory.deviceSaveManagerString.GetElement("Language"));
                     }
                 }
                 ));
@@ -62,41 +63,17 @@ public class LocaledText : MonoBehaviour
 
 
     }
+ 
 
-    public virtual void UpdateText(string textToTranslate = "none")
+
+
+
+    private void TranslateFromJson()
     {
-        if (translateMode.Equals(TranslateMode.LocalTranslate))
-        {
-
-            TranslateFromJson(textToTranslate);
-
-        }
-
-        else if (translateMode.Equals(TranslateMode.APITranslate))
-        {
-            StartCoroutine(Events.ChechInternetConnection
-                (connect =>
-                {
-                    if (connect.Equals(true))
-                    {
-                        TranslateFromAPIAsync((string)SaveTypesFactory.deviceSaveManagerString.GetElement("Language"), textToTranslate);
-                    }
-                }
-                ));
-        }
-
-
+        this.text.text = key == "" ? localization.GetLocalizedValue(this.text.text) : localization.GetLocalizedValue(key);
     }
 
-
-
-
-    private void TranslateFromJson(string text = "none")
-    {
-        this.text.text = key == "" ? localization.GetLocalizedValue(text) : localization.GetLocalizedValue(key);
-    }
-
-    private async void TranslateFromAPIAsync(string lang, string text)
+    private async void TranslateFromAPIAsync(string lang)
     {
         HttpClient client = new HttpClient();
         const string apiKey = "AQVN04q_jBXOeXRdy6nh2l24qhV3e1RNXfvam80V"; // ???? ?? API
@@ -105,7 +82,7 @@ public class LocaledText : MonoBehaviour
         var requestBody = new
         {
             targetLanguageCode = lang, // ???? ????????
-            texts = new[] { text }, // ??????????? ?????
+            texts = new[] { text.text }, // ??????????? ?????
             folderId = "b1gcs887qqjchlhcu03p" // ??? ?????
 
         };
@@ -116,7 +93,7 @@ public class LocaledText : MonoBehaviour
         var content = new StringContent(jsonRequestBody, Encoding.UTF8, "application/json");
         var response = await client.PostAsync(url, content);
 
-        if (response.IsSuccessStatusCode && !string.IsNullOrEmpty(text))
+        if (response.IsSuccessStatusCode && !string.IsNullOrEmpty(text.text))
         {
             string responseContent = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<TranslateResponse>(responseContent);

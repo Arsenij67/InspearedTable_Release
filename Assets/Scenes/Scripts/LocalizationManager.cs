@@ -7,7 +7,7 @@ using System.Linq;
 public class LocalizationManager : MonoBehaviour
 {
     private static Dictionary<string, string> LocalizedText = new Dictionary<string, string>();
-    public  static Action OnLanguageChanged;
+    public static Action OnLanguageChanged;
     public static Action OnResponseChanged;
     [SerializeField] private TextAsset [] LangFiles = new TextAsset[3];
     private Dictionary<string, TextAsset> DictFiles;

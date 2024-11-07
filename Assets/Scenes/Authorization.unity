@@ -3222,6 +3222,7 @@ MonoBehaviour:
   dir: 1
   targetPosition: {fileID: 665174438}
   dashboardLoading: {fileID: 1949720862}
+  mainText: {fileID: 1787049446}
   warningTextList:
   - {fileID: 110292545}
   - {fileID: 352907592}
@@ -3248,6 +3249,7 @@ MonoBehaviour:
   dir: 1
   targetPosition: {fileID: 0}
   dashboardLoading: {fileID: 0}
+  mainText: {fileID: 0}
   sceneName: 
 --- !u!1 &1002691554
 GameObject:
@@ -6569,6 +6571,7 @@ MonoBehaviour:
   dir: -1
   targetPosition: {fileID: 665174438}
   dashboardLoading: {fileID: 1949720862}
+  mainText: {fileID: 1787049446}
   warningTextList:
   - {fileID: 600469188}
   - {fileID: 408320854}
@@ -6594,7 +6597,19 @@ MonoBehaviour:
   dir: 1
   targetPosition: {fileID: 0}
   dashboardLoading: {fileID: 0}
+  mainText: {fileID: 0}
   sceneName: MainMenuAndroid
+--- !u!114 &1787049446 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8193017580007424684, guid: 8690112a8f5f10f4a94c8d02d90fde05, type: 3}
+  m_PrefabInstance: {fileID: 4159454000092472532}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1803580432
 GameObject:
   m_ObjectHideFlags: 0
@@ -7705,5 +7720,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 924843345}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8462788400219096202, guid: 8690112a8f5f10f4a94c8d02d90fde05, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8690112a8f5f10f4a94c8d02d90fde05, type: 3}
