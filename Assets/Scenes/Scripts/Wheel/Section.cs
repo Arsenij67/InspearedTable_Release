@@ -71,7 +71,7 @@ public class Section : MonoBehaviour
         {
             endAngle -= 360;
         }
-        print(MinAngle + " = MinAngle " + MaxAngle + " = MaxAngle " + name + " True or False: "+ (endAngle > MinAngle && endAngle < MaxAngle)+ " End engle = "+ endAngle);
+  
         return endAngle > MinAngle && endAngle < MaxAngle;
     }
     private Vector2 GetCoordinatesLabel(float Angle, float radius = 10)
@@ -91,7 +91,7 @@ public class Section : MonoBehaviour
             float startValue = occupierFraction;
             MinAngle = 360 * startValue;
             MaxAngle = 360 * targetValue;
-            print($" MinAngle = {MinAngle} MaxAngle = {MaxAngle}  res =  {MinAngle + (MaxAngle - MinAngle) / 2}");
+           
             if (Events.indexesActived.Count() <= 1)
             {
                 SetCoordinatesLabel(0);

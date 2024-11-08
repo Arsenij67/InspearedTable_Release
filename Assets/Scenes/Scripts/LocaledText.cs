@@ -129,7 +129,6 @@ public class LocaledText : MonoBehaviour
     public static LocaledText operator + (in LocaledText localeText, string val)
     {
         localeText.text.text = val;
-        print(localeText.GetHashCode() + "внутри");
         return localeText;
 
     }

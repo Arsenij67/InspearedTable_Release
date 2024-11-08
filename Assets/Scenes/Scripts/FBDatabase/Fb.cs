@@ -36,11 +36,11 @@ public class Fb : MonoBehaviour
 /// </summary>
 public async Task InitInfo()
     {
-        print("init info");
+       
         DBRef = FirebaseDatabase.GetInstance("https://insptable-default-rtdb.firebaseio.com/").RootReference;
-        print("init info");
+       
         dataSnapshot =  await ReadData();
-        print("init info");
+       
     }
 
 
@@ -49,11 +49,11 @@ public async Task InitInfo()
 /// </summary>
 public async Task<DataSnapshot> ReadData()
     {
-        print("readdata start");
+     
         var Data  = DBRef.Child("Users").OrderByChild("Record").LimitToFirst(MaxCount).GetValueAsync();
 
         await  Data;
-        print("read data end");
+      
         if (Data.Exception == null)
         {
             print("Данные загружены");

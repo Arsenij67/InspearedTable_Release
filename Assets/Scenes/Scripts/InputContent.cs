@@ -1,9 +1,7 @@
 using DG.Tweening;
 using System;
 using System.IO;
-using System.Reflection;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 public abstract class Content : InputContent
@@ -45,9 +43,9 @@ public class Motivation : Content//2
 
         string file = File.text.ToString();
 
-        print(file);
+  
         contents = file.Split("*"); // ?????? ?????????
-        print(contents);
+     
         NumberCont = contents.Length;
 
 
@@ -99,10 +97,9 @@ public class Joke : Content//1
 
         string file = File.text.ToString();
 
-        print(file);
+ 
         contents = file.Split("*"); // ?????? ?????????
-        print(contents);
-
+        
         NumberCont = contents.Length;
 
     }
@@ -145,10 +142,10 @@ public class Story : Content //0
         File = Resources.Load<TextAsset>(path: "Content/Story");
 
         string file = File.text.ToString();
-        print(file);
+ 
 
         contents = file.Split("*"); // ?????? ?????????
-        print(contents);
+      
 
         NumberCont = contents.Length;
 

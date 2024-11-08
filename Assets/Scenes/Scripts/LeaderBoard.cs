@@ -1,14 +1,11 @@
 using DG.Tweening;
 using Firebase.Database;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
- 
 using System;
 using System.Threading.Tasks;
-using UnityEngine.SceneManagement;
 
 public class LeaderBoard : DashboardAnimator
 {
@@ -93,7 +90,6 @@ public class LeaderBoard : DashboardAnimator
     {
 
         await fb.InitInfo();
-        print("Скачано");
 
         DataSnapshot LeaderBoardSnapshot = fb.dataSnapshot;
         int i = 1;
