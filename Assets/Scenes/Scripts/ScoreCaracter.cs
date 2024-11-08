@@ -18,7 +18,7 @@ public sealed class ScoreCaracter : MonoBehaviour
     [SerializeField] private LocaledText localedScore;
 
     private Fb fb;
-
+    
     private int _score;
     public int Score {
         get 
@@ -31,11 +31,12 @@ public sealed class ScoreCaracter : MonoBehaviour
         set
         {
             _score = value;
-            TextScoreUI.text = "Score: ";
-            localedScore += _score;
-            LocalizationManager.OnResponseChanged();
 
+         
+            LocalizationManager.OnResponseChanged();
+            TextScoreUI.text +=_score.ToString();
         }
+    
     
     
   
@@ -65,10 +66,10 @@ public sealed class ScoreCaracter : MonoBehaviour
         set
         {
             _maxscore = value;
+
           
-            MaxScoreUI.text = ("Max Score: ");
-            localedMaxScore +=_score;
             LocalizationManager.OnResponseChanged();
+            MaxScoreUI.text+= _maxscore.ToString(); 
 
 
 

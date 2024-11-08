@@ -3021,7 +3021,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -104.86, y: -164.16}
+  m_AnchoredPosition: {x: -104.860016, y: -164.16}
   m_SizeDelta: {x: 130.66003, y: 114.78998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &709350353
@@ -3856,7 +3856,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 141, y: -174.2}
+  m_AnchoredPosition: {x: 141, y: -174.20001}
   m_SizeDelta: {x: 194.78, y: 134.868}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &882903000
@@ -6003,6 +6003,7 @@ MonoBehaviour:
   dir: 1
   targetPosition: {fileID: 0}
   dashboardLoading: {fileID: 4159454000177687179}
+  mainText: {fileID: 0}
   TextNames: {fileID: 0}
   TextRecords: {fileID: 0}
   fb: {fileID: 1662526202}
@@ -12302,6 +12303,7 @@ MonoBehaviour:
   dir: 1
   targetPosition: {fileID: 1643636841}
   dashboardLoading: {fileID: 1643636841}
+  mainText: {fileID: 0}
   mainSection: {fileID: 2041296500}
   resultPopUp: {fileID: 8665879803928384288}
 --- !u!114 &1643636843
@@ -13644,6 +13646,7 @@ MonoBehaviour:
   dir: 1
   targetPosition: {fileID: 0}
   dashboardLoading: {fileID: 0}
+  mainText: {fileID: 0}
   AudioClickButton: {fileID: 8300000, guid: 1b22feb51382a5042be95ccd7d08c703, type: 3}
   audioSource: {fileID: 1557293757}
   MusicSlider: {fileID: 676120381}
@@ -14840,6 +14843,7 @@ MonoBehaviour:
   dir: 1
   targetPosition: {fileID: 4159454000177687179}
   dashboardLoading: {fileID: 4159454000177687179}
+  mainText: {fileID: 8193017581130755565}
   imagePanel: {fileID: 618392298192566758}
   confettiSystem: {fileID: 1327000409}
   clipResult: {fileID: 8300000, guid: 02197c4454441e44eab861d405ae0bd9, type: 3}

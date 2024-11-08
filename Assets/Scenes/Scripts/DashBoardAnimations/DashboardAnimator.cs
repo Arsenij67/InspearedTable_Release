@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
-using UnityEditor.Localization.Editor;
 using UnityEngine;
 
 public class DashboardAnimator : MonoBehaviour
@@ -65,9 +64,11 @@ public class DashboardAnimator : MonoBehaviour
 /// <param name="information">?????????????? ????????? ????? ?????????</param>
     protected async Task DisplayGrowingLoadingPanel(string information,float interval = 5)
     {
-        print("LF");
         dashboardLoading.gameObject.SetActive(true);
-        mainText.text = information;
+        if (mainText)
+        {
+            mainText.text = information;
+        }
 
         LocalizationManager.OnResponseChanged?.Invoke();
  

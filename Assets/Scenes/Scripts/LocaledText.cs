@@ -8,13 +8,13 @@ using System.Net.Http.Headers;
 using System.Threading;
 using TMPro;
 using System.Text;
-using Unity.VisualScripting;
+
 
 public class LocaledText : MonoBehaviour
 {
     [SerializeField] protected string key;
     protected LocalizationManager localization;
-    protected TMP_Text text;
+    public TMP_Text text;
     [SerializeField] protected TranslateMode translateMode;
 
     private void Awake()
@@ -70,7 +70,9 @@ public class LocaledText : MonoBehaviour
 
     private void TranslateFromJson()
     {
+       
         this.text.text = key == "" ? localization.GetLocalizedValue(this.text.text) : localization.GetLocalizedValue(key);
+     
     }
 
     private async void TranslateFromAPIAsync(string lang)
@@ -124,14 +126,15 @@ public class LocaledText : MonoBehaviour
 
     }
 
-    public static LocaledText operator + (LocaledText localedText, int val)
+    public static LocaledText operator + (in LocaledText localeText, string val)
     {
-        localedText.text.text += val;
-
-        return localedText;
+        localeText.text.text = val;
+        print(localeText.GetHashCode() + "внутри");
+        return localeText;
 
     }
 
+ 
  
 
 
