@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4967327, g: 0.3974649, b: 0.30760464, a: 1}
+  m_IndirectSpecularColor: {r: 0.49647516, g: 0.39706373, b: 0.3076995, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Yes
+  text: {fileID: 0}
   translateMode: 0
 --- !u!114 &52692831
 MonoBehaviour:
@@ -335,6 +336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: TableRecord
+  text: {fileID: 0}
   translateMode: 0
 --- !u!114 &85212265
 MonoBehaviour:
@@ -848,6 +850,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: ExitGame
+  text: {fileID: 0}
   translateMode: 0
 --- !u!114 &188982619
 MonoBehaviour:
@@ -974,8 +977,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.0000038146973}
-  m_SizeDelta: {x: 90.67, y: 79.593}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100.05, y: 74.968}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &253050381
 MonoBehaviour:
@@ -1174,6 +1177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Content2
+  text: {fileID: 0}
   translateMode: 0
 --- !u!114 &275323294
 MonoBehaviour:
@@ -1316,6 +1320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Settings
+  text: {fileID: 0}
   translateMode: 0
 --- !u!222 &295569268
 CanvasRenderer:
@@ -1664,6 +1669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Content1
+  text: {fileID: 0}
   translateMode: 0
 --- !u!114 &442691935
 MonoBehaviour:
@@ -3021,7 +3027,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -104.860016, y: -164.16}
+  m_AnchoredPosition: {x: -104.859985, y: -164.16003}
   m_SizeDelta: {x: 130.66003, y: 114.78998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &709350353
@@ -3731,6 +3737,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Title
+  text: {fileID: 0}
   translateMode: 0
 --- !u!114 &870552115
 MonoBehaviour:
@@ -3856,7 +3863,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 141, y: -174.20001}
+  m_AnchoredPosition: {x: 141, y: -174.19995}
   m_SizeDelta: {x: 194.78, y: 134.868}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &882903000
@@ -4026,6 +4033,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: ExitButton
+  text: {fileID: 0}
   translateMode: 0
 --- !u!222 &931839366
 CanvasRenderer:
@@ -4483,6 +4491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: LeaderTitle
+  text: {fileID: 0}
   translateMode: 0
 --- !u!114 &1069521132
 MonoBehaviour:
@@ -6232,6 +6241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: No
+  text: {fileID: 0}
   translateMode: 0
 --- !u!114 &1476102654
 MonoBehaviour:
@@ -6505,7 +6515,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180.1}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 36.033, y: -26.549}
+  m_AnchoredPosition: {x: 38.7, y: -22.7}
   m_SizeDelta: {x: 18.6035, y: 26.4947}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1510971892
@@ -6606,6 +6616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: ButtonPlay
+  text: {fileID: 0}
   translateMode: 0
 --- !u!114 &1526700086
 MonoBehaviour:
@@ -12157,6 +12168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: TableName
+  text: {fileID: 0}
   translateMode: 0
 --- !u!114 &1637472235
 MonoBehaviour:
@@ -13168,6 +13180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Volume
+  text: {fileID: 0}
   translateMode: 0
 --- !u!1 &1889475405
 GameObject:
@@ -13306,6 +13319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Content3
+  text: {fileID: 0}
   translateMode: 0
 --- !u!114 &1968087234
 MonoBehaviour:
@@ -13588,10 +13602,10 @@ RectTransform:
   m_Father: {fileID: 1715133780}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1630, y: 0.00024414062}
-  m_SizeDelta: {x: 10.26001, y: -0.00049972534}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -2400, y: -17.365}
+  m_SizeDelta: {x: 800, y: 1032.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2035292355
 MonoBehaviour:
@@ -13855,6 +13869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: VK
+  text: {fileID: 0}
   translateMode: 0
 --- !u!114 &2094682003
 MonoBehaviour:
@@ -14285,6 +14300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: 
+  text: {fileID: 0}
   translateMode: 1
 --- !u!222 &2470326631103616407
 CanvasRenderer:
