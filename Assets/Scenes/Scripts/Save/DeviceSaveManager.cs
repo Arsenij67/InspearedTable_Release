@@ -2,88 +2,100 @@ using System.IO;
 using UnityEngine;
 using System.Xml.Linq;
 using System;
+using Newtonsoft.Json.Linq;
 
 /// <summary>
-/// ?????- ???????? ??? ?????????? ????????? ?????????? ?? ??????
+/// Менеджер для сохранения и загрузки данных устройства в формате XML.
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public class DeviceSaveManager<T>:MonoBehaviour
+public class DeviceSaveManager<T> 
 {
-    private DeviceSaveManager()
-    { 
-    
-    }
-    protected static DeviceSaveManager<T>  InstanceSaveManager { get; private set; }
-    private XElement root = new XElement("root");
-    private string path;
+    private static DeviceSaveManager<T> instanceSaveManager;
+    private static XElement root = new XElement("root");
+    private static string path;
+
+    // Получение экземпляра менеджера
     internal static DeviceSaveManager<T> GetInstance()
     {
-        if (InstanceSaveManager == null) InstanceSaveManager = new DeviceSaveManager<T>();
-        return InstanceSaveManager;
+        if (instanceSaveManager == null)
+        {
+            instanceSaveManager = new DeviceSaveManager<T>();
+        }
+        return instanceSaveManager;
     }
-    private XElement ConvertStringToXML(string key, T value)
+
+    public void Init()
     {
-        
-        if (!File.Exists(path)|| File.ReadAllText(path).Length<1)
+        Debug.Log("ffffffffff");
+        path = Path.Combine(Application.persistentDataPath, "SystemData.xml");
+        LoadOrCreateFile();
+        Debug.Log(path);
+    }
+    private static void LoadOrCreateFile()
+    {
+        if (!File.Exists(path))
         {
             CreateFile(path);
             root = new XElement("root");
+            root = ConvertStringToXML("Name", default(T));
+            SaveToFile();
+
         }
         else
         {
-            string allText = "";
-            using (StreamReader sr = new StreamReader(path))
-            {
-                allText = sr.ReadToEnd();
-                sr.Close();
-
-            }
+            string allText = File.ReadAllText(path);
             root = XDocument.Parse(allText).Element("root");
-           
         }
-        root.SetAttributeValue(key,value);
+    }
+
+    private static void SaveToFile()
+    {
+        XDocument xDocument = new XDocument(root);
+        File.WriteAllText(path, xDocument.ToString());
+    }
+
+    private static XElement ConvertStringToXML(string key, T value)
+    {
+        root.SetAttributeValue(key, value);
         return root;
     }
-    public void SaveElement(string key,T value)
+
+    public  void SaveElement(string key, T value)
     {
-       string path = Path.Combine(Application.dataPath, "Resources","Languages", "SystemData.xml");
-       XElement xElement =  ConvertStringToXML(key,value);
-       XDocument xDocument = new XDocument(xElement);
-        StreamWriter sw = new StreamWriter(path);
-        using (sw.WriteAsync(xDocument.ToString()))
-        {
-            sw.Close();
-        }
+        root = ConvertStringToXML(key, value);
+        SaveToFile();
     }
-    public object GetElement(string key)
+
+    public T GetElement(string key)
     {
-        path =  Path.Combine(Application.dataPath, "Resources","Languages", "SystemData.xml"); // ???? ? ????????? ??????
-        if (!File.Exists(path))
-        {
-            SaveElement(key, default(T));
-            return null is T;
-        }
-        using (StreamReader sr = new StreamReader(path))
-        {
-            root = XDocument.Parse(sr.ReadToEnd().ToString()).Element("root");
-            sr.Close();
-        }
         if (root.Attribute(key) != null)
         {
-            return root.Attribute(key).Value;
+            return (T)Convert.ChangeType(root.Attribute(key).Value, typeof(T));
         }
         else
         {
             SaveElement(key, default(T));
-            return root.Attribute(key) is T;
-
+            return default(T);
         }
     }
 
-    private void CreateFile(string path)
+    private static void CreateFile(string path)
     {
-        FileStream fs = File.Create(path);
-        using (fs)
-            fs.Close();
+        using (FileStream fs = File.Create(path))
+        {
+            // Файл создан, можно добавить начальное содержимое, если нужно
+        }
     }
+
+    
+}
+public class InvokerSystemData
+{
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    static void Init()
+    {
+        SaveTypesFactory.deviceSaveManagerString.Init();
+        SaveTypesFactory.deviceSaveManagerInteger.Init();
+    }
+
 }
