@@ -19,12 +19,20 @@ public abstract class Content : InputContent
 
     public Image contentImage;
 
+    protected int startSizeInfo;
+
     internal void SetTitleBoard(ref TMP_Text title)
     {
         title.text = Name;
 
     }
 
+    protected void HideContent()
+    {
+        startSizeInfo  = (int)Info.fontSize;
+        Info.fontSize = 0;
+ 
+    }
 
 
 
@@ -71,6 +79,7 @@ public class Motivation : Content//2
            Info.text = ("Запас мотивация закончился!");
 
         }
+      
         LocalizationManager.OnResponseChanged();
 
     }
@@ -121,6 +130,7 @@ public class Joke : Content//1
             Info.text = ("Запас шуток закончился!");
         
         }
+   
         LocalizationManager.OnResponseChanged();
 
     }
@@ -172,6 +182,7 @@ public class Story : Content //0
             Info.text = "Запас историй закончился!";
           
         }
+
         LocalizationManager.OnResponseChanged();
 
     }
@@ -198,6 +209,8 @@ public class InputContent : MonoBehaviour
 
     public Content droppedContent;
 
+    [SerializeField] private DashboardAnimator FormLoadingTranslate;
+
     private void Awake()
     {
         InitializeContent();
@@ -218,9 +231,17 @@ public class InputContent : MonoBehaviour
 
         content.SetTitleBoard(ref board.ContentType);
 
-     
+       
     }
-   
+
+    private void OnEnable()
+    {
+        LocalizationManager.OnEndResponse += FormLoadingTranslate.CloseGrowingLoadingPanel;
+    }
+    private void OnDisable()
+    {
+        LocalizationManager.OnEndResponse -= FormLoadingTranslate.CloseGrowingLoadingPanel;
+    }
     public static Content GetContentByIndex(short index)
 
     {
@@ -242,18 +263,21 @@ public class InputContent : MonoBehaviour
 
     }
 
-    public void ShowContent()
+    public async void ShowContent()
     {
         
         if (content.Price > 0)
         {
             
             MoveY(0);
-           
-        
+
+           await FormLoadingTranslate.DisplayGrowingLoadingPanel("Эльфы трудятся над качественным переводом... пожалуйста, подождите немного",0.5f);
+
             content.ShowContent();
 
             StartCoroutine(ScoreCaracter.Instance.ChangeScoreAndRecord(-(content.Price), 50));// ?????? ?? ???????
+
+             
         }
  
     }
@@ -280,6 +304,8 @@ public class InputContent : MonoBehaviour
 
 
     }
+
+    
 
 
  }

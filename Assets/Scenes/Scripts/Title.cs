@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using UnityEditor;
+using UnityEngine.EventSystems;
 
-
-public sealed class Title:MonoBehaviour
+public sealed class Title:MonoBehaviour,IDeselectHandler
 {
     public int x, y;
 
@@ -61,6 +61,16 @@ public sealed class Title:MonoBehaviour
     private bool canMix = true;
     internal bool CanMix => canMix;
 
+    private Image formSelect; // ссылка на рамочку вокруг элемента
+
+    public Sprite formActive; // активный элемент
+
+    public Sprite formPassive; // неактивный элемент
+
+    private bool isTileActive = false;
+
+    public bool IsTileActive => isTileActive;
+
 
     public Title Left => x > 0 ? Board.Instance.tiles[x - 1, y] : null; // свойства,хранящие своих соседей
     public Title Top => y > 0 ? Board.Instance.tiles[x, y - 1] : null;
@@ -79,14 +89,20 @@ public sealed class Title:MonoBehaviour
 
 
     private void Awake() {
-        
-       
  
         AddListener();
        
     }
+    private void Start()
+    {
+        formSelect = transform.GetChild(1).GetComponent<Image>();
+    }
+    public void AddListener()
+    {
+        button.onClick.AddListener(() => Board.Instance.Select(this));
+        button.onClick.AddListener(() => ChangeActivity());
 
-    public void AddListener() => button.onClick.AddListener(() => Board.Instance.Select(this));
+    }
 
 
     public List<Title> GetConnectedTiles(List<Title> exclude = null)
@@ -146,5 +162,14 @@ public sealed class Title:MonoBehaviour
 
     }
 
+    internal void ChangeActivity()
+    {
+        formSelect.sprite = isTileActive ? formPassive : formActive;
+        isTileActive = !isTileActive;
+    }
 
+    public void OnDeselect(BaseEventData eventData)
+    {
+        ChangeActivity();
+    }
 }

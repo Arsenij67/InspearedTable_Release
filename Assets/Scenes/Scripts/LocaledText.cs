@@ -16,7 +16,7 @@ public class LocaledText : MonoBehaviour
     protected LocalizationManager localization;
     public TMP_Text text;
     [SerializeField] protected TranslateMode translateMode;
-
+   
     private void Awake()
     {
 
@@ -100,8 +100,14 @@ public class LocaledText : MonoBehaviour
             string responseContent = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<TranslateResponse>(responseContent);
             this.text.text = ReplaceUnreadableSymbols(result.Translations[0].Text);
-           
+            await Task.Delay(2000);
+            LocalizationManager.OnEndResponse?.Invoke("");
         }
+        else
+        { 
+            Debug.Log(response.StatusCode.ToString());
+        }
+       
 
     }
     private string ReplaceUnreadableSymbols(string translatedText)

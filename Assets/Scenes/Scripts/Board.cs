@@ -36,9 +36,7 @@ public sealed class Board : MonoBehaviour
 
     private short IndexShow => Events.DroppedIndex;// выбираем 1 индекс случайно из выбранных нами
 
-    
 
-    private Transform Item_Decoration;
     private Fb fb;
     [Header("Префаб очков")]
     [SerializeField] private GameObject TextScore;
@@ -47,28 +45,15 @@ public sealed class Board : MonoBehaviour
 
     public async void Awake()
     {
-         
-            Instance = this;
-            fb = GetComponent<Fb>();
-            CheckScore();
-            UpLoadTiles();
 
-            _audioSource = GetComponent<AudioSource>();
+        Instance = this;
+        fb = GetComponent<Fb>();
+        CheckScore();
+        UpLoadTiles();
 
-            Item_Decoration = GameObject.Find("SelectedItem").GetComponent<Transform>();
-        
-       
-    }
-    private async void MoveDecorate(Title tile)
-    {
-        
-            var SequenceMove = DOTween.Sequence();
+        _audioSource = GetComponent<AudioSource>();
 
-            SequenceMove.Join(Item_Decoration.transform.DOMove(tile.transform.position - new Vector3(0, 0.5f, 0), AnimTime));
 
-            await SequenceMove.Play().AsyncWaitForCompletion();
-        
-         
     }
     [Obsolete]
     public async void Select(Title tile)  
@@ -106,8 +91,6 @@ public sealed class Board : MonoBehaviour
 
                     _selections.Add(tile);
 
-                    MoveDecorate(tile);
-
                 }
 
 
@@ -135,6 +118,7 @@ public sealed class Board : MonoBehaviour
 
             }
 
+        
             _selections.Clear();
     
     }

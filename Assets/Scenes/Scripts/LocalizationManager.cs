@@ -10,6 +10,7 @@ public class LocalizationManager : MonoBehaviour
     private static Dictionary<string, string> LocalizedText = new Dictionary<string, string>();
     public static Action OnLanguageChanged;
     public static Action OnResponseChanged;
+    public static Action<string> OnEndResponse;
     [SerializeField]private TextAsset [] LangFiles = new TextAsset[3];
     private Dictionary<string, TextAsset> DictFiles;
     private const string startLanguage = "en";

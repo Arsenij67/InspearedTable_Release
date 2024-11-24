@@ -61,9 +61,10 @@ public class DashboardAnimator : MonoBehaviour
 /// ????????? ????
 /// </summary>
 /// <param name="information">?????????????? ????????? ????? ?????????</param>
-    protected async Task DisplayGrowingLoadingPanel(string information,float interval = 5)
+    internal async Task DisplayGrowingLoadingPanel(string information,float interval = 5)
     {
-        dashboardLoading.gameObject.SetActive(true);
+        gameObject.SetActive(true);
+         
         if (mainText)
         {
             mainText.text = information;
@@ -77,16 +78,18 @@ public class DashboardAnimator : MonoBehaviour
 
     }
 
-    protected async void CloseGrowingLoadingPanel(string information = "")
-    {
-        mainText.text = information;
+    public async void CloseGrowingLoadingPanel(string information = "")
+    {   if (mainText)
+        {
+            mainText.text = information;
+        }
         Sequence sequencePop = DOTween.Sequence();
         if (!string.IsNullOrEmpty(information))
         {
             sequencePop.AppendInterval(1f);
         }
         await sequencePop.Append(dashboardLoading.DOScale(Vector3.zero, 0.5f)).Play().AsyncWaitForCompletion();
-        dashboardLoading.gameObject.SetActive(false);
+         
         
     }
 

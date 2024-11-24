@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4967327, g: 0.3974649, b: 0.30760464, a: 1}
+  m_IndirectSpecularColor: {r: 0.49647516, g: 0.39706373, b: 0.3076995, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -502,6 +502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: 
+  text: {fileID: 0}
   translateMode: 1
 --- !u!1 &137856069
 GameObject:
@@ -768,6 +769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: 
+  text: {fileID: 0}
   translateMode: 1
 --- !u!1 &362606065
 GameObject:
@@ -1088,6 +1090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: 
+  text: {fileID: 0}
   translateMode: 1
 --- !u!1 &434027750
 GameObject:
@@ -1280,6 +1283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Log in
+  text: {fileID: 0}
   translateMode: 0
 --- !u!1 &493200264
 GameObject:
@@ -1694,6 +1698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: 
+  text: {fileID: 0}
   translateMode: 1
 --- !u!1 &623874231
 GameObject:
@@ -1824,6 +1829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Enter text
+  text: {fileID: 0}
   translateMode: 0
 --- !u!114 &666538552
 MonoBehaviour:
@@ -2091,6 +2097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: 
+  text: {fileID: 0}
   translateMode: 1
 --- !u!1 &752414764
 GameObject:
@@ -2650,8 +2657,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28
-  m_fontSizeBase: 28
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2713,6 +2720,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Enter pass
+  text: {fileID: 0}
   translateMode: 0
 --- !u!1 &897299846
 GameObject:
@@ -2863,6 +2871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Enter mail
+  text: {fileID: 0}
   translateMode: 0
 --- !u!1 &907505353
 GameObject:
@@ -4262,6 +4271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Registration
+  text: {fileID: 0}
   translateMode: 0
 --- !u!1 &1211482334
 GameObject:
@@ -4549,6 +4559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Enter mail
+  text: {fileID: 0}
   translateMode: 0
 --- !u!1 &1285358630
 GameObject:
@@ -4775,6 +4786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Registration
+  text: {fileID: 0}
   translateMode: 0
 --- !u!1 &1346657306
 GameObject:
@@ -4964,6 +4976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Enter text
+  text: {fileID: 0}
   translateMode: 0
 --- !u!114 &1353914516
 MonoBehaviour:
@@ -5571,6 +5584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Log in
+  text: {fileID: 0}
   translateMode: 0
 --- !u!1 &1557088411
 GameObject:
@@ -6118,6 +6132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Try pass
+  text: {fileID: 0}
   translateMode: 0
 --- !u!1 &1722909802
 GameObject:
@@ -6172,6 +6187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Enter text
+  text: {fileID: 0}
   translateMode: 0
 --- !u!114 &1722909805
 MonoBehaviour:
@@ -6516,6 +6532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Enter pass
+  text: {fileID: 0}
   translateMode: 0
 --- !u!1 &1769693950
 GameObject:
@@ -6904,6 +6921,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Enter text
+  text: {fileID: 0}
   translateMode: 0
 --- !u!1 &1909351707
 GameObject:
@@ -7219,6 +7237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Enter text
+  text: {fileID: 0}
   translateMode: 0
 --- !u!114 &2128986750
 MonoBehaviour:

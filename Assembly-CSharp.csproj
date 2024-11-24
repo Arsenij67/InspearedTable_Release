@@ -116,7 +116,6 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Firebase\Plugins\iOS\Firebase.Auth.dll" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-    <None Include="Assets\AddressableAssetsData\link.xml" />
     <None Include="Assets\Resources\Content\Story.txt" />
     <None Include="Assets\ProjectSettings\ProjectVersion.txt" />
     <None Include="Assets\Firebase\Plugins\Firebase.AppCheck.dll" />

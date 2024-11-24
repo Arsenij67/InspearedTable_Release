@@ -132,6 +132,10 @@
   {
     "key": "Enter text",
     "value": "Entrer du texte"
+  },
+  {
+    "key": "TitleLoadText",
+    "value": "Les elfes travaillent sur une traduction de qualité... attendez un peu."
   }
 
 

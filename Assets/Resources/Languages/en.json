@@ -2,7 +2,7 @@
   {
 
     "key": "Title",
-    "value": "Choose your faivorit content!"
+    "value": "Choose whatever you like!"
   },
 
 
@@ -184,6 +184,11 @@
   {
     "key": "Enter text",
     "value": "Enter text"
+  },
+
+  {
+    "key": "TitleLoadText",
+    "value": "The elves are working on a high-quality translation... Wait a bit"
   }
 
 
