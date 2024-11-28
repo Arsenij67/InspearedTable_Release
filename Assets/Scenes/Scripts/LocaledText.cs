@@ -77,35 +77,44 @@ public class LocaledText : MonoBehaviour
 
     private async void TranslateFromAPIAsync(string lang)
     {
+        const int delayTime = 2000;
         HttpClient client = new HttpClient();
-        const string apiKey = "AQVN04q_jBXOeXRdy6nh2l24qhV3e1RNXfvam80V"; // ???? ?? API
+        const string apiKey = "AQVN2QlNQzTkVnzDm-wFJ1FCVP8wJncKO5oTgXcN"; // KEY API
         var url = "https://translate.api.cloud.yandex.net/translate/v2/translate";
 
         var requestBody = new
         {
-            targetLanguageCode = lang, // ???? ????????
-            texts = new[] { text.text }, // ??????????? ?????
-            folderId = "b1gcs887qqjchlhcu03p" // ??? ?????
+            targetLanguageCode = lang,  
+            texts = new[] { text.text },  
+            folderId = "b1gbf1iuu7aa8bmcqp5v"  
 
         };
-
-        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Api-Key", apiKey);
-
-        string jsonRequestBody = JsonConvert.SerializeObject(requestBody);
-        var content = new StringContent(jsonRequestBody, Encoding.UTF8, "application/json");
-        var response = await client.PostAsync(url, content);
-
-        if (response.IsSuccessStatusCode && !string.IsNullOrEmpty(text.text))
+        if (!string.IsNullOrEmpty(text.text))
         {
-            string responseContent = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<TranslateResponse>(responseContent);
-            this.text.text = ReplaceUnreadableSymbols(result.Translations[0].Text);
-            await Task.Delay(2000);
-            LocalizationManager.OnEndResponse?.Invoke("");
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Api-Key", apiKey);
+
+            string jsonRequestBody = JsonConvert.SerializeObject(requestBody);
+            var content = new StringContent(jsonRequestBody, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(url, content);
+
+
+            if (response.IsSuccessStatusCode)
+            {
+                string responseContent = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<TranslateResponse>(responseContent);
+                this.text.text = ReplaceUnreadableSymbols(result.Translations[0].Text);
+                await Task.Delay(delayTime);
+                LocalizationManager.OnEndResponse?.Invoke("");
+            }
+            else
+            {
+                Debug.Log(response.StatusCode.ToString() + " " + await response.Content.ReadAsStringAsync());
+            }
         }
+
         else
-        { 
-            Debug.Log(response.StatusCode.ToString());
+        {
+            Debug.Log("Text is empty!");
         }
        
 

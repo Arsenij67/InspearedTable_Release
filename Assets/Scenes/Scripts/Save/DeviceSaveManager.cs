@@ -29,7 +29,7 @@ public class DeviceSaveManager<T>
         Debug.Log("ffffffffff");
         path = Path.Combine(Application.persistentDataPath, "SystemData.xml");
         LoadOrCreateFile();
-        Debug.Log(path);
+        
     }
     private static void LoadOrCreateFile()
     {
@@ -39,13 +39,14 @@ public class DeviceSaveManager<T>
             root = new XElement("root");
             root = ConvertStringToXML("Name", default(T));
             SaveToFile();
-
+             
         }
         else
         {
             string allText = File.ReadAllText(path);
             root = XDocument.Parse(allText).Element("root");
         }
+        Debug.Log(string.Format($"Created {path}"));
     }
 
     private static void SaveToFile()

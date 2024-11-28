@@ -76,7 +76,7 @@ public class Motivation : Content//2
 
         else
         {
-           Info.text = ("Запас мотивация закончился!");
+           Info.text = ("Запас мотивации закончился!");
 
         }
       

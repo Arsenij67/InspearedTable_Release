@@ -13,11 +13,23 @@ public sealed class ScoreCaracter : MonoBehaviour
 
     [SerializeField] private TMP_Text MaxScoreUI;
 
-    [SerializeField] private LocaledText localedMaxScore;
-
     [SerializeField] private LocaledText localedScore;
 
     private Fb fb;
+
+    private string translatedScorePhrase;
+
+    private string translatedRecordPhrase;
+    async void Start()
+    {
+        fb = FindObjectOfType<Fb>();
+        await fb.InitInfoTask; // ждем конец инициализации
+        translatedRecordPhrase = MaxScoreUI.text;
+        translatedScorePhrase = TextScoreUI.text;
+        MaxScore = Convert.ToInt32(fb.dataSnapshot.Child(SaveTypesFactory.deviceSaveManagerString.GetElement("Name") as string).Child("Record").Value);
+        
+
+    }
     
     private int _score;
     public int Score {
@@ -32,9 +44,8 @@ public sealed class ScoreCaracter : MonoBehaviour
         {
             _score = value;
 
-         
-            LocalizationManager.OnResponseChanged();
-            TextScoreUI.text +=_score.ToString();
+            TextScoreUI.text = translatedScorePhrase+_score.ToString();
+ 
         }
     
     
@@ -52,12 +63,6 @@ public sealed class ScoreCaracter : MonoBehaviour
     {
         Instance = this;
     }
-    private async void Start()
-    {
-        fb = FindObjectOfType<Fb>();
-        await fb.InitInfoTask; // ждем конец инициализации
-        MaxScore = Convert.ToInt32(fb.dataSnapshot.Child(SaveTypesFactory.deviceSaveManagerString.GetElement("Name") as string).Child("Record").Value);
-    }
     
     public int MaxScore
     {
@@ -66,14 +71,9 @@ public sealed class ScoreCaracter : MonoBehaviour
         set
         {
             _maxscore = value;
-
-          
-            LocalizationManager.OnResponseChanged();
-            MaxScoreUI.text+= _maxscore.ToString(); 
-
-
-
+            MaxScoreUI.text = translatedRecordPhrase + _maxscore.ToString();
         }
+
 
     }
 
