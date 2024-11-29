@@ -136,6 +136,10 @@
   {
     "key": "TitleLoadText",
     "value": "Les elfes travaillent sur une traduction de qualité... attendez un peu."
+  },
+  {
+    "key": "Change your name at the top to find yourself on the leaderboard",
+    "value": "Changez votre nom en haut pour le classement!"
   }
 
 

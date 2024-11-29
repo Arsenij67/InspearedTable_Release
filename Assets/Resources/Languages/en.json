@@ -189,6 +189,10 @@
   {
     "key": "TitleLoadText",
     "value": "The elves are working on a high-quality translation... Wait a bit"
+  },
+  {
+    "key": "Change your name at the top to find yourself on the leaderboard",
+    "value": "Change your name at the top for the leaderboard!"
   }
 
 

@@ -34,6 +34,7 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
         warningTextDict = warningTextList.Where(selector => selector != null).ToDictionary(k=>k.name.Substring(k.name.Length-4),e=>e);
         //// ?????: Mail, ass1, ass2
         SwitchButton(isFirstPassRight && isSecondPassRight && isMailRight);
+        CloseLoadingPanel();
 
     }
 

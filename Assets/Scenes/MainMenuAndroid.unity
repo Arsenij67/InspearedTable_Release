@@ -6062,8 +6062,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 750, y: 69}
-  m_SizeDelta: {x: 8, y: 1.45}
+  m_AnchoredPosition: {x: 769.71765, y: 69}
+  m_SizeDelta: {x: 8.575, y: 1.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1408926264
 MonoBehaviour:
@@ -13971,6 +13971,7 @@ GameObject:
   - component: {fileID: 2124635606}
   - component: {fileID: 2124635608}
   - component: {fileID: 2124635609}
+  - component: {fileID: 2124635610}
   m_Layer: 5
   m_Name: TextWarning
   m_TagString: Untagged
@@ -14026,7 +14027,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: This name is taken!
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14095,6 +14096,21 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &2124635610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124635605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0d127697fbd29041a6d9d77d6c01862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 
+  text: {fileID: 0}
+  translateMode: 0
 --- !u!1 &2132141096
 GameObject:
   m_ObjectHideFlags: 0

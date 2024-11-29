@@ -34,6 +34,8 @@ public class ButtonController : MonoBehaviour
 
     private Transform notification;
 
+    private LocaledText localedTextNotif;
+
     public enum sceneName
     {
         Authorization,
@@ -43,6 +45,8 @@ public class ButtonController : MonoBehaviour
 
     private void Awake()
     {
+        notification = textWarning?.transform.parent;
+        localedTextNotif = textWarning.GetComponent<LocaledText>();
         Events.MusicClick.AddListener(PlayMusicGame);
         transform.GetChild(0).GetComponent<AudioSource>().volume = Events.MusicForce;
         AudioSource = GetComponent<AudioSource>();
@@ -52,7 +56,7 @@ public class ButtonController : MonoBehaviour
             if(inputTextName!=null)
             inputTextName.text = (string)SaveTypesFactory.deviceSaveManagerString.GetElement("Name");//????? ????? ????? ?????????????
         }
-        notification = textWarning?.transform.parent;
+       
         SetDefaultName();
         TryToPlay();
 
@@ -61,10 +65,36 @@ public class ButtonController : MonoBehaviour
             buttonPlay.interactable = false;
         }
         Events.indexesActived.Clear();
+        
+    }
+    private void Start()
+    {
+        CheckFirstEnter();
+    }
+
+    private void OnEnable()
+    {
+       LocalizationManager.OnLanguageChanged+= localedTextNotif.UpdateText;
+       LocalizationManager.OnResponseChanged+= localedTextNotif.UpdateText;
+    }
+
+    private void OnDisable()
+    {
+        LocalizationManager.OnLanguageChanged -= localedTextNotif.UpdateText;
+        LocalizationManager.OnResponseChanged -= localedTextNotif.UpdateText;
+    }
+    void CheckFirstEnter()
+    {
+        float animLength = 3f;
+        if (IsUserFirstEnter())
+        {
+            PopupWarning("Change your name at the top to find yourself on the leaderboard", Color.yellow, animLength);
+           
+        }
+        IncreaseQuantityEnter();
 
     }
 
-   
     public void TryToPlay() // ????????? ??????????? ? ????
     {
         if (buttonPlay == null) return;
@@ -133,7 +163,7 @@ public class ButtonController : MonoBehaviour
             {
                 
             
-                fb.RemoveData(SaveTypesFactory.deviceSaveManagerString.GetElement("Name"));//??????? ?????? ?????? ?? ????
+                fb.RemoveData(SaveTypesFactory.deviceSaveManagerString.GetElement("Name") as string);//??????? ?????? ?????? ?? ????
                  
                 int maxScore = int.Parse(await fb.GetRecord());
                 SaveTypesFactory.deviceSaveManagerString.SaveElement("Name", name); // ???????? ????? 
@@ -167,18 +197,21 @@ public class ButtonController : MonoBehaviour
     }
     public void PopupWarning(string text,Color color,float animNotification = 1.5f)
     {
-        
-            text = localization.GetLocalizedValue(text);
-          LocalizationManager.OnLanguageChanged.Invoke();
-
-       Tween SequencePopup = DOTween.Sequence()
-                .Append(notification.DOLocalMoveX(150f, animNotification))
-                .AppendInterval(animNotification)
-                .Append(notification.DOLocalMoveX(2000f, animNotification));
-
         textWarning.text = text;
 
         textWarning.color = color;
+
+        float animTo = 2f;
+        float animBack =  2f;
+
+        LocalizationManager.OnResponseChanged.Invoke();
+
+        Tween SequencePopup = DOTween.Sequence()
+                .Append(notification.DOLocalMoveX(110f, animTo))
+                .AppendInterval(animNotification)
+                .Append(notification.DOLocalMoveX(2000f, animBack));
+
+      
 
         SequencePopup.Play();
 
@@ -202,6 +235,21 @@ public class ButtonController : MonoBehaviour
     {
         LoadScene(sceneName.MainMenuAndroid);
     }
+
+    private bool IsUserFirstEnter()
+    {
+        uint numberEnter = Convert.ToUInt32(SaveTypesFactory.deviceSaveManagerInteger.GetElement("NumberEnter"));
+
+        return numberEnter <= 0;
+  
+    }
+    void IncreaseQuantityEnter()
+    {
+        uint numberEnter = Convert.ToUInt32(SaveTypesFactory.deviceSaveManagerInteger.GetElement("NumberEnter"));
+        SaveTypesFactory.deviceSaveManagerInteger.SaveElement("NumberEnter", ++numberEnter);
+         
+    }
+
 }
 
 

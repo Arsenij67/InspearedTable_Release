@@ -213,12 +213,10 @@ public class LeaderBoard : DashboardAnimator
     { 
         int CountChilds = content.transform.childCount;
 
-        print(CountChilds);
-
         for (int i = 0; i < CountChilds; i++)
         { 
         
-        Destroy(content.transform.GetChild(0).gameObject);
+            Destroy(content.transform.GetChild(0).gameObject);
         
         await Task.Yield();
 

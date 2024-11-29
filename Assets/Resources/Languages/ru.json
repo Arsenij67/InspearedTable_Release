@@ -189,6 +189,10 @@
   {
     "key": "TitleLoadText",
     "value": "Эльфы трудятся над качественным переводом... подождите немного"
+  },
+  {
+    "key": "Change your name at the top to find yourself on the leaderboard",
+    "value": "Измените свое имя вверху для таблицы лидеров!"
   }
 
 

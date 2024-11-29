@@ -3,6 +3,8 @@ using UnityEngine;
 using System.Xml.Linq;
 using System;
 using Newtonsoft.Json.Linq;
+using System.Xml;
+using DG.Tweening.Plugins.Core.PathCore;
 
 /// <summary>
 /// Менеджер для сохранения и загрузки данных устройства в формате XML.
@@ -11,8 +13,9 @@ using Newtonsoft.Json.Linq;
 public class DeviceSaveManager<T> 
 {
     private static DeviceSaveManager<T> instanceSaveManager;
-    private static XElement root = new XElement("root");
-    private static string path;
+    private static XmlElement root = null;
+    private static XmlDocument xmlDocument = new XmlDocument();
+    private string path = "";
 
     // Получение экземпляра менеджера
     internal static DeviceSaveManager<T> GetInstance()
@@ -26,66 +29,97 @@ public class DeviceSaveManager<T>
 
     public void Init()
     {
-        Debug.Log("ffffffffff");
-        path = Path.Combine(Application.persistentDataPath, "SystemData.xml");
-        LoadOrCreateFile();
+       
+        path = System.IO.Path.Combine(Application.persistentDataPath, "SystemData.xml");
+        LoadOrCreateFile(path);
         
     }
-    private static void LoadOrCreateFile()
+    private static void LoadOrCreateFile(string path)
     {
-        if (!File.Exists(path))
+        if (!File.Exists(path)) // если не существует
         {
-            CreateFile(path);
-            root = new XElement("root");
-            root = ConvertStringToXML("Name", default(T));
-            SaveToFile();
-             
+            Debug.Log(" Не Существует");
+            xmlDocument = CreateFile(path);
+
+            xmlDocument.Load(path);
+            root = xmlDocument.DocumentElement;
+
+            //добавляем элементы
+            XmlElement langElem =  xmlDocument.CreateElement("Language");
+            XmlElement numberEnterElem = xmlDocument.CreateElement("NumberEnter");
+            XmlElement NameElem = xmlDocument.CreateElement("Name");
+
+           
+            XmlText textLang = xmlDocument.CreateTextNode("ru");
+            XmlText textName = xmlDocument.CreateTextNode("Имя отсутствует");
+            XmlText textNumberEnter = xmlDocument.CreateTextNode("0");
+
+            langElem.AppendChild(textLang);
+            numberEnterElem.AppendChild(textNumberEnter);
+            NameElem.AppendChild(textName);
+
+            // привязываем к корню
+            root.AppendChild(langElem);
+            root.AppendChild(numberEnterElem);
+            root.AppendChild(NameElem);
+
+
+            xmlDocument.Save(path);
+
+
+
         }
-        else
+        else if(new FileInfo(path).Length>0) // если файл существует и не пуст
         {
-            string allText = File.ReadAllText(path);
-            root = XDocument.Parse(allText).Element("root");
+            Debug.Log("Существует");
+           
+          xmlDocument.Load(path);
+          root = xmlDocument.DocumentElement;
         }
-        Debug.Log(string.Format($"Created {path}"));
+   
     }
 
-    private static void SaveToFile()
+
+
+
+    public object GetElement(string name)
     {
-        XDocument xDocument = new XDocument(root);
-        File.WriteAllText(path, xDocument.ToString());
+       
+        var nodeList =  root.SelectNodes(name);
+        return nodeList[0].InnerText;
     }
 
-    private static XElement ConvertStringToXML(string key, T value)
+    public void SaveElement(string key, object value)
     {
-        root.SetAttributeValue(key, value);
-        return root;
+
+        Debug.Log("VALUE = " + value);
+        Debug.Log("KEY = " + key);
+
+        var nodeList = root.SelectSingleNode(key);
+        XmlNode changedNode = nodeList;
+        changedNode.InnerText = value.ToString();
+        root.AppendChild(changedNode);
+        xmlDocument.Save(path);
+        Debug.Log("--------------- ");
+        Debug.Log("VALUE = " + changedNode.InnerText);
+        Debug.Log("KEY = " + changedNode.Name);
+
+
     }
 
-    public  void SaveElement(string key, T value)
-    {
-        root = ConvertStringToXML(key, value);
-        SaveToFile();
-    }
 
-    public T GetElement(string key)
-    {
-        if (root.Attribute(key) != null)
-        {
-            return (T)Convert.ChangeType(root.Attribute(key).Value, typeof(T));
-        }
-        else
-        {
-            SaveElement(key, default(T));
-            return default(T);
-        }
-    }
+    private static XmlDocument CreateFile(string path)
 
-    private static void CreateFile(string path)
-    {
-        using (FileStream fs = File.Create(path))
-        {
-            // Файл создан, можно добавить начальное содержимое, если нужно
-        }
+    {   // Создаем XmlDocument и добавляем корневой элемент
+            XmlDocument xmlDocument = new XmlDocument();
+            XmlElement rootElem = xmlDocument.CreateElement("SystemData");
+            xmlDocument.AppendChild(rootElem);
+
+            // Сохраняем документ в указанный путь
+            xmlDocument.Save(path);
+
+            return xmlDocument;
+         
     }
 
     
@@ -97,6 +131,9 @@ public class InvokerSystemData
     {
         SaveTypesFactory.deviceSaveManagerString.Init();
         SaveTypesFactory.deviceSaveManagerInteger.Init();
+  
+
+       
     }
 
 }
