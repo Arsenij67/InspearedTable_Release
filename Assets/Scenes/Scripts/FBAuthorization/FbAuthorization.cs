@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using Firebase.Database;
+using System.Linq;
 
 public class FbAuthorization : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class FbAuthorization : MonoBehaviour
     private IAuthorizationListener warningLoggerLogInListener;
 
     private FirebaseAuth FirebaseAuth;
+    
 
     private void Awake()
     {
@@ -32,9 +35,7 @@ public class FbAuthorization : MonoBehaviour
         StartCoroutine(ButtonLogIn(warningLoggerLogInListener.mail, warningLoggerLogInListener.pass));
     }
 
-    /// <summary>
-    /// ??????????? 
-    /// </summary>
+    [Obsolete]
     private IEnumerator Register(string email, string pass)
     {
         StartCoroutine(Events.ChechInternetConnection(connect =>
@@ -46,7 +47,6 @@ public class FbAuthorization : MonoBehaviour
                 return;
             }
         }));
-
              
             if (warningLoggerRegistrationListener.isAllDataRight)
             {
@@ -56,27 +56,21 @@ public class FbAuthorization : MonoBehaviour
                 // ???? ?????????? ?????? ???????????
                 yield return new WaitUntil(() => userCreationTask.IsCompleted);
 
-                // ???????? ?? ??????? ?????? ??? ???????????
+            
                 if (userCreationTask.Exception != null)
                 {
                     warningLoggerRegistrationListener.OnAuthorizationFailed(new System.AggregateException($"Error of registration: {userCreationTask.Exception.Flatten().Message}"));
        
-                    yield break; // ????? ?? ???????? ??? ??????
+                    yield break; 
                 }
 
-            // ???????? ?????? ??? ????????????? ??????????? ?????
 
             StartCoroutine(SendVerificationMail(userCreationTask));
 
-            // ???????? ?? ??????? ?????? ??? ???????? ??????
-            
-
-                // ???????? ??????????? ??????????? ?????
                 bool isVerified = false;
 
                 while (!isVerified)
                 {
-                    // ???????? ??????????? ?????????? ? ????????????
                     var userRecordTask = FirebaseAuth.SignInWithEmailAndPasswordAsync (email,pass);
 
                     yield return new WaitUntil(() => userRecordTask.IsCompleted);
@@ -85,16 +79,13 @@ public class FbAuthorization : MonoBehaviour
                     {
                         warningLoggerRegistrationListener.OnAuthorizationFailed(new System.AggregateException($"Error with log in: {userRecordTask.Exception.Flatten().Message}"));
 
-                    yield break; // ????? ?? ???????? ??? ??????
+                    yield break;
                     }
 
-                    // ?????????, ???????????? ?? ??????????? ?????
                     isVerified = userRecordTask.Result.User.IsEmailVerified;
 
-                    // ???? ????? ????????? ?????????
-                    yield return new WaitForSeconds(2); // ????????? ?????? 2 ??????
+                    yield return new WaitForSeconds(2); 
                 }
-            //????????? ?????? ? ????????? ???????????
             warningLoggerRegistrationListener.OnVerifiedMail();
             }
             else
@@ -140,9 +131,11 @@ public class FbAuthorization : MonoBehaviour
             {
                 AuthResult res = logIn.Result;
 
-                if (res.User.IsEmailVerified)  
+                if (res.User.IsEmailVerified)
                 {
-                    warningLoggerLogInListener.OnLogInSucceeded();
+
+                    warningLoggerLogInListener.OnLogInSucceeded(FirebaseAuth.CurrentUser.UserId);
+
 
                 }
 
@@ -150,7 +143,8 @@ public class FbAuthorization : MonoBehaviour
                 {
                     warningLoggerLogInListener.OnAuthorizationFailed(new AggregateException("The mail has not been verified. Follow the link in the email!"));
                     StartCoroutine(SendVerificationMail(logIn));
-                
+
+
                 }
 
             }
@@ -160,7 +154,7 @@ public class FbAuthorization : MonoBehaviour
         else
         {
             warningLoggerLogInListener.OnAuthorizationFailed(new AggregateException("Uncorrectable data!"));
-            
+
         }
 
     }
@@ -182,6 +176,7 @@ public class FbAuthorization : MonoBehaviour
     }
 
     
+
 
 
 

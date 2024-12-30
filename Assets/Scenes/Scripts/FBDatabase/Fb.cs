@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Firebase.Database;
 using System.Threading.Tasks;
-using Firebase.Auth;
 using UnityEngine.UI;
 using Firebase;
-
+using System.Linq;
+using Firebase.Auth;
+ 
 
 public class Fb : MonoBehaviour
 {
@@ -16,13 +17,12 @@ public class Fb : MonoBehaviour
 
     internal Task InitInfoTask;
 
-    const int MaxCount = 10000;
+    internal FirebaseAuth auth;
 
+    const int MaxCount = 10000;
 
     private void Awake()
     {
-        
-    
         InitInfoTask = InitInfo();
         print("awake info");
     }
@@ -37,8 +37,8 @@ public class Fb : MonoBehaviour
 public async Task InitInfo()
     {
        
-        DBRef = FirebaseDatabase.GetInstance("https://insptable-default-rtdb.firebaseio.com/").RootReference;
-       
+         DBRef = FirebaseDatabase.GetInstance("https://insptable-default-rtdb.firebaseio.com/").RootReference;
+        auth = FirebaseAuth.DefaultInstance;
         dataSnapshot =  await ReadData();
        
     }
@@ -90,10 +90,10 @@ public async void RemoveData(string Name)
 /// <param name="name">имя в таблице игроков</param>
 /// <param name="rec">рекорд, поставленный игроком</param>
 /// <returns></returns>
-public  IEnumerator  WriteData(string name,int rec)
+public  IEnumerator  WriteData(string name,int rec, string uid)
     {
 
-        User user = new User(name,rec);
+        User user = new User(name,rec, uid);
 
         var jsonUtility = JsonUtility.ToJson(user);
 
@@ -112,27 +112,14 @@ public  IEnumerator  WriteData(string name,int rec)
 /// <returns > сущесвует ли имя или нет</returns>
 public bool CheckNameUser(string name)
     {
-        bool IsNameExist = false;
-
-        
-        foreach (var snapshot in dataSnapshot.Children)
+        try
         {
-
-            if (snapshot.Child("Name").Value.ToString() == name)
-            {
-               
-                IsNameExist = true;
-
-                return IsNameExist;
-
-
-            }
-
-            
+            return dataSnapshot.Children.Any(dataSnapshot => { return dataSnapshot.Child("Name").Equals(name); });
         }
-
-    return IsNameExist;
-
+        catch
+        {
+            return true;
+        }
     }
     public async Task<string> GetRecord()
     {
@@ -152,10 +139,12 @@ public struct User
 {
     public string Name;
     public int Record;
-    public User(string name, int record)
+    public string UID;
+    public User(string name, int record, string uid)
     {
         Name = name;
         Record = record;
+        UID = uid;
     }
 }
 }

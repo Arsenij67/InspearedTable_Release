@@ -13,7 +13,6 @@ public interface IAuthorizationListener
 
     public void OnAuthorizationFailed(AggregateException error);
 
-    public void OnLogInSucceeded ();
-
+    public void OnLogInSucceeded (string uid);
 
 }

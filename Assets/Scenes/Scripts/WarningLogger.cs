@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Firebase.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,20 +12,19 @@ using UnityEngine.UI;
 [RequireComponent(typeof(ScenesLoader))]
 public class WarningLogger : DashboardAnimator, IAuthorizationListener
 {
-    //??????????
-
     [SerializeField] private TMP_Text [] warningTextList;
     protected  Dictionary<string, TMP_Text> warningTextDict;
-    [SerializeField]private bool isFirstPassRight = false, isSecondPassRight= false, isMailRight = false;
+    [SerializeField]private bool isFirstPassRight = false, isSecondPassRight = false, isMailRight = false;
     internal string pass;
     internal string mail;
     [SerializeField] private TMP_InputField ? mailField, passField, secondPassField;
     private ScenesLoader sceneLoader;
     public Button actionButton;
+    [SerializeField] private Fb database;
     // ????????
-    string IAuthorizationListener.mail => mail;
+    string IAuthorizationListener.mail => mail.Trim();
 
-    string IAuthorizationListener.pass => pass;
+    string IAuthorizationListener.pass => pass.Trim();
 
     bool IAuthorizationListener.isAllDataRight => isFirstPassRight && isSecondPassRight && isMailRight;    // ????????, ?????????? ?? ??, ??? ?? ?????? ? ???? ??????? ?????
 
@@ -216,13 +216,36 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
         
     }
 
-    public async void OnLogInSucceeded()
+    public async void OnLogInSucceeded(string uid)
     {
-        
         await DisplayGrowingLoadingPanel(string.Format($"The login was completed successfully!"),2f);
+        string name = await GetCurrentUserNameByMailId(uid);
+        SaveTypesFactory.deviceSaveManagerString.SaveElement("Mail", mail);
+        SaveTypesFactory.deviceSaveManagerString.SaveElement("Name", name);
         sceneLoader.LoadScene();
        
     }
+    private void UpdateData(string key,string newVal)
+    {
+        // если почта новая
+        if (!SaveTypesFactory.deviceSaveManagerString.GetElement(key).Equals(newVal))
+        {
+            SaveTypesFactory.deviceSaveManagerString.SaveElement(key, newVal);
+            SaveTypesFactory.deviceSaveManagerString.SaveElement("Name","Имя отсутствует");
+
+        }
+         
+    }
+    
+
+    private async Task<string> GetCurrentUserNameByMailId(string uid)
+    {
+        DataSnapshot ds = await database.ReadData();
+        Debug.Log(uid);
+        return ds.Child(uid).Child("Name").Value.ToString();
+
+    }
+
 
     private void SwitchButton(bool On)
     {

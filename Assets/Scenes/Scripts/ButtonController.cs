@@ -65,12 +65,10 @@ public class ButtonController : MonoBehaviour
             buttonPlay.interactable = false;
         }
         Events.indexesActived.Clear();
-        
-    }
-    private void Start()
-    {
         CheckFirstEnter();
+
     }
+ 
 
     private void OnEnable()
     {
@@ -167,8 +165,8 @@ public class ButtonController : MonoBehaviour
                  
                 int maxScore = int.Parse(await fb.GetRecord());
                 SaveTypesFactory.deviceSaveManagerString.SaveElement("Name", name); // ???????? ????? 
-
-                StartCoroutine(fb.WriteData(SaveTypesFactory.deviceSaveManagerString.GetElement("Name").ToString(),maxScore));
+                
+                StartCoroutine(fb.WriteData(SaveTypesFactory.deviceSaveManagerString.GetElement("Name").ToString(),maxScore,fb.auth.CurrentUser.UserId));
 
                 TryToPlay();//?????? ????????? ?????? ??????
 
@@ -217,13 +215,14 @@ public class ButtonController : MonoBehaviour
 
     }
 
-    private void SetDefaultName()
+    private async void SetDefaultName()
     {
         string name = SaveTypesFactory.deviceSaveManagerString.GetElement("Name") as string;
-
+       
         if (!string.IsNullOrEmpty(name))
         {
-            if (inputTextName)
+            await Task.Delay(100);
+            if (inputTextName && fb.CheckNameUser(name))
             {
                 inputTextName.text = name;
             }

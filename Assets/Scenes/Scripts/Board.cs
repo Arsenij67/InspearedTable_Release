@@ -324,7 +324,7 @@ public sealed class Board : MonoBehaviour
 
                     StartCoroutine(ScoreCaracter.Instance.ChangeScoreAndRecord(tile.item.Value * ConnectedTiles.Count(), 50));
 
-                    StartCoroutine(fb.WriteData(SaveTypesFactory.deviceSaveManagerString.GetElement("Name") as string, ScoreCaracter.Instance.MaxScore));
+                    StartCoroutine(fb.WriteData(SaveTypesFactory.deviceSaveManagerString.GetElement("Name") as string, ScoreCaracter.Instance.MaxScore,""));
 
 
 

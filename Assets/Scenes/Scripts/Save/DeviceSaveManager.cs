@@ -36,6 +36,7 @@ public class DeviceSaveManager<T>
     }
     private static void LoadOrCreateFile(string path)
     {
+        Debug.Log(path);
         if (!File.Exists(path)) // если не существует
         {
             Debug.Log(" Не Существует");
@@ -48,31 +49,28 @@ public class DeviceSaveManager<T>
             XmlElement langElem =  xmlDocument.CreateElement("Language");
             XmlElement numberEnterElem = xmlDocument.CreateElement("NumberEnter");
             XmlElement NameElem = xmlDocument.CreateElement("Name");
-
+            XmlElement mailElem = xmlDocument.CreateElement("Mail");
            
             XmlText textLang = xmlDocument.CreateTextNode("ru");
             XmlText textName = xmlDocument.CreateTextNode("Имя отсутствует");
             XmlText textNumberEnter = xmlDocument.CreateTextNode("0");
-
+            XmlText textMail = xmlDocument.CreateTextNode("Почта отсутствует");
+            
             langElem.AppendChild(textLang);
             numberEnterElem.AppendChild(textNumberEnter);
             NameElem.AppendChild(textName);
+            mailElem.AppendChild(textMail);
 
             // привязываем к корню
             root.AppendChild(langElem);
             root.AppendChild(numberEnterElem);
             root.AppendChild(NameElem);
-
-
+            root.AppendChild(mailElem);
             xmlDocument.Save(path);
-
-
 
         }
         else if(new FileInfo(path).Length>0) // если файл существует и не пуст
-        {
-            Debug.Log("Существует");
-           
+        {  
           xmlDocument.Load(path);
           root = xmlDocument.DocumentElement;
         }
@@ -84,27 +82,20 @@ public class DeviceSaveManager<T>
 
     public object GetElement(string name)
     {
-       
+        LoadOrCreateFile(path);
         var nodeList =  root.SelectNodes(name);
         return nodeList[0].InnerText;
     }
 
     public void SaveElement(string key, object value)
     {
-
-        Debug.Log("VALUE = " + value);
-        Debug.Log("KEY = " + key);
-
+        LoadOrCreateFile(path);
         var nodeList = root.SelectSingleNode(key);
         XmlNode changedNode = nodeList;
         changedNode.InnerText = value.ToString();
         root.AppendChild(changedNode);
         xmlDocument.Save(path);
-        Debug.Log("--------------- ");
-        Debug.Log("VALUE = " + changedNode.InnerText);
-        Debug.Log("KEY = " + changedNode.Name);
-
-
+       
     }
 
 
@@ -114,10 +105,8 @@ public class DeviceSaveManager<T>
             XmlDocument xmlDocument = new XmlDocument();
             XmlElement rootElem = xmlDocument.CreateElement("SystemData");
             xmlDocument.AppendChild(rootElem);
-
             // Сохраняем документ в указанный путь
             xmlDocument.Save(path);
-
             return xmlDocument;
          
     }
@@ -132,8 +121,6 @@ public class InvokerSystemData
         SaveTypesFactory.deviceSaveManagerString.Init();
         SaveTypesFactory.deviceSaveManagerInteger.Init();
   
-
-       
     }
 
 }
