@@ -165,7 +165,7 @@ public sealed class Settings : DashboardAnimator
         else if (descrition.Equals("No"))
         {
 
-            WindowExit.gameObject.SetActive(false);
+            WindowExit.transform.localScale = Vector3.zero;
 
             foreach (var element in WindowExit.GetChild(0).GetComponentsInChildren<RectTransform>(true))
             {

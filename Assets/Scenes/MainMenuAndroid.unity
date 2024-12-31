@@ -6013,6 +6013,7 @@ MonoBehaviour:
   targetPosition: {fileID: 0}
   dashboardLoading: {fileID: 4159454000177687179}
   mainText: {fileID: 0}
+  buttonClose: {fileID: 0}
   TextNames: {fileID: 0}
   TextRecords: {fileID: 0}
   fb: {fileID: 1662526202}
@@ -12316,6 +12317,7 @@ MonoBehaviour:
   targetPosition: {fileID: 1643636841}
   dashboardLoading: {fileID: 1643636841}
   mainText: {fileID: 0}
+  buttonClose: {fileID: 0}
   mainSection: {fileID: 2041296500}
   resultPopUp: {fileID: 8665879803928384288}
 --- !u!114 &1643636843
@@ -13661,6 +13663,7 @@ MonoBehaviour:
   targetPosition: {fileID: 0}
   dashboardLoading: {fileID: 0}
   mainText: {fileID: 0}
+  buttonClose: {fileID: 0}
   AudioClickButton: {fileID: 8300000, guid: 1b22feb51382a5042be95ccd7d08c703, type: 3}
   audioSource: {fileID: 1557293757}
   MusicSlider: {fileID: 676120381}
@@ -14876,6 +14879,7 @@ MonoBehaviour:
   targetPosition: {fileID: 4159454000177687179}
   dashboardLoading: {fileID: 4159454000177687179}
   mainText: {fileID: 8193017581130755565}
+  buttonClose: {fileID: 0}
   imagePanel: {fileID: 618392298192566758}
   confettiSystem: {fileID: 1327000409}
   clipResult: {fileID: 8300000, guid: 02197c4454441e44eab861d405ae0bd9, type: 3}
