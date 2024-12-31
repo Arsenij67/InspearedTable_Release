@@ -97,7 +97,7 @@ public  IEnumerator  WriteData(string name,int rec, string uid)
 
         var jsonUtility = JsonUtility.ToJson(user);
 
-        var Data = DBRef.Child("Users").Child(name).SetRawJsonValueAsync(jsonUtility);
+        var Data = DBRef.Child("Users").Child(uid).SetRawJsonValueAsync(jsonUtility);
 
         yield return new WaitUntil(predicate: () => Data.IsCompleted);
 

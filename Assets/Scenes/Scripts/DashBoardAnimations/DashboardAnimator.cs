@@ -12,6 +12,7 @@ public class DashboardAnimator : MonoBehaviour
     [SerializeField] private Transform targetPosition = null;
     [SerializeField] private Transform dashboardLoading;
     [SerializeField] private TMP_Text  mainText;
+    [SerializeField] private Transform buttonClose;
 
     internal async Task MoveQueuedAnimationBoard(Transform[] elements, float speed = 0.6f)
     {
@@ -61,7 +62,7 @@ public class DashboardAnimator : MonoBehaviour
 /// ????????? ????
 /// </summary>
 /// <param name="information">?????????????? ????????? ????? ?????????</param>
-    internal async Task DisplayGrowingLoadingPanel(string information,float interval = 5)
+    internal async Task DisplayGrowingLoadingPanel(string information,float interval = 5,bool showCloseButton = true)
     {
         gameObject.SetActive(true);
          
@@ -69,7 +70,8 @@ public class DashboardAnimator : MonoBehaviour
         {
             mainText.text = information;
         }
-
+        buttonClose?.gameObject.SetActive(showCloseButton);
+        
         LocalizationManager.OnResponseChanged?.Invoke();
  
         await DOTween.Sequence().Append(dashboardLoading.DOScale(Vector3.zero,0))

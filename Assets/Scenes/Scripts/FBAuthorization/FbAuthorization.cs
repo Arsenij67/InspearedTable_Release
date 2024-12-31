@@ -68,10 +68,11 @@ public class FbAuthorization : MonoBehaviour
             StartCoroutine(SendVerificationMail(userCreationTask));
 
                 bool isVerified = false;
+                Task<AuthResult> userRecordTask = null;
 
                 while (!isVerified)
                 {
-                    var userRecordTask = FirebaseAuth.SignInWithEmailAndPasswordAsync (email,pass);
+                    userRecordTask = FirebaseAuth.SignInWithEmailAndPasswordAsync (email,pass);
 
                     yield return new WaitUntil(() => userRecordTask.IsCompleted);
 
@@ -86,7 +87,7 @@ public class FbAuthorization : MonoBehaviour
 
                     yield return new WaitForSeconds(2); 
                 }
-            warningLoggerRegistrationListener.OnVerifiedMail();
+            warningLoggerRegistrationListener.OnVerifiedMailSucceded("",0, userCreationTask.Result.User.UserId);
             }
             else
             {

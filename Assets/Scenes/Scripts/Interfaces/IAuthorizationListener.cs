@@ -4,7 +4,7 @@ using System;
 public interface IAuthorizationListener
 {
     public void OnRegisterMail();
-    public void OnVerifiedMail();
+    public void OnVerifiedMailSucceded(string name, int rec, string uid);
 
     public string mail { get; }
     public string pass { get; }

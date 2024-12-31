@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using Firebase.Auth;
   public enum Direction
     {
 
@@ -157,8 +158,8 @@ public sealed class Settings : DashboardAnimator
         if (descrition.Equals("Yes"))
         {
             Application.Quit();
-          
-
+            FirebaseAuth.DefaultInstance.SignOut();
+            
         }
 
         else if (descrition.Equals("No"))

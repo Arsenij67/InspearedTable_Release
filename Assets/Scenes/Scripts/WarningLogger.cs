@@ -35,7 +35,7 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
         //// ?????: Mail, ass1, ass2
         SwitchButton(isFirstPassRight && isSecondPassRight && isMailRight);
         CloseLoadingPanel();
-
+        FillTextToInputField(mailField, SaveTypesFactory.deviceSaveManagerString.GetElement("Mail") as string);
     }
 
 /// <summary>
@@ -192,12 +192,13 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
     public void OnRegisterMail()
     {
 
-        DisplayGrowingLoadingPanel("\nTo register, follow the link in the email! ");
+        DisplayGrowingLoadingPanel("\nTo register, follow the link in the email!",showCloseButton:false);
         
     }
 
-    public void OnVerifiedMail()
+    public void OnVerifiedMailSucceded(string name, int rec, string uid)
     {
+        StartCoroutine(database.WriteData(name, rec, uid));
         CloseGrowingLoadingPanel("\nYou have successfully verified your account! ");
        
     }
@@ -225,27 +226,15 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
         sceneLoader.LoadScene();
        
     }
-    private void UpdateData(string key,string newVal)
-    {
-        // если почта новая
-        if (!SaveTypesFactory.deviceSaveManagerString.GetElement(key).Equals(newVal))
-        {
-            SaveTypesFactory.deviceSaveManagerString.SaveElement(key, newVal);
-            SaveTypesFactory.deviceSaveManagerString.SaveElement("Name","Имя отсутствует");
-
-        }
-         
-    }
-    
 
     private async Task<string> GetCurrentUserNameByMailId(string uid)
     {
         DataSnapshot ds = await database.ReadData();
         Debug.Log(uid);
-        return ds.Child(uid).Child("Name").Value.ToString();
+        return ds.Child(uid).Child("Name").Value.ToString()==null
+            ? " ": ds.Child(uid).Child("Name").Value.ToString();
 
     }
-
 
     private void SwitchButton(bool On)
     {
@@ -253,5 +242,9 @@ public class WarningLogger : DashboardAnimator, IAuthorizationListener
 
     }
 
+    private void FillTextToInputField(TMP_InputField inpField, string data)
+    {
+        inpField.text = data;
+    }
 
 }

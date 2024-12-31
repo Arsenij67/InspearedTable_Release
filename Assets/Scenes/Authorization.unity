@@ -3232,6 +3232,7 @@ MonoBehaviour:
   targetPosition: {fileID: 665174438}
   dashboardLoading: {fileID: 1949720862}
   mainText: {fileID: 1787049446}
+  buttonClose: {fileID: 2067675208}
   warningTextList:
   - {fileID: 110292545}
   - {fileID: 352907592}
@@ -3260,6 +3261,7 @@ MonoBehaviour:
   targetPosition: {fileID: 0}
   dashboardLoading: {fileID: 0}
   mainText: {fileID: 0}
+  buttonClose: {fileID: 0}
   sceneName: 
 --- !u!1 &1002691554
 GameObject:
@@ -6590,6 +6592,7 @@ MonoBehaviour:
   targetPosition: {fileID: 665174438}
   dashboardLoading: {fileID: 1949720862}
   mainText: {fileID: 1787049446}
+  buttonClose: {fileID: 2067675208}
   warningTextList:
   - {fileID: 600469188}
   - {fileID: 408320854}
@@ -6617,6 +6620,7 @@ MonoBehaviour:
   targetPosition: {fileID: 0}
   dashboardLoading: {fileID: 0}
   mainText: {fileID: 0}
+  buttonClose: {fileID: 0}
   sceneName: MainMenuAndroid
 --- !u!114 &1787049446 stripped
 MonoBehaviour:
@@ -7042,6 +7046,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &2067675208 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2775822677476547338, guid: 8690112a8f5f10f4a94c8d02d90fde05, type: 3}
+  m_PrefabInstance: {fileID: 4159454000092472532}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2100978176
 GameObject:
   m_ObjectHideFlags: 0
